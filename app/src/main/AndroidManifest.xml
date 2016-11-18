@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.probationbuddy.probationbuddy">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".MorningAlarm.MorningService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".MorningAlarm.MorningReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <service
+            android:name=".MorningAlarm.MorningServiceStarter"
+            android:exported="false" />
+
+        <receiver
+            android:name=".MorningAlarm.MorningReceiverOnBoot"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".DayAlarm.DayAlarmService"
+            android:exported="false" />
+
+        <receiver
+            android:name=".DayAlarm.DayAlarmReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+
+        <activity
+            android:name=".Settings.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Log.LogActivity"
+            android:label="Call Log"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
+        <activity
+            android:name=".Call.CallActivity"
+            android:label="Call Now"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DoYouTestActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
+
+        <service
+            android:name=".GoTestAlarm.GoTestAlarmStarter"
+            android:exported="false" />
+
+        <receiver
+            android:name=".GoTestAlarm.GoTestAlarmReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+
+        <service
+            android:name=".GoTestAlarm.GoTestAlarmService"
+            android:exported="false" />
+
+        <activity
+            android:name=".TestDoneActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
+
+        <service
+            android:name=".Services.HideNotificationService"
+            android:exported="false"></service>
+    </application>
+
+</manifest>

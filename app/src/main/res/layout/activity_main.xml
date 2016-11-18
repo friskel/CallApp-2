@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.probationbuddy.probationbuddy.MainActivity">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/toolbar_top"
+        android:layout_width="384dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <Button
+        android:text="Start Morning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/startMorningButton"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
+
+    <Button
+        android:text="Stop Morning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stopMorningButton"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/startMorningButton"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <Button
+        android:text="Call Now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/callButton"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/stopDayButton"
+        android:layout_marginBottom="8dp"
+        android:elevation="1dp" />
+
+    <Button
+        android:text="Stop Day Repeating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stopDayButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <TextView
+        android:text="my number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textMainTest"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView3"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/stopMorningButton" />
+
+    <TextView
+        android:text="interval"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvInterval"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginStart="8dp"
+        app:layout_constraintLeft_toRightOf="@+id/textView4"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/textMainTest" />
+
+    <TextView
+        android:text="Number:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/stopMorningButton" />
+
+    <TextView
+        android:text="Interval:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+</android.support.constraint.ConstraintLayout>
