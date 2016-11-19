@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.preference.PreferenceCategory
+    android:title="Main Settings">
+
+    <android.support.v7.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:icon="@drawable/ic_favorites"
+
+        android:key="prefsActivate"
+        android:summary="Receive repeating reminders to call in"
+        android:title="Activate notifications" />
+
+    <android.support.v7.preference.EditTextPreference
+        android:defaultValue="not set"
+        android:dialogLayout="@xml/pref_dialog_edittext_fix"
+        android:dialogMessage="The number you need to call to see if you test"
+        android:icon="@drawable/ic_restaurants"
+        android:dialogIcon="@drawable/ic_recents"
+        android:key="prefsCallNumber"
+        android:summary="321-851-4325"
+        android:title="Call-in phone number" />
+
+    <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
+        style="@style/AppPreference.DialogPreference"
+        android:defaultValue="90"
+        android:icon="@drawable/ic_nearby"
+        android:dialogIcon="@drawable/ic_recents"
+        android:key="prefStartTime"
+        android:summary="9:15 am"
+        android:title="Start time" />
+
+    <ListPreference
+        android:defaultValue="30"
+        android:dialogIcon="@drawable/ic_recents"
+        android:entries="@array/intervals_name"
+        android:entryValues="@array/intervals_value"
+        android:icon="@drawable/ic_friends"
+        android:key="prefInterval"
+        android:summary="The amount of time between your reminders"
+        android:title="Interval between notifications" />
+
+    <android.support.v7.preference.EditTextPreference
+        android:defaultValue=""
+        android:dialogLayout="@xml/pref_dialog_edittext_fix_text"
+        android:dialogMessage="Enter your colors or numbers that would require you to go test"
+        android:icon="@drawable/ic_restaurants"
+        android:dialogIcon="@drawable/ic_recents"
+        android:key="prefsColorNumber"
+        android:summary="Blue"
+        android:title="Your test colors/numbers" />
+
+
+    </android.support.v7.preference.PreferenceCategory>
+
+
+    <android.support.v7.preference.PreferenceCategory
+        android:title="Configure Notifications">
+
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:icon="@drawable/ic_favorites"
+
+            android:key="prefsVibrate"
+            android:summary="On/off"
+            android:title="Vibrate" />
+
+        <ListPreference
+            android:defaultValue="30"
+            android:dialogIcon="@drawable/ic_recents"
+            android:entries="@array/intervals_name"
+            android:entryValues="@array/intervals_value"
+            android:icon="@drawable/ic_friends"
+            android:key="prefInterval"
+            android:summary="beebop"
+            android:title="Sound" />
+
+
+    </android.support.v7.preference.PreferenceCategory>
+
+</android.support.v7.preference.PreferenceScreen>

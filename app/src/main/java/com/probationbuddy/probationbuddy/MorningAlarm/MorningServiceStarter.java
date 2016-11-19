@@ -15,6 +15,8 @@ import static android.support.v7.preference.PreferenceManager.getDefaultSharedPr
 
 
 public class MorningServiceStarter extends IntentService {
+    int hour;
+    int minute;
     int morningHour;
     int morningMinute;
     public MorningServiceStarter() {
@@ -34,14 +36,19 @@ public class MorningServiceStarter extends IntentService {
 
         SharedPreferences prefs = getDefaultSharedPreferences(this);
 
-            morningHour = prefs.getInt("morningHour", 10); //0 is the default value.
-            morningMinute = prefs.getInt("morningMinute", 30); //0 is the default value.
+        minute = prefs.getInt("prefStartTime", 123) % 60;
+        hour = prefs.getInt("prefStartTime", 123);
+        hour = hour - minute;
+        hour = hour / 60;
+
+
+
 
         Calendar dailyCalendar = Calendar.getInstance();
         dailyCalendar.setTimeInMillis(System.currentTimeMillis());
-        dailyCalendar.set(Calendar.HOUR_OF_DAY, 10);
-        dailyCalendar.set(Calendar.MINUTE, 30);
-        dailyCalendar.set(Calendar.SECOND, 0);
+        dailyCalendar.set(Calendar.HOUR_OF_DAY, hour);
+        dailyCalendar.set(Calendar.MINUTE, minute);
+        dailyCalendar.set(Calendar.SECOND, 1);
         AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP

@@ -81,4 +81,22 @@
     <string name="main_show_phone_call_list">android.intent.action.SHOW_PHONE_CALL_LIST</string>
     <string name="last_phone_call_state_key">activityLpcsKey</string>
     <string name="last_phone_call_bparty_key">activityLpbpKey</string>
+
+
+
+
+
+    <string-array name = "intervals_name">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1hour</item>
+    </string-array>
+
+    <string-array name = "intervals_value">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+
+
 </resources>

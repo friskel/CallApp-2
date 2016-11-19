@@ -6,21 +6,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningService;
 import com.probationbuddy.probationbuddy.Settings.SettingsActivity;
+import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
     int morningHour = 0;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //set activity layout UPDATE TEST
+        setContentView(R.layout.activity_main3); //set activity layout UPDATE TEST
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top); //set toolbar
         setSupportActionBar(myToolbar);
@@ -44,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
         //set toolbar
+
+//
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
+
+
 
 
         Log.i("test", "test");
@@ -60,59 +67,59 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        myNumber = sharedPrefs.getString("myCallNumber", "def");
-        TextView tv1 = (TextView)findViewById(R.id.textMainTest);
-        tv1.setText(myNumber);
-
-        interval = sharedPrefs.getString("intervalPref", "5");
-
-        TextView tv2 = (TextView)findViewById(R.id.tvInterval);
-        tv2.setText(interval);
-
-
-
-
-
-                //start morningAlarm +++
-        Button startMorningButton = (Button) findViewById(R.id.startMorningButton);
-        startMorningButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scheduleMorningAlarm();
-            }
-        });
-
-        //cancel morningAlarm ---
-        Button stopMorningButton = (Button) findViewById(R.id.stopMorningButton);
-        stopMorningButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cancelMorningAlarm();
-            }
-        });
-
-
-
-        //start dayAlarm +++
-        Button stopDayButton = (Button) findViewById(R.id.stopDayButton);
-        stopDayButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stopDayAlarm();
-            }
-        });
-
-        //start callactivity
-        Button callButton = (Button) findViewById(R.id.callButton);
-        callButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentCall = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.Call.CallActivity.class);
-
-                startActivity(intentCall);
-            }
-        });
+//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+//        myNumber = sharedPrefs.getString("myCallNumber", "def");
+//        TextView tv1 = (TextView)findViewById(R.id.textMainTest);
+//        tv1.setText(myNumber);
+//
+//        interval = sharedPrefs.getString("intervalPref", "5");
+//
+//        TextView tv2 = (TextView)findViewById(R.id.tvInterval);
+//        tv2.setText(interval);
+//
+//
+//
+//
+//
+//                //start morningAlarm +++
+//        Button startMorningButton = (Button) findViewById(R.id.startMorningButton);
+//        startMorningButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                scheduleMorningAlarm();
+//            }
+//        });
+//
+//        //cancel morningAlarm ---
+//        Button stopMorningButton = (Button) findViewById(R.id.stopMorningButton);
+//        stopMorningButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                cancelMorningAlarm();
+//            }
+//        });
+//
+//
+//
+//        //start dayAlarm +++
+//        Button stopDayButton = (Button) findViewById(R.id.stopDayButton);
+//        stopDayButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                stopDayAlarm();
+//            }
+//        });
+//
+//        //start callactivity
+//        Button callButton = (Button) findViewById(R.id.callButton);
+//        callButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intentCall = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.Call.CallActivity.class);
+//
+//                startActivity(intentCall);
+//            }
+//        });
 
 
 
