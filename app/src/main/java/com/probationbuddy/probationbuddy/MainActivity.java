@@ -14,8 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
@@ -26,13 +24,9 @@ import com.probationbuddy.probationbuddy.Settings.SettingsActivity;
 import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity {
-    int morningHour = 0;
-    int morningMinute = 18;
-    String myNumber;
-    String interval;
+
     boolean alarmActive;
-    TextView tvTest;
-    Button b1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,26 +36,19 @@ public class MainActivity extends AppCompatActivity {
         //set toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
-        if(getSupportActionBar() != null) {
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
-        }
+        if(getSupportActionBar() != null) { getSupportActionBar().setLogo(R.mipmap.ic_launcher); getSupportActionBar().setDisplayUseLogoEnabled(true); }
 
         //set fragment with settings
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
-
+        FragmentManager manager = getSupportFragmentManager(); FragmentTransaction transaction = manager.beginTransaction(); transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
 
         //get sharedprefs object
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        alarmActive = sharedPrefs.getBoolean("prefsActivate", true);
+
 
     } //end of onCreate
 
-
+    //activity state callbacks
     @Override
     public void onPause() {
         super.onPause();  // Always call the superclass
@@ -90,14 +77,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    //for toolbar buttons
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     } //add menu items to toolbar
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -133,27 +119,30 @@ public class MainActivity extends AppCompatActivity {
     } //sets the clicks for the toolbar menu items
 
 
+    //when you click save button in toolbar
     public void saveAndStartAlarms(){
 
-        Log.i("saveAndStart", "now");
-        startService(new Intent(this, MorningServiceStarter.class));
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (!alarmActive){
+        boolean alarmIsActive;
+        alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
+
+        Log.i("saveAndStart", "now");
+
+        if (!alarmIsActive){
             cancelMorningAlarm();
             stopDayAlarm();
-            Toast.makeText(getApplicationContext(), "switched off, canceling alarms",
+            Toast.makeText(getApplicationContext(), "switched off, turning off alarms",
                     Toast.LENGTH_LONG).show();
+        }else{
+            startService(new Intent(this, MorningServiceStarter.class));
+
         }
+
 
     }
 
 
-
-    public void scheduleMorningAlarm() {
-
-        startService(new Intent(this, MorningServiceStarter.class));
-
-    } //starts MorningServiceStarter service which starts morningAlarm
 
     public void cancelMorningAlarm() {
         Intent intent = new Intent(getApplicationContext(), MorningReceiver.class);
@@ -163,8 +152,6 @@ public class MainActivity extends AppCompatActivity {
         morningAlarm.cancel(pIntent);
     }//cancels morningAlarm
 
-
-
     public void stopDayAlarm() {
         Intent intent = new Intent(getApplicationContext(), DayAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
@@ -172,6 +159,9 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         dayAlarm.cancel(pIntent);
     }//cancels dayAlarm
+
+
+    // need to add stop goTestAlarm ?
 
 
 }
