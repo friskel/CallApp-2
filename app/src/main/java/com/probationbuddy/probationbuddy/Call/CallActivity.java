@@ -11,6 +11,7 @@ import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class CallActivity extends AppCompatActivity {
         mNotificationManager.cancelAll();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        myNumber = prefs.getString("myCallNumber", "123");
+        myNumber = prefs.getString("prefsCallNumber", "123");
 
 //        call right when activity opens
 //        Intent intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel: +" + myNumber));
@@ -124,19 +125,12 @@ public class CallActivity extends AppCompatActivity {
 
                     // detect flag from CALL_STATE_OFFHOOK
                     if (onCall == true) {
-                        Intent restart = getBaseContext().getPackageManager().
-                                getLaunchIntentForPackage(getBaseContext().getPackageName());
-                        restart.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(restart);
 
-                        Intent intentCalled = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.DoYouTestActivity.class);
 
-//
-//                        intentCalled.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intentCalled);
-
+                        callFinished();
                         cancelListener();
                         onCall = false;
+                        Log.i("callStateIdle", "running");
                         break;
                     }
                     break;
@@ -146,6 +140,23 @@ public class CallActivity extends AppCompatActivity {
 
 
 
+
+        }
+
+        private void callFinished(){
+            Toast.makeText(CallActivity.this, "callFinished method running",
+                    Toast.LENGTH_SHORT).show();
+            Intent restart = getBaseContext().getPackageManager().
+                    getLaunchIntentForPackage(getBaseContext().getPackageName());
+            restart.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(restart);
+
+            Intent intentCalled = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.DoYouTestActivity.class);
+
+//
+            intentCalled.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intentCalled);
+            Log.i("callFinished", "running");
 
         }
 

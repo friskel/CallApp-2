@@ -17,6 +17,7 @@ import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 
 public class MorningService extends IntentService {
 
+    String intervalPrefString;
     int intervalPref;
     long interval;
     long firstMillis;
@@ -34,7 +35,8 @@ public class MorningService extends IntentService {
 
 
         //get interval (15,30, or 60) int from sharedprefs
-        intervalPref = sharedPrefs.getInt("prefInterval", 15);
+        intervalPrefString = sharedPrefs.getString("prefInterval", "15");
+        intervalPref = Integer.parseInt(intervalPrefString);
 
         //set interval to correct AlarmManager interval
         interval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;

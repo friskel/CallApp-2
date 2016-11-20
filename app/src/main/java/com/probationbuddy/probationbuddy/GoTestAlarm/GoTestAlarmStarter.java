@@ -14,6 +14,9 @@ public class GoTestAlarmStarter extends IntentService {
     String goTestIntervalString;
     int goTestInterval;
     long firstMillis;
+    String intervalPrefString;
+    long intervalPref;
+    long interval;
     public GoTestAlarmStarter() {
         super("GoTestAlarmStarter");
     }
@@ -22,12 +25,25 @@ public class GoTestAlarmStarter extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        //get shared prefs
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 
-//        goTestInterval = prefs.getInt("goTestInterval", 1); //0 is the default value.
-        goTestIntervalString = prefs.getString("goTestInterval", "1");
-        goTestInterval = 50000;
+        //get interval (15,30, or 60) int from sharedprefs
+        intervalPrefString = sharedPrefs.getString("prefInterval", "15");
+        intervalPref = Integer.parseInt(intervalPrefString);
+
+        //set interval to correct AlarmManager interval
+        interval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+        if (intervalPref == 15){
+            interval = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+        }
+        if (intervalPref == 30){
+            interval = AlarmManager.INTERVAL_HALF_HOUR;
+        }
+        if (intervalPref == 60){
+            interval = AlarmManager.INTERVAL_HOUR;
+        }
 
 
         // This runs if you need to test today
@@ -44,7 +60,7 @@ public class GoTestAlarmStarter extends IntentService {
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, goTestInterval, pIntent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
         Log.i("Go Test Service:", " running");
     }
 }

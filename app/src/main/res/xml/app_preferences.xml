@@ -9,8 +9,8 @@
         android:icon="@drawable/ic_notifications_none_black_24dp"
 
         android:key="prefsActivate"
-        android:summary="Receive repeating reminders to call in"
-        android:title="Activate notifications" />
+        android:summary="You will receive the reminder notifications when switched on"
+        android:title="Active" />
 
     <android.support.v7.preference.EditTextPreference
         android:defaultValue="not set"
@@ -52,13 +52,15 @@
 
         <ListPreference
             android:defaultValue="30"
-            android:dialogIcon="@drawable/ic_recents"
+            android:dialogIcon="@drawable/ic_restore_black_24dp"
             android:entries="@array/intervals_name"
             android:entryValues="@array/intervals_value"
-            android:icon="@drawable/ic_friends"
+            android:icon="@drawable/ic_restore_black_24dp"
             android:key="prefInterval"
             android:summary="The amount of time between your reminders"
-            android:title="Interval between notifications" />
+            android:title="Interval between notifications"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
