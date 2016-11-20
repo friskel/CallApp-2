@@ -7,11 +7,10 @@ import android.support.v7.preference.PreferenceFragmentCompat;
 
 import com.probationbuddy.probationbuddy.R;
 
-/**
- * Created by boppler on 11/18/2016.
- */
+
 
 public class SettingsFragment extends PreferenceFragmentCompat {
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
@@ -40,6 +39,9 @@ public class SettingsFragment extends PreferenceFragmentCompat {
             super.onDisplayPreferenceDialog(preference);
         }
     }
+
+
+
 
 
 }

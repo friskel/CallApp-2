@@ -14,7 +14,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/toolbar_top"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:background="?attr/colorPrimary"
         android:elevation="12dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -32,15 +32,14 @@
         android:id="@+id/settingsFragmentHome"
         android:name="com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment"
         android:layout_width="0dp"
-        android:layout_height="500dp"
-        android:elevation="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_top"
+        android:layout_height="587dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
-        android:layout_marginTop="4dp"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp" />
+        android:layout_marginTop="4dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
 
 </android.support.constraint.ConstraintLayout>

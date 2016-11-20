@@ -14,11 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
-import com.probationbuddy.probationbuddy.MorningAlarm.MorningService;
+import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
 import com.probationbuddy.probationbuddy.Settings.SettingsActivity;
 import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 
@@ -27,109 +29,61 @@ public class MainActivity extends AppCompatActivity {
     int morningMinute = 18;
     String myNumber;
     String interval;
-
-
-
+    boolean alarmActive;
+    TextView tvTest;
+    Button b1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3); //set activity layout UPDATE TEST
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top); //set toolbar
+        //set toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
         if(getSupportActionBar() != null) {
 //            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setLogo(R.mipmap.ic_launcher);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
-        //set toolbar
 
-//
+        //set fragment with settings
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
 
 
-
-
-        Log.i("test", "test");
-
-
-
-        //shared preferences settings ---------
-        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        editor.putInt("morningHour", morningHour);
-        editor.putInt("morningMinute", morningMinute);
-        editor.putLong("dayAlarmInterval", AlarmManager.INTERVAL_FIFTEEN_MINUTES);
-        editor.apply();
-        //end shared preference settings ---------
-
-
-
-//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-//        myNumber = sharedPrefs.getString("myCallNumber", "def");
-//        TextView tv1 = (TextView)findViewById(R.id.textMainTest);
-//        tv1.setText(myNumber);
-//
-//        interval = sharedPrefs.getString("intervalPref", "5");
-//
-//        TextView tv2 = (TextView)findViewById(R.id.tvInterval);
-//        tv2.setText(interval);
-//
-//
-//
-//
-//
-//                //start morningAlarm +++
-//        Button startMorningButton = (Button) findViewById(R.id.startMorningButton);
-//        startMorningButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                scheduleMorningAlarm();
-//            }
-//        });
-//
-//        //cancel morningAlarm ---
-//        Button stopMorningButton = (Button) findViewById(R.id.stopMorningButton);
-//        stopMorningButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cancelMorningAlarm();
-//            }
-//        });
-//
-//
-//
-//        //start dayAlarm +++
-//        Button stopDayButton = (Button) findViewById(R.id.stopDayButton);
-//        stopDayButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                stopDayAlarm();
-//            }
-//        });
-//
-//        //start callactivity
-//        Button callButton = (Button) findViewById(R.id.callButton);
-//        callButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intentCall = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.Call.CallActivity.class);
-//
-//                startActivity(intentCall);
-//            }
-//        });
-
-
-
-
-
-
-
+        //get sharedprefs object
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 
     } //end of onCreate
+
+
+    @Override
+    public void onPause() {
+        super.onPause();  // Always call the superclass
+
+        Log.i("onPause", "now");
+
+
+    }
+    @Override
+    public void onStop() {
+        super.onStop();  // Always call the superclass
+
+        Log.i("onStop", "now");
+
+
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();  // Always call the superclass
+
+        Log.i("onDestroy", "now");
+
+
+    }
 
 
 
@@ -167,13 +121,17 @@ public class MainActivity extends AppCompatActivity {
     } //sets the clicks for the toolbar menu items
 
 
+    public void saveAndStartAlarms(){
+
+        startService(new Intent(this, MorningServiceStarter.class));
+
+    }
 
 
 
     public void scheduleMorningAlarm() {
 
-        startService(new Intent(this, MorningService.class));
-
+        startService(new Intent(this, MorningServiceStarter.class));
 
     } //starts MorningServiceStarter service which starts morningAlarm
 

@@ -4,10 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+
+// broadcast receiver that is fired from MorningServiceStarter alarm every morning at the set time
+// starts the MorningService service
+
+
 public class MorningReceiver extends BroadcastReceiver {
     public static final int REQUEST_CODE = 111;
-    public static final String ACTION = "com.codepath.example.servicesdemo.alarm";
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -19,6 +22,6 @@ public class MorningReceiver extends BroadcastReceiver {
 }
 
 
-// broadcast receiver that is fired from morningAlarm every morning at the set time
+// broadcast receiver that is fired from MorningServiceStarter alarm every morning at the set time
 
 // starts the MorningService service

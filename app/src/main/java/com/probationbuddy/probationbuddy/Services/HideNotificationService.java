@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 
+////////  This service will clear the current notifications in the status bar from this app
 
 public class HideNotificationService extends IntentService {
 
@@ -15,7 +16,6 @@ public class HideNotificationService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
 
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
