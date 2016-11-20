@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         //get sharedprefs object
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        alarmActive = sharedPrefs.getBoolean("prefsActivate", true);
 
     } //end of onCreate
 
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();  // Always call the superclass
 
+
         Log.i("onPause", "now");
 
 
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();  // Always call the superclass
+
 
         Log.i("onStop", "now");
 
@@ -97,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.action_save:
+
+                saveAndStartAlarms();
+
+
+
+                return true;
+
             case R.id.action_log:
                 Intent intentLog = new Intent(this, LogActivity.class);
 
@@ -123,7 +135,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveAndStartAlarms(){
 
+        Log.i("saveAndStart", "now");
         startService(new Intent(this, MorningServiceStarter.class));
+
+        if (!alarmActive){
+            cancelMorningAlarm();
+            stopDayAlarm();
+            Toast.makeText(getApplicationContext(), "switched off, canceling alarms",
+                    Toast.LENGTH_LONG).show();
+        }
 
     }
 

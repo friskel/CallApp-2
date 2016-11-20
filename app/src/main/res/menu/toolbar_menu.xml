@@ -4,15 +4,20 @@
 
 
     <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_check_box_black_24dp"
+        android:title="log"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_log"
         android:icon="@drawable/log_icon"
         android:title="log"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/settings"
         android:title="settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="never" />
 
 
 
