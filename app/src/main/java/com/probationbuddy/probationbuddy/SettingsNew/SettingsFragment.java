@@ -24,14 +24,13 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.app_preferences);
 
-
-
-
-//////
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefIntervalKey));
-        //////
+        onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsCallNumberKey));
+        onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefStartTimeKey));
+        onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsColorNumberKey));
+
+
 
 
     }
