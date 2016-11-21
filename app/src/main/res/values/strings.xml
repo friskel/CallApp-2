@@ -100,4 +100,13 @@
     <string name="ok">OK</string>
 
 
+    <string name="prefsCallNumberKey">prefsCallNumber</string>
+    <string name="prefStartTimeKey">prefStartTime</string>
+    <string name="prefsColorNumberKey">prefsColorNumber</string>
+
+
+    <string name="prefStartTime">prefStartTime</string>
+
+    <string name="prefIntervalKey">prefInterval</string>
+
 </resources>
