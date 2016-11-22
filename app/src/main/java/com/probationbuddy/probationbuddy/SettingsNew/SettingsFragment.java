@@ -3,10 +3,12 @@ package com.probationbuddy.probationbuddy.SettingsNew;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
+import android.support.v7.preference.SwitchPreferenceCompat;
 
 import com.probationbuddy.probationbuddy.R;
 
@@ -19,6 +21,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     String time;
     String minuteString;
     boolean am12;
+    boolean alarmsActive;
+    String editText1;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -114,8 +118,31 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             preference.setSummary(time);
 
 
+        }
+
+        if (preference instanceof SwitchPreferenceCompat) {
+            SwitchPreferenceCompat switchPreferenceCompat = (SwitchPreferenceCompat) preference;
+
+            //get shared prefs
+            SharedPreferences prefs = getDefaultSharedPreferences(getContext());
+            alarmsActive = prefs.getBoolean(key, true);
+
+
+
+        }
+
+        if (preference instanceof EditTextPreference) {
+
+            //get shared prefs
+            SharedPreferences prefs = getDefaultSharedPreferences(getContext());
+            editText1 = prefs.getString(key, "defaultz");
+            preference.setSummary(editText1);
+
+
+
         }else {
-            preference.setSummary(sharedPreferences.getString(key, ""));
+//            preference.setSummary(sharedPreferences.getString(key, ""));
+            //prevented 'class cast string to int' crash by commenting out
 
         }
     }
