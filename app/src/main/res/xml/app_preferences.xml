@@ -34,7 +34,7 @@
 
 
     <android.support.v7.preference.EditTextPreference
-        android:defaultValue=""
+        android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix_text"
         android:dialogMessage="Enter your colors or numbers that would require you to go test"
         android:icon="@drawable/ic_whatshot_black_24dp"
