@@ -32,7 +32,7 @@ public class TestDoneActivity extends AppCompatActivity {
         //set toolbar
 
         //cancel GoTestAlarm ---
-        testDoneButton = (Button) findViewById(R.id.testDoneButton);
+        testDoneButton = (Button) findViewById(R.id.testFinished);
         testDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

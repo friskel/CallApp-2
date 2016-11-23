@@ -46,7 +46,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:paddingBottom="16dp"
-        app:layout_constraintVertical_bias="0.33"
+        app:layout_constraintVertical_bias="0.38"
         android:background="@color/cardview_light_background"
         android:elevation="4dp">
 
@@ -87,15 +87,7 @@
             android:layout_gravity="center"
             android:paddingBottom="16dp"/>
 
-        <Button
-            android:text="Yes, activate reminders"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/testTodaybutton"
-            tools:layout_editor_absoluteY="306dp"
-            tools:layout_editor_absoluteX="83dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp" />
+
 
         <Button
             android:text="No, cancel reminders"
@@ -105,12 +97,24 @@
             tools:layout_editor_absoluteY="362dp"
             tools:layout_editor_absoluteX="101dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/holo_green_light" />
+
+        <Button
+            android:text="Yes, activate reminders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/testTodaybutton"
+            tools:layout_editor_absoluteY="306dp"
+            tools:layout_editor_absoluteX="83dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/holo_red_light" />
 
 
 
         <Button
-            android:text="I need to call again"
+            android:text="I need to call again later"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button3"
