@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.v7.preference.PreferenceCategory
-    android:title="Main Settings">
+    <!--<android.support.v7.preference.PreferenceCategory-->
+    <!--android:title="Main Settings">-->
 
     <android.support.v7.preference.SwitchPreferenceCompat
         android:defaultValue="true"
@@ -13,22 +13,22 @@
         android:title="Activate reminders" />
 
     <android.support.v7.preference.EditTextPreference
-        android:defaultValue="not set"
+        android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix"
         android:dialogMessage="The number you need to call to see if you test"
         android:icon="@drawable/ic_phone_in_talk_black_24dp"
         android:dialogIcon="@drawable/ic_phone_in_talk_black_24dp"
         android:key="prefsCallNumber"
-        android:summary="321-851-4325"
+        android:summary=""
         android:title="Your call-in number" />
 
     <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
         style="@style/AppPreference.DialogPreference"
-        android:defaultValue="90"
+        android:defaultValue="660"
         android:icon="@drawable/ic_access_alarm_black_24dp"
         android:dialogIcon="@drawable/ic_access_alarm_black_24dp"
         android:key="prefStartTime"
-        android:summary="9:15 am"
+        android:summary=""
         android:title="Start time" />
 
 
@@ -44,11 +44,11 @@
         android:title="Your test colors/numbers" />
 
 
-    </android.support.v7.preference.PreferenceCategory>
+    <!--</android.support.v7.preference.PreferenceCategory>-->
 
 
     <android.support.v7.preference.PreferenceCategory
-        android:title="Configure Notifications">
+        android:title="Notification settings">
 
         <ListPreference
             android:defaultValue="30"
@@ -70,15 +70,24 @@
             android:summary="On/off"
             android:title="Vibrate" />
 
-        <ListPreference
-            android:defaultValue="30"
-            android:dialogIcon="@drawable/ic_recents"
-            android:entries="@array/intervals_name"
-            android:entryValues="@array/intervals_value"
-            android:icon="@drawable/ic_friends"
-            android:key="prefInterval"
-            android:summary="beebop"
-            android:title="Sound" />
+        <!--<RingtonePreference-->
+            <!--android:defaultValue="30"-->
+            <!--android:dialogIcon="@drawable/ic_recents"-->
+            <!--android:entries="@array/intervals_name"-->
+            <!--android:entryValues="@array/intervals_value"-->
+            <!--android:icon="@drawable/ic_friends"-->
+            <!--android:key="prefInterval"-->
+            <!--android:summary="beebop"-->
+            <!--android:title="Sound" />-->
+
+        <!--<RingtonePreference-->
+            <!--android:defaultValue="content://settings/system/notification_sound"-->
+            <!--android:dependency="notifications_new_message"-->
+            <!--android:key="notifications_new_message_ringtone"-->
+            <!--android:ringtoneType="notification"-->
+            <!--android:title="@string/pref_title_ringtone"-->
+            <!--android:icon="@drawable/ic_friends"-->
+            <!--android:dialogIcon="@drawable/ic_recents" />-->
 
 
     </android.support.v7.preference.PreferenceCategory>

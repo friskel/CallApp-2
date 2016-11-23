@@ -46,18 +46,21 @@ public class DayAlarmService extends IntentService {
         //////////////////////////////////////////////////////////////////////  build notification
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_favorites)
+                        .setSmallIcon(R.drawable.ic_phone_forwarded_black_24dp)
+//                        .setSound(R.raw.that_look, STREAM_DEFAULT)
                         .setContentTitle("Probation Buddy")
-                        .setContentText("You have not called today!")
+                        .setContentText("You have not called today!  Click to call now")
                         .setAutoCancel(true)
+                        .setContentInfo("setContentInfo")
                         .setPriority(2) //-2 to 2
                         .setVibrate(vibratePattern)
-                        .addAction(R.drawable.ic_restaurants, "Call", pIntentCall)
-                        .addAction(R.drawable.ic_nearby, "Hide", pIntentHide);
+                        .setColor(getResources().getColor(R.color.colorAccent))
+                        .addAction(R.drawable.ic_phone_forwarded_black_24dp, "Call", pIntentCall)
+                        .addAction(R.drawable.ic_recents, "Hide", pIntentHide);
 
 
 // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(this, MainActivity.class);
+        Intent resultIntent = new Intent(this, CallActivity.class);
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.

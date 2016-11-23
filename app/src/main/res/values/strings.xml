@@ -89,7 +89,7 @@
     <string-array name = "intervals_name">
         <item>15 minutes</item>
         <item>30 minutes</item>
-        <item>1hour</item>
+        <item>1 hour</item>
     </string-array>
 
     <string-array name = "intervals_value">

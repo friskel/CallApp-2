@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         //get sharedprefs object
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        //show dialog on first run
+        checkFirstRun();
 
 
     } //end of onCreate
@@ -136,6 +139,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }else{
             startService(new Intent(this, MorningServiceStarter.class));
+            Toast.makeText(getApplicationContext(), "Alarms are running!",
+                    Toast.LENGTH_LONG).show();
 
         }
 
@@ -162,6 +167,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     // need to add stop goTestAlarm ?
+
+
+
+
+    public void checkFirstRun() {
+        SharedPreferences sharedPrefsFirstRun = PreferenceManager.getDefaultSharedPreferences(this);
+
+        boolean isFirstRun = sharedPrefsFirstRun.getBoolean("isFirstRun", true);
+        if (isFirstRun){
+            // Place your dialog code here to display the dialog
+            new AlertDialog.Builder(this).setTitle("Welcome!").setMessage("To setup Probation Buddy, just configure your settings and hit the save button in the top toolbar.  For more help, click the 3 dots in the top right and select 'Help'.").setNeutralButton("OK", null).show();
+
+            sharedPrefsFirstRun
+                    .edit()
+                    .putBoolean("isFirstRun", false)
+                    .apply();
+        }
+    }
 
 
 }
