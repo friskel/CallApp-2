@@ -25,7 +25,7 @@ public class DayAlarmService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        long[] vibratePattern = {1,200,500,1000};
+        long[] vibratePattern = {1,200,500,400,200,200};
 
         // notif repeated
 
@@ -49,12 +49,13 @@ public class DayAlarmService extends IntentService {
                         .setSmallIcon(R.drawable.ic_phone_forwarded_black_24dp)
 //                        .setSound(R.raw.that_look, STREAM_DEFAULT)
                         .setContentTitle("Probation Buddy")
-                        .setContentText("You have not called today!  Click to call now")
+                        .setContentText("You have not called today!  Click to call now.")
+                        .setTicker("Probation Buddy:  Call now!")
                         .setAutoCancel(true)
                         .setContentInfo("setContentInfo")
                         .setPriority(2) //-2 to 2
                         .setVibrate(vibratePattern)
-                        .setColor(getResources().getColor(R.color.colorAccent))
+                        .setColor(getResources().getColor(R.color.colorPrimaryDark))
                         .addAction(R.drawable.ic_phone_forwarded_black_24dp, "Call", pIntentCall)
                         .addAction(R.drawable.ic_recents, "Hide", pIntentHide);
 

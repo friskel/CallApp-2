@@ -1,19 +1,18 @@
 package com.probationbuddy.probationbuddy.Log;
 
-import android.content.SharedPreferences;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
+import android.view.View;
+import android.widget.Button;
 
+import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.R;
 
 public class LogActivity extends AppCompatActivity {
-    TextView tv;
-    int minute;
-    int hour;
-    int time;
+    Button startMorningButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,22 +28,25 @@ public class LogActivity extends AppCompatActivity {
         }
         //set toolbar
 
+        startMorningButton = (Button)findViewById(R.id.startMorningButton);
+        startMorningButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentDayAlarmStart = new Intent(getApplicationContext(), DayAlarmReceiver.class);
 
-        tv = (TextView)findViewById(R.id.tvTime);
+                // Make PendingIntent to be triggered each time the alarm goes off
+                final PendingIntent pIntent = PendingIntent.getBroadcast(getApplicationContext(), DayAlarmReceiver.REQUEST_CODE,
+                        intentDayAlarmStart, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        minute = sharedPrefs.getInt("prefStartTime", 123) % 60;
-        hour = sharedPrefs.getInt("prefStartTime", 123);
-        hour = hour - minute;
-        hour = hour / 60;
-
-        if (hour > 12) {
-            hour = hour-12;
-        }
-
+                try {
+                    pIntent.send();
+                } catch (PendingIntent.CanceledException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
 
-        tv.setText(String.valueOf(hour) + ":" + String.valueOf(minute));
+
     }
 }
