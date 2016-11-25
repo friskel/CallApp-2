@@ -138,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "switched off, turning off alarms",
                     Toast.LENGTH_LONG).show();
         }else{
+            cancelMorningAlarm();
+            stopDayAlarm();
             startService(new Intent(this, MorningServiceStarter.class));
             Toast.makeText(getApplicationContext(), "Alarms are running!",
                     Toast.LENGTH_LONG).show();

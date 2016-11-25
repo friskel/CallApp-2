@@ -46,7 +46,7 @@ public class DayAlarmService extends IntentService {
         //////////////////////////////////////////////////////////////////////  build notification
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_phone_forwarded_black_24dp)
+                        .setSmallIcon(R.drawable.ic_favorites)
 //                        .setSound(R.raw.that_look, STREAM_DEFAULT)
                         .setContentTitle("Probation Buddy")
                         .setContentText("You have not called today!  Click to call now.")
@@ -56,8 +56,8 @@ public class DayAlarmService extends IntentService {
                         .setPriority(2) //-2 to 2
                         .setVibrate(vibratePattern)
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
-                        .addAction(R.drawable.ic_phone_forwarded_black_24dp, "Call", pIntentCall)
-                        .addAction(R.drawable.ic_recents, "Hide", pIntentHide);
+                        .addAction(R.drawable.ic_favorites, "Call", pIntentCall)
+                        .addAction(R.drawable.ic_favorites, "Hide", pIntentHide);
 
 
 // Creates an explicit intent for an Activity in your app

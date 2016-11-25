@@ -5,17 +5,17 @@
 
     <item
         android:id="@+id/action_save"
-        android:icon="@drawable/save_button"
+        android:icon="@drawable/ic_favorites"
         android:title="log"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_log"
-        android:icon="@drawable/log_icon"
+        android:icon="@drawable/ic_favorites"
         android:title="log"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/ic_favorites"
         android:title="settings"
         app:showAsAction="never" />
 

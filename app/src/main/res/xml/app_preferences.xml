@@ -6,7 +6,7 @@
 
     <android.support.v7.preference.SwitchPreferenceCompat
         android:defaultValue="true"
-        android:icon="@drawable/ic_notifications_none_black_24dp"
+        android:icon="@drawable/ic_favorites"
 
         android:key="prefsActivate"
         android:summary="When switched on, you will receive the repeating notifications"
@@ -16,8 +16,8 @@
         android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix"
         android:dialogMessage="The number you need to call to see if you test"
-        android:icon="@drawable/ic_phone_in_talk_black_24dp"
-        android:dialogIcon="@drawable/ic_phone_in_talk_black_24dp"
+        android:icon="@drawable/ic_favorites"
+        android:dialogIcon="@drawable/ic_favorites"
         android:key="prefsCallNumber"
         android:summary=""
         android:title="Your call-in number" />
@@ -25,8 +25,8 @@
     <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
         style="@style/AppPreference.DialogPreference"
         android:defaultValue="660"
-        android:icon="@drawable/ic_access_alarm_black_24dp"
-        android:dialogIcon="@drawable/ic_access_alarm_black_24dp"
+        android:icon="@drawable/ic_favorites"
+        android:dialogIcon="@drawable/ic_favorites"
         android:key="prefStartTime"
         android:summary=""
         android:title="Start time" />
@@ -37,8 +37,8 @@
         android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix_text"
         android:dialogMessage="Enter your colors or numbers that would require you to go test"
-        android:icon="@drawable/ic_whatshot_black_24dp"
-        android:dialogIcon="@drawable/ic_whatshot_black_24dp"
+        android:icon="@drawable/ic_favorites"
+        android:dialogIcon="@drawable/ic_favorites"
         android:key="prefsColorNumber"
         android:summary="Blue"
         android:title="Your test colors/numbers" />
@@ -52,10 +52,10 @@
 
         <ListPreference
             android:defaultValue="30"
-            android:dialogIcon="@drawable/ic_restore_black_24dp"
+            android:dialogIcon="@drawable/ic_favorites"
             android:entries="@array/intervals_name"
             android:entryValues="@array/intervals_value"
-            android:icon="@drawable/ic_restore_black_24dp"
+            android:icon="@drawable/ic_favorites"
             android:key="prefInterval"
             android:summary="The amount of time between your reminders"
             android:title="Interval between notifications"
