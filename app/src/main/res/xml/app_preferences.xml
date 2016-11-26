@@ -12,46 +12,43 @@
         android:summary=""
         android:title="Activate reminders" />
 
-    <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
-        style="@style/AppPreference.DialogPreference"
-        android:defaultValue="660"
-        android:icon="@drawable/ic_access_time_black_48dp"
-        android:dialogIcon="@drawable/ic_access_time_black_48dp"
-        android:key="prefStartTime"
-        android:summary=""
-        android:title="Start time" />
 
     <android.support.v7.preference.EditTextPreference
         android:defaultValue="not set!"
+        android:dialogIcon="@drawable/ic_contact_phone_black_48dp"
         android:dialogLayout="@xml/pref_dialog_edittext_fix"
         android:dialogMessage="The number you need to call to see if you test"
         android:icon="@drawable/ic_contact_phone_black_48dp"
-        android:dialogIcon="@drawable/ic_contact_phone_black_48dp"
         android:key="prefsCallNumber"
         android:summary=""
         android:title="Your call-in number" />
 
 
-
+    <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
+        style="@style/AppPreference.DialogPreference"
+        android:defaultValue="660"
+        android:dialogIcon="@drawable/ic_access_time_black_48dp"
+        android:icon="@drawable/ic_access_time_black_48dp"
+        android:key="prefStartTime"
+        android:summary=""
+        android:title="Start time" />
 
 
     <android.support.v7.preference.EditTextPreference
         android:defaultValue="not set!"
+        android:dialogIcon="@drawable/ic_color_lens_black_48dp"
         android:dialogLayout="@xml/pref_dialog_edittext_fix_text"
         android:dialogMessage="Enter your colors or numbers that would require you to go test"
         android:icon="@drawable/ic_color_lens_black_48dp"
-        android:dialogIcon="@drawable/ic_color_lens_black_48dp"
         android:key="prefsColorNumber"
         android:summary="Blue"
         android:title="Your test colors/numbers" />
 
 
-    <!--</android.support.v7.preference.PreferenceCategory>-->
-
 
     <android.support.v7.preference.PreferenceCategory
-        android:title="Notification settings"
-        android:icon="@drawable/ic_notifications_none_black_18dp">
+        android:icon="@drawable/ic_notifications_none_black_18dp"
+        android:title="Notification settings">
 
         <ListPreference
             android:defaultValue="30"
@@ -60,10 +57,10 @@
             android:entryValues="@array/intervals_value"
             android:icon="@drawable/ic_alarm_black_48dp"
             android:key="prefInterval"
-            android:summary="The amount of time between your reminders"
-            android:title="Interval between notifications"
             android:negativeButtonText="@null"
-            android:positiveButtonText="@null" />
+            android:positiveButtonText="@null"
+            android:summary="The amount of time between your reminders"
+            android:title="Interval between notifications" />
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
@@ -72,10 +69,6 @@
             android:key="prefsVibrate"
             android:summary="On/off"
             android:title="Vibrate" />
-
-
-
-
 
 
     </android.support.v7.preference.PreferenceCategory>

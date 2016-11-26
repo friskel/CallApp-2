@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
-import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
 
 public class DoYouTestActivity extends AppCompatActivity {
     TextView colorTv;
@@ -106,11 +105,12 @@ public class DoYouTestActivity extends AppCompatActivity {
     }
 
     public void endDayAlarm() {
-        Intent intentMorning = new Intent(getApplicationContext(), MorningReceiver.class);
-        final PendingIntent pIntentMorning = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
-                intentMorning, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        morningAlarm.cancel(pIntentMorning);
+
+//        Intent intentMorning = new Intent(getApplicationContext(), MorningReceiver.class);
+//        final PendingIntent pIntentMorning = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
+//                intentMorning, PendingIntent.FLAG_UPDATE_CURRENT);
+//        AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+//        morningAlarm.cancel(pIntentMorning);
 
         Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
         final PendingIntent pIntentDay = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
