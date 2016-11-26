@@ -3,6 +3,7 @@ package com.probationbuddy.probationbuddy;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,9 +25,16 @@ import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
 import com.probationbuddy.probationbuddy.Settings.SettingsActivity;
 import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 
-public class MainActivity extends AppCompatActivity {
+import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 
-    boolean alarmActive;
+public class MainActivity extends AppCompatActivity {
+    int minute;
+    int hour;
+    String time;
+    String minuteString;
+    boolean am12;
+
+    boolean alarmIsActive;
 
 
     @Override
@@ -47,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         //show dialog on first run
         checkFirstRun();
-
 
     } //end of onCreate
 
@@ -127,22 +134,68 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        boolean alarmIsActive;
+
         alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
 
         Log.i("saveAndStart", "now");
 
         if (!alarmIsActive){
-            cancelMorningAlarm();
-            stopDayAlarm();
-            Toast.makeText(getApplicationContext(), "switched off, turning off alarms",
-                    Toast.LENGTH_LONG).show();
+
+            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Deactivate")
+                    .setMessage(
+                            "The 'activate reminders' toggle is switched off! \n \n" +
+                            "Press OK to turn off all reminders and alarms.")
+
+
+                    .setNegativeButton("Cancel", null)
+
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            cancelMorningAlarm();
+                            stopDayAlarm();
+                            //add stop gototest alarm
+                            Toast.makeText(getApplicationContext(), "Probation Buddy reminders have been turned OFF",
+                                    Toast.LENGTH_LONG).show();
+
+                        }
+                    })
+                    .show();
+
+
+
+
         }else{
-            cancelMorningAlarm();
-            stopDayAlarm();
-            startService(new Intent(this, MorningServiceStarter.class));
-            Toast.makeText(getApplicationContext(), "Alarms are running!",
-                    Toast.LENGTH_LONG).show();
+
+
+
+            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
+                    .setTitle("Activate")
+                    .setMessage(
+                            "You are about to start Probation Buddy daily reminders! \n \n" +
+                            "Start time: " + getStartTime() + " every day \n \n" +
+                            "Press OK to confirm.")
+
+
+                    .setNegativeButton("Cancel", null)
+
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            stopDayAlarm();
+                            startService(new Intent(MainActivity.this, MorningServiceStarter.class));
+
+                            Toast.makeText(getApplicationContext(), "Probation Buddy is running!",
+                                    Toast.LENGTH_LONG).show();
+
+                        }
+                    })
+                    .show();
+
+
 
         }
 
@@ -186,6 +239,44 @@ public class MainActivity extends AppCompatActivity {
                     .putBoolean("isFirstRun", false)
                     .apply();
         }
+    }
+
+    public String getStartTime() {
+        SharedPreferences prefs = getDefaultSharedPreferences(this);
+
+        //set hour and minute of morning start time
+        minute = prefs.getInt("prefStartTime", 123) % 60;
+        hour = prefs.getInt("prefStartTime", 123);
+        hour = hour - minute;
+        hour = hour / 60;
+
+        am12 = false;
+
+        minuteString = String.valueOf(minute);
+        if (minute < 10){
+            minuteString = "0" + minute;
+        }
+
+
+        if (hour == 0){
+            hour = 12;
+            am12 = true;
+
+        }
+
+        time = (hour + ":" + minuteString + " am");
+
+        if (hour > 12){
+            hour = hour-12;
+            time = (hour + ":" + minuteString + " pm");
+        }
+        if (hour == 12){
+            time = (hour + ":" + minuteString + " pm");
+            if (am12){
+                time = (hour + ":" + minuteString + " am");
+            }
+        }
+        return time;
     }
 
 

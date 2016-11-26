@@ -11,6 +11,7 @@ import android.util.Log;
 
 
 public class GoTestAlarmStarter extends IntentService {
+    SharedPreferences sharedPrefs;
     String goTestIntervalString;
     int goTestInterval;
     long firstMillis;
@@ -26,7 +27,8 @@ public class GoTestAlarmStarter extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         //get shared prefs
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
 
 
         //get interval (15,30, or 60) int from sharedprefs
@@ -60,7 +62,7 @@ public class GoTestAlarmStarter extends IntentService {
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, intervalPref, pIntent);
         Log.i("Go Test Service:", " running");
     }
 }

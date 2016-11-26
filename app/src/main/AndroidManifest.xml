@@ -108,7 +108,9 @@
 
         <service
             android:name=".Services.HideNotificationService"
-            android:exported="false"></service>
+            android:exported="false">
+
+        </service>
     </application>
 
 </manifest>

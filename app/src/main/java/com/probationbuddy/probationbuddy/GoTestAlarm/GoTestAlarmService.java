@@ -48,7 +48,8 @@ public class GoTestAlarmService extends IntentService {
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_favorites)
                         .setContentTitle("YOU HAVE TO TEST TODAY")
-                        .setContentText("Probation Buddy: You have to test!  x hours left!")
+                        .setContentText("Probation Buddy: You are required to test today!")
+                        .setTicker("Probation test today, don't forget!")
                         .setAutoCancel(true)
                         .setPriority(2) //-2 to 2
                         .setVibrate(vibratePattern)
