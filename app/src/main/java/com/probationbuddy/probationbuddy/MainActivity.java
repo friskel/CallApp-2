@@ -22,7 +22,6 @@ import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
-import com.probationbuddy.probationbuddy.Settings.SettingsActivity;
 import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
@@ -113,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_settings:
 
-                Intent intentSettings = new Intent(this, SettingsActivity.class);
+                Intent intentSettings = new Intent(this, TestDoneActivity.class);
 
                 startActivity(intentSettings);
 

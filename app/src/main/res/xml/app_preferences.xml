@@ -6,18 +6,18 @@
 
     <android.support.v7.preference.SwitchPreferenceCompat
         android:defaultValue="true"
-        android:icon="@drawable/ic_favorites"
+        android:icon="@drawable/ic_power_settings_new_black_48dp"
 
         android:key="prefsActivate"
-        android:summary="When switched on, you will receive the repeating notifications"
+        android:summary=""
         android:title="Activate reminders" />
 
     <android.support.v7.preference.EditTextPreference
         android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix"
         android:dialogMessage="The number you need to call to see if you test"
-        android:icon="@drawable/ic_favorites"
-        android:dialogIcon="@drawable/ic_favorites"
+        android:icon="@drawable/ic_contact_phone_black_48dp"
+        android:dialogIcon="@drawable/ic_contact_phone_black_48dp"
         android:key="prefsCallNumber"
         android:summary=""
         android:title="Your call-in number" />
@@ -25,8 +25,8 @@
     <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
         style="@style/AppPreference.DialogPreference"
         android:defaultValue="660"
-        android:icon="@drawable/ic_favorites"
-        android:dialogIcon="@drawable/ic_favorites"
+        android:icon="@drawable/ic_access_time_black_48dp"
+        android:dialogIcon="@drawable/ic_access_time_black_48dp"
         android:key="prefStartTime"
         android:summary=""
         android:title="Start time" />
@@ -37,8 +37,8 @@
         android:defaultValue="not set!"
         android:dialogLayout="@xml/pref_dialog_edittext_fix_text"
         android:dialogMessage="Enter your colors or numbers that would require you to go test"
-        android:icon="@drawable/ic_favorites"
-        android:dialogIcon="@drawable/ic_favorites"
+        android:icon="@drawable/ic_color_lens_black_48dp"
+        android:dialogIcon="@drawable/ic_color_lens_black_48dp"
         android:key="prefsColorNumber"
         android:summary="Blue"
         android:title="Your test colors/numbers" />
