@@ -9,7 +9,6 @@
 
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
 
-
         <item name="alertDialogTheme">@style/AppAlertDialog</item>
 
 

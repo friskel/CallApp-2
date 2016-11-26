@@ -11,13 +11,13 @@ import android.util.Log;
 
 
 public class GoTestAlarmStarter extends IntentService {
+
     SharedPreferences sharedPrefs;
-    String goTestIntervalString;
-    int goTestInterval;
-    long firstMillis;
     String intervalPrefString;
+    long firstMillis;
     long intervalPref;
     long interval;
+
     public GoTestAlarmStarter() {
         super("GoTestAlarmStarter");
     }
@@ -28,8 +28,6 @@ public class GoTestAlarmStarter extends IntentService {
 
         //get shared prefs
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-
 
         //get interval (15,30, or 60) int from sharedprefs
         intervalPrefString = sharedPrefs.getString("prefInterval", "15");
@@ -54,14 +52,18 @@ public class GoTestAlarmStarter extends IntentService {
 
         // Construct an intent that will execute the AlarmReceiver
         Intent intentGoTestAlarmStart = new Intent(getApplicationContext(), GoTestAlarmReceiver.class);
+
         // Create a PendingIntent to be triggered when the alarm goes off
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
                 intentGoTestAlarmStart, PendingIntent.FLAG_UPDATE_CURRENT);
-        // Setup periodic alarm every 5 seconds
-        firstMillis = System.currentTimeMillis(); // alarm is set right away
+
+        // alarm is set right away
+        firstMillis = System.currentTimeMillis();
+
+        //make alarm
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
-        // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
+
+        //start it
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
         Log.i("Go Test Service:", " running");
     }
