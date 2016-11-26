@@ -62,7 +62,7 @@ public class GoTestAlarmStarter extends IntentService {
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         // First parameter is the type: ELAPSED_REALTIME, ELAPSED_REALTIME_WAKEUP, RTC_WAKEUP
         // Interval can be INTERVAL_FIFTEEN_MINUTES, INTERVAL_HALF_HOUR, INTERVAL_HOUR, INTERVAL_DAY
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, intervalPref, pIntent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
         Log.i("Go Test Service:", " running");
     }
 }

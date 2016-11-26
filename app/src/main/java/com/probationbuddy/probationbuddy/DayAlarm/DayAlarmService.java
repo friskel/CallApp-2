@@ -16,7 +16,7 @@ import com.probationbuddy.probationbuddy.R;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class DayAlarmService extends IntentService {
-    int mId;
+    int mId = 100;
 
 
     public DayAlarmService() {

@@ -231,7 +231,11 @@ public class MainActivity extends AppCompatActivity {
         boolean isFirstRun = sharedPrefsFirstRun.getBoolean("isFirstRun", true);
         if (isFirstRun){
             // Place your dialog code here to display the dialog
-            new AlertDialog.Builder(this).setTitle("Welcome!").setMessage("To setup Probation Buddy, just configure your settings and hit the save button in the top toolbar.  For more help, click the 3 dots in the top right and select 'Help'.").setNeutralButton("OK", null).show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Welcome!")
+                    .setMessage("To setup Probation Buddy, just configure your settings and hit the save button in the top toolbar.  For more help, click the 3 dots in the top right and select 'Help'.")
+                    .setPositiveButton("OK", null)
+                    .show();
 
             sharedPrefsFirstRun
                     .edit()

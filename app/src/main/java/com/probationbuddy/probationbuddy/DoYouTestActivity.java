@@ -1,6 +1,7 @@
 package com.probationbuddy.probationbuddy;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -56,7 +57,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                         .setMessage("Press OK to confirm that you have to go test today.  This will activate reminders to make sure you don't forget to go!")
 
 
-                        .setNegativeButton("Cancel", null)
+                        .setNeutralButton("Cancel", null)
 
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
@@ -79,6 +80,10 @@ public class DoYouTestActivity extends AppCompatActivity {
         noTestButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                NotificationManager mNotificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                mNotificationManager.cancelAll();
 
                 endDayAlarm();
                 Toast.makeText(getApplicationContext(), "Reminders stopping until tomorrow! :)",
