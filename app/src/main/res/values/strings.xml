@@ -108,5 +108,6 @@
     <string name="prefStartTime">prefStartTime</string>
 
     <string name="prefIntervalKey">prefInterval</string>
+    <string name="KEY_RINGTONE_PREFERENCE">KEY_RINGTONE_PREFERENCE</string>
 
 </resources>

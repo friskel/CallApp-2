@@ -37,6 +37,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 
 
+
     }
 
 
@@ -47,6 +48,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 
 /////
+
+
 
     @Override
     public void onResume() {
@@ -140,7 +143,8 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
 
 
-        }else {
+        }
+        else {
 //            preference.setSummary(sharedPreferences.getString(key, ""));
             //prevented 'class cast string to int' crash by commenting out
 
