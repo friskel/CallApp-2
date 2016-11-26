@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3); //set activity layout UPDATE TEST
+        setContentView(R.layout.activity_main); //set activity layout UPDATE TEST
 
         //set toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
