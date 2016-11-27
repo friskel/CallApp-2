@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
                     .setTitle("Activate")
                     .setMessage(
                             "You are about to start Probation Buddy daily reminders! \n \n" +
-                            "Start time: " + getStartTime() + " every day \n \n" +
+                            "Start time: " + getStartTime() + " every day (beginning tomorrow) \n \n" +
                             "Press OK to confirm.")
 
 

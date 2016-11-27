@@ -41,7 +41,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
         colorTv = (TextView) findViewById(R.id.colorTv);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        yourColor = sharedPrefs.getString("myColorOrNumber", "def");
+        yourColor = sharedPrefs.getString("prefsColorNumber", "def");
         colorTv.setText(yourColor);
 
 
@@ -96,7 +96,11 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new AlertDialog.Builder(getApplicationContext()).setTitle("Welcome!").setMessage("To setup Probation Buddy, just configure your settings and hit the save button in the top toolbar.  For more help, click the 3 dots in the top right and select 'Help'.").setNeutralButton("OK", null).show();
+                new AlertDialog.Builder(DoYouTestActivity.this)
+                        .setTitle("Call back required")
+                        .setMessage("Alarms will stay on")
+                        .setPositiveButton("OK", null)
+                        .show();
 
             }
         });

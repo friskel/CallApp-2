@@ -47,6 +47,20 @@ public class TestDoneActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
+
+        //test not finished
+        testDoneButton = (Button) findViewById(R.id.testNotFinished);
+        testDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+
+                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void cancelGoTestAlarm(){
