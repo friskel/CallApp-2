@@ -44,9 +44,10 @@ public class MorningServiceStarter extends IntentService {
         //set the time on a calendar object
         Calendar dailyCalendar = Calendar.getInstance();
         dailyCalendar.setTimeInMillis(System.currentTimeMillis());
+        dailyCalendar.add(Calendar. DATE, 1);
         dailyCalendar.set(Calendar.HOUR_OF_DAY, hour);
         dailyCalendar.set(Calendar.MINUTE, minute);
-        dailyCalendar.set(Calendar.SECOND, 1);
+        dailyCalendar.set(Calendar.SECOND, 0);
 
         //make the alarm
         AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
