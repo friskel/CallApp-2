@@ -1,6 +1,8 @@
 package com.probationbuddy.probationbuddy.Call;
 
+import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -9,6 +11,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
+import com.probationbuddy.probationbuddy.DoYouTestActivity;
 import com.probationbuddy.probationbuddy.R;
 
 public class CallingService extends Service{
@@ -27,18 +30,18 @@ public class CallingService extends Service{
         telephonymanager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
 
+        Intent notificationIntent = new Intent(this, DoYouTestActivity.class);
 
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+                notificationIntent, 0);
 
-        NotificationCompat.Builder mBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_notifications_none_black_18dp)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+        Notification notification = new NotificationCompat.Builder(this)
+                .setSmallIcon(R.drawable.ic_favorites)
+                .setContentTitle("Probation Buddy")
+                .setContentText("Calling now!")
+                .setContentIntent(pendingIntent).build();
 
-        NotificationManager mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        mNotifyMgr.notify(9, mBuilder.build());
+        startForeground(1337, notification);
 
 
     }
