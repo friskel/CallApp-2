@@ -6,8 +6,10 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -108,9 +110,19 @@
 
         <service
             android:name=".Services.HideNotificationService"
-            android:exported="false">
+            android:exported="false" />
+        <service
+            android:name=".Call.CallService"
+            android:enabled="true"
+            android:exported="true" />
 
-        </service>
+        <activity android:name=".Call.CallActivity2" />
+
+        <service
+            android:name=".Call.CallingService"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

@@ -18,6 +18,21 @@
         android:icon="@drawable/ic_favorites"
         android:title="settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_call"
+        android:icon="@drawable/ic_favorites"
+        android:title="call"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_doyoutest"
+        android:icon="@drawable/ic_favorites"
+        android:title="doyoutest"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_testdone"
+        android:icon="@drawable/ic_favorites"
+        android:title="testdone"
+        app:showAsAction="never" />
 
 
 

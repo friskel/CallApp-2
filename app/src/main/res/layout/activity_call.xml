@@ -11,7 +11,6 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/toolbar_top"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
@@ -20,7 +19,11 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        android:layout_width="0dp" />
 
     <TextView
         android:text="Calling your number: "
@@ -36,6 +39,7 @@
 
     <TextView
         android:text="TextView"
+        android:autoLink = "phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/myNumberTv"
@@ -47,26 +51,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <Button
-        android:text="Log Your Call"
+        android:text="call now"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/buttonGoLog"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="16dp" />
-
-    <TextView
-        android:text="Called in?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView6"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGoLog"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="16dp"

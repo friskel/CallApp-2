@@ -116,7 +116,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                 }
             }
 
-            //fix 12pm with hourString check
+
 
             preference.setSummary(time);
 

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.DoYouTestActivity;
 import com.probationbuddy.probationbuddy.R;
 
 public class CallActivity extends AppCompatActivity {
@@ -35,33 +36,21 @@ public class CallActivity extends AppCompatActivity {
             getSupportActionBar().setLogo(R.mipmap.ic_launcher);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
-        /////// set toolbar ///////
+
 
         //cancel current notifications up top
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancelAll();
 
+        //get call number from sharedprefs
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         myNumber = prefs.getString("prefsCallNumber", "123");
 
-//        call right when activity opens
-//        Intent intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel: +" + myNumber));
-//        startActivity(intent);
-
-        TextView myNumberTv = (TextView)findViewById(R.id.myNumberTv);
+        TextView myNumberTv = (TextView) findViewById(R.id.myNumberTv);
         myNumberTv.setText(myNumber);
 
         Button callNow = (Button) findViewById(R.id.buttonGoLog);
-
-
-
-        // add PhoneStateListener for monitoring
-        MyPhoneListener phoneListener = new MyPhoneListener();
-        TelephonyManager telephonyManager =
-                (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
-        // receive notifications of telephony state changes
-        telephonyManager.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
 
 
         callNow.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +62,10 @@ public class CallActivity extends AppCompatActivity {
                     String uri = "tel:" + myNumber;
                     Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
 
+
+                    Log.i("call -", "on click calling");
                     startActivity(dialIntent);
+
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Your call has failed...",
                             Toast.LENGTH_LONG).show();
@@ -85,19 +77,20 @@ public class CallActivity extends AppCompatActivity {
 
     }
 
-    public void addPhoneStateListener(){
+    public void addPhoneStateListener() {
         MyPhoneListener phoneListener = new MyPhoneListener();
         TelephonyManager telephonyManager =
                 (TelephonyManager) this.getSystemService(TELEPHONY_SERVICE);
         // receive notifications of telephony state changes
-        telephonyManager.listen(phoneListener, PhoneStateListener.LISTEN_CALL_STATE);
+        telephonyManager.listen(phoneListener, MyPhoneListener.LISTEN_CALL_STATE);
+        Log.i("call -", "add listener");
 
     }
 
 
     public class MyPhoneListener extends PhoneStateListener {
 
-        private boolean onCall = false;
+        public boolean onCallNow = false;
 
         @Override
         public void onCallStateChanged(int state, String incomingNumber) {
@@ -117,35 +110,35 @@ public class CallActivity extends AppCompatActivity {
                     Toast.makeText(CallActivity.this, "Your test color/number: " + myColor,
                             Toast.LENGTH_LONG).show();
                     //because user answers the incoming call
-                    onCall = true;
+                    Log.i("call -", "offhook");
+                    onCallNow = true;
+
                     break;
 
                 case TelephonyManager.CALL_STATE_IDLE:
                     // in initialization of the class and at the end of phone call
-
+                    Log.i("call -", "idle1");
                     // detect flag from CALL_STATE_OFFHOOK
-                    if (onCall == true) {
+                    if (onCallNow == true) {
 
 
                         callFinished();
                         cancelListener();
-                        onCall = false;
-                        Log.i("callStateIdle", "running");
+                        onCallNow = false;
+                        Log.i("call -", "idle2");
                         break;
                     }
+
                     break;
                 default:
                     break;
             }
 
 
-
-
         }
 
-        private void callFinished(){
-            Toast.makeText(CallActivity.this, "callFinished method running",
-                    Toast.LENGTH_SHORT).show();
+        private void callFinished() {
+
             Intent restart = getBaseContext().getPackageManager().
                     getLaunchIntentForPackage(getBaseContext().getPackageName());
             restart.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -153,26 +146,36 @@ public class CallActivity extends AppCompatActivity {
 
             Intent intentCalled = new Intent(getApplicationContext(), com.probationbuddy.probationbuddy.DoYouTestActivity.class);
 
-//
+            Intent intent = new Intent(CallActivity.this, DoYouTestActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+
+
+
+
             intentCalled.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intentCalled);
-            Log.i("callFinished", "running");
+            Log.i("call -", "callFinished method");
+
+            Toast.makeText(CallActivity.this, "callFinished method running",
+                    Toast.LENGTH_SHORT).show();
 
         }
 
 
-
-        private void cancelListener(){
+        private void cancelListener() {
 
             // cancel PhoneStateListener for monitoring
-//                        com.probationbuddy.probationbuddy.Call.CallActivity.MyPhoneListener phoneListener = new com.probationbuddy.probationbuddy.Call.CallActivity.MyPhoneListener();
+            com.probationbuddy.probationbuddy.Call.CallActivity.MyPhoneListener phoneListener = new com.probationbuddy.probationbuddy.Call.CallActivity.MyPhoneListener();
             TelephonyManager telephonyManager =
                     (TelephonyManager) getApplicationContext().getSystemService(TELEPHONY_SERVICE);
             // receive notifications of telephony state changes
             telephonyManager.listen(this, PhoneStateListener.LISTEN_NONE);
+            Log.i("call -", "cancelListener");
         }
     }
 }
+
 
 
 

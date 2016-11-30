@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
@@ -115,6 +116,30 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentSettings = new Intent(this, TestDoneActivity.class);
 
                 startActivity(intentSettings);
+
+
+                return true;
+            case R.id.action_call:
+
+                Intent intentCall = new Intent(this, CallActivity2.class);
+
+                startActivity(intentCall);
+
+
+                return true;
+            case R.id.action_testdone:
+
+                Intent intentSettings2 = new Intent(this, TestDoneActivity.class);
+
+                startActivity(intentSettings2);
+
+
+                return true;
+            case R.id.action_doyoutest:
+
+                Intent intentSettings3 = new Intent(this, DoYouTestActivity.class);
+
+                startActivity(intentSettings3);
 
 
                 return true;
