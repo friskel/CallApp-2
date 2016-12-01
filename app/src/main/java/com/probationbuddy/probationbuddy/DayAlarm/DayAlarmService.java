@@ -11,6 +11,7 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity;
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
@@ -30,7 +31,7 @@ public class DayAlarmService extends IntentService {
         // notif repeated
 
         //for first call action
-        Intent intentCall = new Intent(this, CallActivity.class);
+        Intent intentCall = new Intent(this, CallActivity2.class);
         PendingIntent pIntentCall = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intentCall, 0);
 
         //for second hide action
