@@ -23,13 +23,10 @@ public class MyPhoneListener extends PhoneStateListener {
 
     public void onCallStateChanged(int state, String incomingNumber) {
 
-
-
         switch (state) {
 
             case TelephonyManager.CALL_STATE_OFFHOOK:
                 Log.i("DEBUG", "OFFHOOK");
-
 
                 onCall = true;
 
@@ -45,8 +42,6 @@ public class MyPhoneListener extends PhoneStateListener {
                     Intent stopIntent = new Intent(mContext, CallingService.class);
                     mContext.stopService(stopIntent);
 
-
-
                     onCall = false;
 
                 }
@@ -58,6 +53,7 @@ public class MyPhoneListener extends PhoneStateListener {
     private void callFinished() {
 
 
+        //try way in stackoverflow answer?
 
         Intent restart = mContext.getPackageManager().
                 getLaunchIntentForPackage(mContext.getPackageName());

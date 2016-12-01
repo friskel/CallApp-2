@@ -41,7 +41,7 @@ public class CallingService extends Service{
                 .setContentText("Calling now!")
                 .setContentIntent(pendingIntent).build();
 
-        startForeground(1337, notification);
+        startForeground(1234567, notification);
 
 
     }
@@ -52,7 +52,7 @@ public class CallingService extends Service{
         NotificationManager mNotifyMgr =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        mNotifyMgr.cancel(9);
+        mNotifyMgr.cancel(1234567); //changed # from 9?
 
 
     }

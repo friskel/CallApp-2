@@ -16,6 +16,10 @@ import static android.support.v7.preference.PreferenceManager.getDefaultSharedPr
 public class MorningServiceStarter extends IntentService {
     int hour;
     int minute;
+    int fullTimeNumber;
+    long fullTimeNumberMillis;
+    long systemTimeMillis;
+    boolean timeAlreadyPassed;
 
     public MorningServiceStarter() {
         super("MorningServiceStarter");
@@ -40,11 +44,43 @@ public class MorningServiceStarter extends IntentService {
         hour = hour - minute;
         hour = hour / 60;
 
+        ///time check
+
+
+        Calendar rightNow = Calendar.getInstance();
+        rightNow.setTimeInMillis(System.currentTimeMillis());
+
+        long nowHours = rightNow.get(Calendar.HOUR_OF_DAY);
+        long nowHoursMillis = nowHours * 3600000;
+
+        long nowMinutes = rightNow.get(Calendar.MINUTE);
+        long nowMinutesMillis = nowMinutes * 60000;
+
+        long nowSeconds = rightNow.get(Calendar.SECOND);
+        long nowSecondsMillis = nowSeconds * 1000;
+
+        long nowMillis = rightNow.get(Calendar.MILLISECOND);
+
+        long nowFullTime = nowHoursMillis + nowMinutesMillis + nowSecondsMillis + nowMillis;
+
+
+        long fullTimeNumber = prefs.getInt("prefStartTime", 123);
+
+        long fullTimeNumberMillis = fullTimeNumber * 60000;
+
+
+
+
+        /// done time check
 
         //set the time on a calendar object
         Calendar dailyCalendar = Calendar.getInstance();
         dailyCalendar.setTimeInMillis(System.currentTimeMillis());
-        dailyCalendar.add(Calendar. DATE, 1);
+
+        if (nowFullTime > fullTimeNumberMillis) {
+            dailyCalendar.add(Calendar.DATE, 1);
+        }
+
         dailyCalendar.set(Calendar.HOUR_OF_DAY, hour);
         dailyCalendar.set(Calendar.MINUTE, minute);
         dailyCalendar.set(Calendar.SECOND, 0);
