@@ -55,14 +55,7 @@
             android:exported="true"
             android:process=":remote" />
 
-        <activity
-            android:name=".Settings.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.probationbuddy.probationbuddy.MainActivity" />
-        </activity>
+
         <activity
             android:name=".Log.LogActivity"
             android:label="Call Log"
@@ -111,10 +104,7 @@
         <service
             android:name=".Services.HideNotificationService"
             android:exported="false" />
-        <service
-            android:name=".Call.CallService"
-            android:enabled="true"
-            android:exported="true" />
+
 
         <activity android:name=".Call.CallActivity2" />
 

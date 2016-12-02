@@ -5,9 +5,11 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.PowerManager;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity;
@@ -38,7 +40,8 @@ public class DayAlarmService extends IntentService {
         Intent intentHide = new Intent(this, HideNotificationService.class);
         PendingIntent pIntentHide = PendingIntent.getService(this, (int) System.currentTimeMillis(), intentHide, 0);
 
-
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean prefsVibrate = sharedPrefs.getBoolean("prefsVibrate", true);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag");
@@ -55,10 +58,14 @@ public class DayAlarmService extends IntentService {
                         .setAutoCancel(true)
                         .setContentInfo("setContentInfo")
                         .setPriority(2) //-2 to 2
-                        .setVibrate(vibratePattern)
+
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
-                        .addAction(R.drawable.ic_favorites, "Call", pIntentCall)
+                        .addAction(R.drawable.ic_favorites, "Call Now", pIntentCall)
                         .addAction(R.drawable.ic_favorites, "Hide", pIntentHide);
+
+        if (prefsVibrate) {
+            mBuilder.setVibrate(vibratePattern);
+        }
 
 
 // Creates an explicit intent for an Activity in your app
