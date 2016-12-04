@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.PowerManager;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.NotificationCompat;
@@ -42,6 +44,9 @@ public class DayAlarmService extends IntentService {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean prefsVibrate = sharedPrefs.getBoolean("prefsVibrate", true);
+        boolean prefsSound = sharedPrefs.getBoolean("prefsSound", false);
+
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "My Tag");
@@ -51,12 +56,10 @@ public class DayAlarmService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_favorites)
-//                        .setSound(R.raw.that_look, STREAM_DEFAULT)
                         .setContentTitle("Probation Buddy")
                         .setContentText("You have not called today!  Click to call now.")
                         .setTicker("Probation Buddy:  Call now!")
                         .setAutoCancel(true)
-                        .setContentInfo("setContentInfo")
                         .setPriority(2) //-2 to 2
 
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
@@ -65,6 +68,9 @@ public class DayAlarmService extends IntentService {
 
         if (prefsVibrate) {
             mBuilder.setVibrate(vibratePattern);
+        }
+        if (prefsSound) {
+            mBuilder.setSound(soundUri);
         }
 
 
@@ -94,6 +100,7 @@ public class DayAlarmService extends IntentService {
         mNotificationManager.notify(mId, mBuilder.build());
 
         Log.i("DayAlarmService", "Service running");
+
         wl.release();
 
     }

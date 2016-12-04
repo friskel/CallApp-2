@@ -9,6 +9,7 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.SwitchPreferenceCompat;
+import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.R;
 
@@ -33,6 +34,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsCallNumberKey));
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefStartTimeKey));
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsColorNumberKey));
+        onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsSound));
 
 
 
@@ -126,12 +128,61 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (preference instanceof SwitchPreferenceCompat) {
             SwitchPreferenceCompat switchPreferenceCompat = (SwitchPreferenceCompat) preference;
 
-            //get shared prefs
-            SharedPreferences prefs = getDefaultSharedPreferences(getContext());
-            alarmsActive = prefs.getBoolean(key, true);
+
+            if (preference.getKey().equals("prefsActivate")) {
+                //get shared prefs
+                SharedPreferences prefs = getDefaultSharedPreferences(getContext());
+                alarmsActive = prefs.getBoolean("prefsActivate", false);
+
+                if (alarmsActive) {
+                    //get shared prefs
 
 
+                    //set hour and minute of morning start time
+                    minute = prefs.getInt("prefStartTime", 123) % 60;
+                    hour = prefs.getInt("prefStartTime", 123);
+                    hour = hour - minute;
+                    hour = hour / 60;
 
+                    am12 = false;
+
+                    minuteString = String.valueOf(minute);
+                    if (minute < 10) {
+                        minuteString = "0" + minute;
+                    }
+
+
+                    if (hour == 0) {
+                        hour = 12;
+                        am12 = true;
+
+                    }
+
+                    time = (hour + ":" + minuteString + " am");
+
+                    if (hour > 12) {
+                        hour = hour - 12;
+                        time = (hour + ":" + minuteString + " pm");
+                    }
+                    if (hour == 12) {
+                        time = (hour + ":" + minuteString + " pm");
+                        if (am12) {
+                            time = (hour + ":" + minuteString + " am");
+                        }
+                    }
+
+
+                    Toast.makeText(getContext(), "Reminders activated for " + time,
+                            Toast.LENGTH_LONG).show();
+                }
+
+                if (!alarmsActive) {
+                    Toast.makeText(getContext(), "Probation Buddy is currently disabled",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
         }
 
         if (preference instanceof EditTextPreference) {

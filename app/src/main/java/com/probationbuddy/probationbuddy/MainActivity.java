@@ -3,7 +3,6 @@ package com.probationbuddy.probationbuddy;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
@@ -53,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         //get sharedprefs object
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+
+
         //show dialog on first run
         checkFirstRun();
 
@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();  // Always call the superclass
+
+        saveAndStartAlarms();
 
 
         Log.i("onPause", "now");
@@ -165,59 +167,66 @@ public class MainActivity extends AppCompatActivity {
 
         if (!alarmIsActive){
 
-            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
-                    .setTitle("Deactivate")
-                    .setMessage(
-                            "The 'activate reminders' toggle is switched off! \n \n" +
-                            "Press OK to turn off all reminders and alarms.")
+            cancelMorningAlarm();
+            stopDayAlarm();
 
 
-                    .setNegativeButton("Cancel", null)
-
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                            cancelMorningAlarm();
-                            stopDayAlarm();
-                            //add stop gototest alarm
-                            Toast.makeText(getApplicationContext(), "Probation Buddy reminders have been turned OFF",
-                                    Toast.LENGTH_LONG).show();
-
-                        }
-                    })
-                    .show();
+            //old dialog
+//            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
+//                    .setTitle("Deactivate")
+//                    .setMessage(
+//                            "The 'activate reminders' toggle is switched off! \n \n" +
+//                            "Press OK to turn off all reminders and alarms.")
+//
+//
+//                    .setNegativeButton("Cancel", null)
+//
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//
+//
+//                            //add stop gototest alarm
+//                            Toast.makeText(getApplicationContext(), "Probation Buddy reminders have been turned OFF",
+//                                    Toast.LENGTH_LONG).show();
+//
+//                        }
+//                    })
+//                    .show();
 
 
 
 
         }else{
 
+            stopDayAlarm();
+            startService(new Intent(MainActivity.this, MorningServiceStarter.class));
 
 
-            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
-                    .setTitle("Activate")
-                    .setMessage(
-                            "You are about to start Probation Buddy daily reminders! \n \n" +
-                            "Start time: " + getStartTime() + " every day (beginning tomorrow) \n \n" +
-                            "Press OK to confirm.")
+            //old dialog
 
-
-                    .setNegativeButton("Cancel", null)
-
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                            stopDayAlarm();
-                            startService(new Intent(MainActivity.this, MorningServiceStarter.class));
-
-                            Toast.makeText(getApplicationContext(), "Probation Buddy is running!",
-                                    Toast.LENGTH_LONG).show();
-
-                        }
-                    })
-                    .show();
+//            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
+//                    .setTitle("Activate")
+//                    .setMessage(
+//                            "You are about to start Probation Buddy daily reminders! \n \n" +
+//                            "Start time: " + getStartTime() + " every day (beginning tomorrow) \n \n" +
+//                            "Press OK to confirm.")
+//
+//
+//                    .setNegativeButton("Cancel", null)
+//
+//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//
+//
+//
+//                            Toast.makeText(getApplicationContext(), "Probation Buddy is running!",
+//                                    Toast.LENGTH_LONG).show();
+//
+//                        }
+//                    })
+//                    .show();
 
 
 

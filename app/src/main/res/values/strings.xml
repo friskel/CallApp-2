@@ -30,6 +30,7 @@
     <string name="prefStartTime">prefStartTime</string>
 
     <string name="prefIntervalKey">prefInterval</string>
+    <string name="prefsSound">prefsSound</string>
 
 
 </resources>

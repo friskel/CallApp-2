@@ -5,12 +5,16 @@
     <!--android:title="Main Settings">-->
 
     <android.support.v7.preference.SwitchPreferenceCompat
-        android:defaultValue="true"
+        android:defaultValue="false"
         android:icon="@drawable/ic_power_settings_new_black_48dp"
 
         android:key="prefsActivate"
         android:summary=""
         android:title="Activate reminders" />
+
+    <android.support.v7.preference.PreferenceCategory
+        android:icon="@drawable/ic_notifications_none_black_18dp"
+        android:title="Main Settings">
 
 
     <android.support.v7.preference.EditTextPreference
@@ -45,6 +49,8 @@
         android:title="Your test colors/numbers" />
 
 
+    </android.support.v7.preference.PreferenceCategory>
+
 
     <android.support.v7.preference.PreferenceCategory
         android:icon="@drawable/ic_notifications_none_black_18dp"
@@ -61,6 +67,14 @@
             android:positiveButtonText="@null"
             android:summary="The amount of time between your reminders"
             android:title="Interval between notifications" />
+
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:icon="@drawable/ic_volume_up_black_48dp"
+            android:key="prefsSound"
+            android:summary="On/off"
+            android:title="Notification Sound" />
+
 
         <android.support.v7.preference.SwitchPreferenceCompat
             android:defaultValue="true"
