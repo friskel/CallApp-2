@@ -15,7 +15,6 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
-import com.probationbuddy.probationbuddy.Call.CallActivity;
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
@@ -76,7 +75,7 @@ public class DayAlarmService extends IntentService {
 
 
 // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(this, CallActivity.class);
+        Intent resultIntent = new Intent(this, CallActivity2.class);
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.
