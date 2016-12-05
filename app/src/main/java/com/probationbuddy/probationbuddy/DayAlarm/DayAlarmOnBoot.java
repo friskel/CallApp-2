@@ -1,17 +1,29 @@
 package com.probationbuddy.probationbuddy.DayAlarm;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.v4.content.WakefulBroadcastReceiver;
+import android.support.v7.preference.PreferenceManager;
 
-public class DayAlarmOnBoot extends BroadcastReceiver {
-    public DayAlarmOnBoot() {
-    }
+import com.probationbuddy.probationbuddy.MorningAlarm.MorningService;
+
+public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving
-        // an Intent broadcast.
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean dayAlarmActive = sharedPrefs.getBoolean("dayAlarmRunning", false);
+
+
+        if (dayAlarmActive){
+
+            Intent startServiceIntent = new Intent(context, MorningService.class);
+            startWakefulService(context, startServiceIntent);
+
+        }
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }

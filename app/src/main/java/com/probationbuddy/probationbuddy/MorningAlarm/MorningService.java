@@ -33,6 +33,10 @@ public class MorningService extends IntentService {
         //get shared prefs
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("dayAlarmRunning", true);
+        editor.apply();
+
 
         //get interval (15,30, or 60) int from sharedprefs
         intervalPrefString = sharedPrefs.getString("prefInterval", "15");

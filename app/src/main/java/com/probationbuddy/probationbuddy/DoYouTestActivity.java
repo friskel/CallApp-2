@@ -23,6 +23,7 @@ import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
 public class DoYouTestActivity extends AppCompatActivity {
     TextView colorTv;
     String yourColor;
+    boolean dayAlarmActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 endDayAlarm();
+                                dayAlarmToFalse();
                                 Toast.makeText(getApplicationContext(), "Go test reminders are starting!",
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(getApplicationContext(), GoTestAlarmStarter.class));
@@ -84,6 +86,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotificationManager.cancelAll();
 
+                dayAlarmToFalse();
                 endDayAlarm();
                 Toast.makeText(getApplicationContext(), "Reminders stopping until tomorrow! :)",
                         Toast.LENGTH_LONG).show();
@@ -106,6 +109,14 @@ public class DoYouTestActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void dayAlarmToFalse() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("dayAlarmRunning", false);
+        editor.apply();
     }
 
     public void endDayAlarm() {
