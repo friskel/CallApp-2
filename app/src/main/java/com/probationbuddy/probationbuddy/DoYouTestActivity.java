@@ -23,7 +23,6 @@ import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
 public class DoYouTestActivity extends AppCompatActivity {
     TextView colorTv;
     String yourColor;
-    boolean dayAlarmActive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

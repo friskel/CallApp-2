@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.PowerManager;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
@@ -91,6 +92,8 @@ public class GoTestAlarmService extends IntentService {
 
         Log.i("DayAlarmService", "Service running");
         wl.release();
+
+        WakefulBroadcastReceiver.completeWakefulIntent(intent);
 
     }
 }

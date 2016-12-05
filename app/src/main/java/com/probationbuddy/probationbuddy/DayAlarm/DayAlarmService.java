@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.support.v4.app.TaskStackBuilder;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
@@ -102,6 +103,8 @@ public class DayAlarmService extends IntentService {
         Log.i("DayAlarmService", "Service running");
 
         wl.release();
+
+        WakefulBroadcastReceiver.completeWakefulIntent(intent);
 
     }
 }

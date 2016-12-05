@@ -5,8 +5,10 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +39,7 @@ public class TestDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cancelGoTestAlarm();
+                goTestAlarmToFalse();
 
                 //put in method?
                 NotificationManager mNotificationManager =
@@ -70,5 +73,13 @@ public class TestDoneActivity extends AppCompatActivity {
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager goTestAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         goTestAlarm.cancel(pIntent);
+    }
+
+    private void goTestAlarmToFalse() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("goTestAlarmRunning", false);
+        editor.apply();
     }
 }

@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
@@ -26,8 +27,12 @@ public class GoTestAlarmStarter extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
+
+
         //get shared prefs
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
 
         //get interval (15,30, or 60) int from sharedprefs
         intervalPrefString = sharedPrefs.getString("prefInterval", "15");
@@ -66,5 +71,11 @@ public class GoTestAlarmStarter extends IntentService {
         //start it
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
         Log.i("Go Test Service:", " running");
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("goTestAlarmRunning", true);
+        editor.apply();
+
+        WakefulBroadcastReceiver.completeWakefulIntent(intent);
     }
 }
