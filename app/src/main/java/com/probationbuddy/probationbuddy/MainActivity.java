@@ -18,6 +18,7 @@ import android.view.MenuItem;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
 import com.probationbuddy.probationbuddy.Log.LogActivity;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
@@ -43,14 +44,18 @@ public class MainActivity extends AppCompatActivity {
         //set toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
-        if(getSupportActionBar() != null) { getSupportActionBar().setLogo(R.mipmap.ic_launcher); getSupportActionBar().setDisplayUseLogoEnabled(true); }
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
 
         //set fragment with settings
-        FragmentManager manager = getSupportFragmentManager(); FragmentTransaction transaction = manager.beginTransaction(); transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
 
         //get sharedprefs object
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 
 
         //show dialog on first run
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onStop() {
         super.onStop();  // Always call the superclass
@@ -79,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();  // Always call the superclass
@@ -96,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     } //add menu items to toolbar
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
 
                 saveAndStartAlarms();
-
 
 
                 return true;
@@ -156,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //when you click save button in toolbar
-    public void saveAndStartAlarms(){
+    public void saveAndStartAlarms() {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -165,76 +172,23 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("saveAndStart", "now");
 
-        if (!alarmIsActive){
+        if (!alarmIsActive) {
 
             cancelMorningAlarm();
             stopDayAlarm();
+            stopGoTestAlarm();
 
-
-            //old dialog
-//            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
-//                    .setTitle("Deactivate")
-//                    .setMessage(
-//                            "The 'activate reminders' toggle is switched off! \n \n" +
-//                            "Press OK to turn off all reminders and alarms.")
-//
-//
-//                    .setNegativeButton("Cancel", null)
-//
-//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//
-//
-//                            //add stop gototest alarm
-//                            Toast.makeText(getApplicationContext(), "Probation Buddy reminders have been turned OFF",
-//                                    Toast.LENGTH_LONG).show();
-//
-//                        }
-//                    })
-//                    .show();
-
-
-
-
-        }else{
+        } else {
 
             stopDayAlarm();
+            stopGoTestAlarm();
             startService(new Intent(MainActivity.this, MorningServiceStarter.class));
-
-
-            //old dialog
-
-//            new android.support.v7.app.AlertDialog.Builder(MainActivity.this)
-//                    .setTitle("Activate")
-//                    .setMessage(
-//                            "You are about to start Probation Buddy daily reminders! \n \n" +
-//                            "Start time: " + getStartTime() + " every day (beginning tomorrow) \n \n" +
-//                            "Press OK to confirm.")
-//
-//
-//                    .setNegativeButton("Cancel", null)
-//
-//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialogInterface, int i) {
-//
-//
-//
-//                            Toast.makeText(getApplicationContext(), "Probation Buddy is running!",
-//                                    Toast.LENGTH_LONG).show();
-//
-//                        }
-//                    })
-//                    .show();
-
 
 
         }
 
 
     }
-
 
 
     public void cancelMorningAlarm() {
@@ -246,16 +200,20 @@ public class MainActivity extends AppCompatActivity {
     }//cancels morningAlarm
 
     public void stopDayAlarm() {
-        Intent intent = new Intent(getApplicationContext(), DayAlarmReceiver.class);
+        Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         dayAlarm.cancel(pIntent);
     }//cancels dayAlarm
 
-
-    // need to add stop goTestAlarm ?
-
+    public void stopGoTestAlarm() {
+        Intent intentGo = new Intent(getApplicationContext(), GoTestAlarmReceiver.class);
+        final PendingIntent pIntent = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
+                intentGo, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager goAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        goAlarm.cancel(pIntent);
+    }//cancels dayAlarm
 
 
 
@@ -263,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPrefsFirstRun = PreferenceManager.getDefaultSharedPreferences(this);
 
         boolean isFirstRun = sharedPrefsFirstRun.getBoolean("isFirstRun", true);
-        if (isFirstRun){
+        if (isFirstRun) {
             // Place your dialog code here to display the dialog
             new AlertDialog.Builder(this)
                     .setTitle("Welcome!")
@@ -290,12 +248,12 @@ public class MainActivity extends AppCompatActivity {
         am12 = false;
 
         minuteString = String.valueOf(minute);
-        if (minute < 10){
+        if (minute < 10) {
             minuteString = "0" + minute;
         }
 
 
-        if (hour == 0){
+        if (hour == 0) {
             hour = 12;
             am12 = true;
 
@@ -303,13 +261,13 @@ public class MainActivity extends AppCompatActivity {
 
         time = (hour + ":" + minuteString + " am");
 
-        if (hour > 12){
-            hour = hour-12;
+        if (hour > 12) {
+            hour = hour - 12;
             time = (hour + ":" + minuteString + " pm");
         }
-        if (hour == 12){
+        if (hour == 12) {
             time = (hour + ":" + minuteString + " pm");
-            if (am12){
+            if (am12) {
                 time = (hour + ":" + minuteString + " am");
             }
         }
