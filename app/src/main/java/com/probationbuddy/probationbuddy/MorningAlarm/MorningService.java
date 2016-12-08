@@ -31,7 +31,7 @@ public class MorningService extends IntentService {
     protected void onHandleIntent(Intent intent) {
 
         //get shared prefs
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean("dayAlarmRunning", true);

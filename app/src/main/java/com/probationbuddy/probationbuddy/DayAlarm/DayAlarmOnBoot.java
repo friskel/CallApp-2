@@ -14,7 +14,7 @@ public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean dayAlarmActive = sharedPrefs.getBoolean("dayAlarmRunning", false);
+        boolean dayAlarmActive = sharedPrefs.getBoolean("dayAlarmRunning", true);
 
 
         if (dayAlarmActive){
