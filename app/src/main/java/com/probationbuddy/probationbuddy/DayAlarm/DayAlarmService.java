@@ -16,6 +16,7 @@ import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
+import com.probationbuddy.probationbuddy.DoYouTestActivity;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
@@ -42,6 +43,10 @@ public class DayAlarmService extends IntentService {
         Intent intentHide = new Intent(this, HideNotificationService.class);
         PendingIntent pIntentHide = PendingIntent.getService(this, (int) System.currentTimeMillis(), intentHide, 0);
 
+        //for third done action
+        Intent intentDone = new Intent(this, DoYouTestActivity.class);
+        PendingIntent pIntentDone = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intentDone, 0);
+
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean prefsVibrate = sharedPrefs.getBoolean("prefsVibrate", true);
         boolean prefsSound = sharedPrefs.getBoolean("prefsSound", false);
@@ -55,7 +60,7 @@ public class DayAlarmService extends IntentService {
         //////////////////////////////////////////////////////////////////////  build notification
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_favorites)
+                        .setSmallIcon(R.drawable.ic_contact_phone_black_48dp)
                         .setContentTitle("Probation Buddy")
                         .setContentText("You have not called today!  Click to call now.")
                         .setTicker("Probation Buddy:  Call now!")
@@ -63,8 +68,9 @@ public class DayAlarmService extends IntentService {
                         .setPriority(2) //-2 to 2
 
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
-                        .addAction(R.drawable.ic_favorites, "Call Now", pIntentCall)
-                        .addAction(R.drawable.ic_favorites, "Hide", pIntentHide);
+                        .addAction(R.drawable.ic_perm_phone_msg_black_24dp, "Call Now", pIntentCall)
+//                        .addAction(0, "Hide", pIntentHide)
+                        .addAction(R.drawable.ic_power_settings_new_black_24dp, "Options", pIntentDone);
 
         if (prefsVibrate) {
             mBuilder.setVibrate(vibratePattern);

@@ -5,13 +5,13 @@
 
     <item
         android:id="@+id/action_save"
-        android:icon="@drawable/ic_alarm_on_black_48dp"
+        android:icon="@drawable/ic_help_outline_black_24dp"
         android:title="log"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_log"
         android:icon="@drawable/ic_favorites"
-        android:title="log"
+        android:title="wat"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_settings"

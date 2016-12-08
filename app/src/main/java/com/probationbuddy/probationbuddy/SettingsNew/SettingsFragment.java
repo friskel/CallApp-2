@@ -172,12 +172,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     }
 
 
-                    Toast.makeText(getContext(), "Reminders activated for " + time,
+                    Toast.makeText(getContext(), "Reminders will start at " + time + "!",
                             Toast.LENGTH_LONG).show();
                 }
 
                 if (!alarmsActive) {
-                    Toast.makeText(getContext(), "Probation Buddy is currently disabled",
+                    Toast.makeText(getContext(), "Probation Buddy has been disabled!",
                             Toast.LENGTH_SHORT).show();
                 }
 
