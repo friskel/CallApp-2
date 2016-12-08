@@ -67,6 +67,7 @@ public class DayAlarmService extends IntentService {
                         .setAutoCancel(true)
                         .setPriority(2) //-2 to 2
 
+
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
                         .addAction(R.drawable.ic_perm_phone_msg_black_24dp, "Call Now", pIntentCall)
 //                        .addAction(0, "Hide", pIntentHide)
