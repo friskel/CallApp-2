@@ -65,6 +65,7 @@ public class DayAlarmService extends IntentService {
                         .setContentText("You have not called today!  Click to call now.")
                         .setTicker("Probation Buddy:  Call now!")
                         .setAutoCancel(true)
+
                         .setPriority(2) //-2 to 2
 
 

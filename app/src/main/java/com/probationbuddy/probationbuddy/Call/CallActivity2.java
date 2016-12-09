@@ -1,11 +1,16 @@
 package com.probationbuddy.probationbuddy.Call;
 
+import android.Manifest;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -19,11 +24,14 @@ import com.probationbuddy.probationbuddy.R;
 
 public class CallActivity2 extends AppCompatActivity {
     String myNumber;
+    final static int MY_PERMISSIONS_CALL_PHONE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
+
+
 
         //////// set toolbar ///////
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
@@ -44,15 +52,7 @@ public class CallActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 try {
 
-                    Intent callingServiceIntent = new Intent(getApplicationContext(), CallingService.class);
-                    getApplicationContext().startService(callingServiceIntent);
-
-
-                    String uri = "tel:" + myNumber;
-                    Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse(uri));
-                    Log.i("call -", "on click calling");
-                    startActivity(dialIntent);
-                    finish();
+                    callNow();
 
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), "Your call has failed...",
@@ -70,7 +70,51 @@ public class CallActivity2 extends AppCompatActivity {
 
     } //onCreate end
 
+    private void callNow() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE);
 
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            Intent callingServiceIntent = new Intent(getApplicationContext(), CallingService.class);
+            getApplicationContext().startService(callingServiceIntent);
+
+            String uri = "tel:" + myNumber;
+            Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse(uri));
+            Log.i("call -", "on click calling");
+            startActivity(dialIntent);
+            finish();
+        }else{
+            //get permission
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    MY_PERMISSIONS_CALL_PHONE);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_CALL_PHONE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    callNow();
+
+                } else {
+
+                    Toast.makeText(this, "Call permission denied! Cannot call.",
+                            Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
 
 
     private void cancelCurrentNotifications(){
