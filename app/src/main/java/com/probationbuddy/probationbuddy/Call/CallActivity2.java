@@ -26,12 +26,18 @@ public class CallActivity2 extends AppCompatActivity {
     String myNumber;
     final static int MY_PERMISSIONS_CALL_PHONE = 0;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
+        Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
 
+
+        if (callNowBool){
+            callNow();
+        }
 
         //////// set toolbar ///////
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);

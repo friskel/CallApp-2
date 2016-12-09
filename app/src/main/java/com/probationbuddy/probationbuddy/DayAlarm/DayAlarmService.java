@@ -37,6 +37,7 @@ public class DayAlarmService extends IntentService {
 
         //for first call action
         Intent intentCall = new Intent(this, CallActivity2.class);
+        intentCall.putExtra("callNow", true);
         PendingIntent pIntentCall = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intentCall, 0);
 
         //for second hide action
