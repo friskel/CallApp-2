@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#ffffff</color>
-    <color name="colorPrimaryDark">#24bcef</color>
-    <color name="colorAccent">#0eb0ba</color>
-    <color name="colorBackground">#7f2ce7f4</color>
-    <color name="cardview_light_background">#ffffff</color>
+    <color name="colorPrimaryDark">#00bcd4</color>
+    <color name="colorAccent">#13afb9</color>
+    <color name="colorBackground">#b2ebf2</color>
+    <color name="cardview_light_background">#b2ebf2</color>
+    <color name="colorToolbar">#e0f7fa</color>
+
 
 </resources>
+
+

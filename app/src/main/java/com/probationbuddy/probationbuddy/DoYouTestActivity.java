@@ -19,16 +19,21 @@ import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
+import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class DoYouTestActivity extends AppCompatActivity {
     TextView colorTv;
     String yourColor;
+
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_do_you_test);
         setTheme(R.style.AppTheme);
+
+        context = getApplicationContext();
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top); //set toolbar UPDATE TEST
         setSupportActionBar(myToolbar);
@@ -38,6 +43,9 @@ public class DoYouTestActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
         //set toolbar
+
+        //cancel notifications
+        cancelAllNotifications();
 
         colorTv = (TextView) findViewById(R.id.colorTv);
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -108,6 +116,11 @@ public class DoYouTestActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void cancelAllNotifications() {
+        Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
+        startService(startServiceIntent);
     }
 
     private void dayAlarmToFalse() {
