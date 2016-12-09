@@ -57,9 +57,6 @@ public class TestDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
-
                 Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
                         Toast.LENGTH_LONG).show();
             }

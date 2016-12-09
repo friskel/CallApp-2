@@ -24,7 +24,6 @@ import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 public class DoYouTestActivity extends AppCompatActivity {
     TextView colorTv;
     String yourColor;
-
     Context context;
 
     @Override
@@ -33,18 +32,20 @@ public class DoYouTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_do_you_test);
         setTheme(R.style.AppTheme);
 
+        //set context for later stuff
         context = getApplicationContext();
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top); //set toolbar UPDATE TEST
+        //set toolbar
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setLogo(R.mipmap.ic_launcher);
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
-        //set toolbar
 
-        //cancel notifications
+
+        //cancel current notifications
         cancelAllNotifications();
 
         colorTv = (TextView) findViewById(R.id.colorTv);
@@ -77,7 +78,6 @@ public class DoYouTestActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-
 
 
             }
@@ -121,28 +121,22 @@ public class DoYouTestActivity extends AppCompatActivity {
     private void cancelAllNotifications() {
         Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
         startService(startServiceIntent);
-    }
+    }  //runs hide notification service
 
     private void dayAlarmToFalse() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean("dayAlarmRunning", false);
         editor.apply();
-    }
+    }  //dayAlarmRunning sharedPref to false
 
     public void endDayAlarm() {
-
-//        Intent intentMorning = new Intent(getApplicationContext(), MorningReceiver.class);
-//        final PendingIntent pIntentMorning = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
-//                intentMorning, PendingIntent.FLAG_UPDATE_CURRENT);
-//        AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-//        morningAlarm.cancel(pIntentMorning);
 
         Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
         final PendingIntent pIntentDay = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         dayAlarm.cancel(pIntentDay);
+
     }//cancels dayAlarm
 }

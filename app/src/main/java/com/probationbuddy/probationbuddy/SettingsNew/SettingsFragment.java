@@ -36,22 +36,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsColorNumberKey));
         onSharedPreferenceChanged(sharedPrefs, getString(R.string.prefsSound));
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
-/////
-
-
 
     @Override
     public void onResume() {
@@ -59,11 +44,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         //register the preferenceChange listener
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
-
-
-
-
-
 
 
     }
@@ -94,12 +74,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             am12 = false;
 
             minuteString = String.valueOf(minute);
-            if (minute < 10){
+            if (minute < 10) {
                 minuteString = "0" + minute;
             }
 
 
-            if (hour == 0){
+            if (hour == 0) {
                 hour = 12;
                 am12 = true;
 
@@ -107,17 +87,16 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
             time = (hour + ":" + minuteString + " am");
 
-            if (hour > 12){
-                hour = hour-12;
+            if (hour > 12) {
+                hour = hour - 12;
                 time = (hour + ":" + minuteString + " pm");
             }
-            if (hour == 12){
+            if (hour == 12) {
                 time = (hour + ":" + minuteString + " pm");
-                if (am12){
+                if (am12) {
                     time = (hour + ":" + minuteString + " am");
                 }
             }
-
 
 
             preference.setSummary(time);
@@ -193,9 +172,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             preference.setSummary(editText1);
 
 
-
-        }
-        else {
+        } else {
 //            preference.setSummary(sharedPreferences.getString(key, ""));
             //prevented 'class cast string to int' crash by commenting out
 
@@ -209,17 +186,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
-
-
-
-
-//////
-
-
-
-
-
-
 
 
     @Override
@@ -245,9 +211,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
             super.onDisplayPreferenceDialog(preference);
         }
     }
-
-
-
 
 
 }

@@ -29,11 +29,10 @@ import static android.support.v7.preference.PreferenceManager.getDefaultSharedPr
 public class MainActivity extends AppCompatActivity {
     int minute;
     int hour;
+    boolean am12;
+    boolean alarmIsActive;
     String time;
     String minuteString;
-    boolean am12;
-
-    boolean alarmIsActive;
 
 
     @Override
@@ -49,14 +48,13 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
 
-        //set fragment with settings
+        //set fragment with all of the settings
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
 
-        //get sharedprefs object
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+//        //get sharedprefs object if needed
+//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         //show dialog on first run
         checkFirstRun();
@@ -74,17 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("onPause", "now");
 
 
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();  // Always call the superclass
-
-
-        Log.i("onStop", "now");
-
-
-    }
+    } //runs saveAndStartAlarms(); when you close activity
 
     @Override
     public void onDestroy() {
@@ -191,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //alarm cancels
     public void cancelMorningAlarm() {
         Intent intent = new Intent(getApplicationContext(), MorningReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
@@ -214,8 +203,6 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager goAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         goAlarm.cancel(pIntent);
     }//cancels dayAlarm
-
-
 
     public void checkFirstRun() {
         SharedPreferences sharedPrefsFirstRun = PreferenceManager.getDefaultSharedPreferences(this);

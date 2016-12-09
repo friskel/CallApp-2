@@ -14,17 +14,15 @@ import static android.content.Context.TELEPHONY_SERVICE;
 public class MyPhoneListener extends PhoneStateListener {
 
     private Context mContext = null;
-
     private static Boolean onCall = false;
 
-    public MyPhoneListener(Context context){
+    MyPhoneListener(Context context){
         mContext = context;
     }
 
     public void onCallStateChanged(int state, String incomingNumber) {
 
         switch (state) {
-
             case TelephonyManager.CALL_STATE_OFFHOOK:
                 Log.i("DEBUG", "OFFHOOK");
 
@@ -43,7 +41,6 @@ public class MyPhoneListener extends PhoneStateListener {
                     mContext.stopService(stopIntent);
 
                     onCall = false;
-
                 }
 
                 break;
@@ -51,9 +48,6 @@ public class MyPhoneListener extends PhoneStateListener {
     }
 
     private void callFinished() {
-
-
-        //try way in stackoverflow answer?
 
         Intent restart = mContext.getPackageManager().
                 getLaunchIntentForPackage(mContext.getPackageName());

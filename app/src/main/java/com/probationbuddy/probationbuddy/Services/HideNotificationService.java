@@ -13,10 +13,8 @@ public class HideNotificationService extends IntentService {
         super("HideNotificationService");
     }
 
-
     @Override
     protected void onHandleIntent(Intent intent) {
-
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancelAll();

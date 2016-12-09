@@ -16,10 +16,7 @@ import static android.support.v7.preference.PreferenceManager.getDefaultSharedPr
 public class MorningServiceStarter extends IntentService {
     int hour;
     int minute;
-    int fullTimeNumber;
-    long fullTimeNumberMillis;
-    long systemTimeMillis;
-    boolean timeAlreadyPassed;
+
 
     public MorningServiceStarter() {
         super("MorningServiceStarter");
