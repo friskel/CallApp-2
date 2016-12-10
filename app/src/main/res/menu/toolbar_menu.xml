@@ -4,37 +4,29 @@
 
 
     <item
-        android:id="@+id/action_save"
+        android:id="@+id/action_help"
         android:icon="@drawable/ic_help_outline_black_24dp"
-        android:title="log"
+        android:title="help"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_log"
-        android:icon="@drawable/ic_favorites"
-        android:title="wat"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_settings"
-        android:icon="@drawable/ic_favorites"
-        android:title="settings"
-        app:showAsAction="never" />
+
     <item
         android:id="@+id/action_call"
-        android:icon="@drawable/ic_favorites"
         android:title="call"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_doyoutest"
-        android:icon="@drawable/ic_favorites"
-        android:title="doyoutest"
+
+        android:title="do you test"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_testdone"
-        android:icon="@drawable/ic_favorites"
+
         android:title="testdone"
         app:showAsAction="never" />
 
-
+    <item android:id="@+id/action_log"
+        android:title="log/activate"
+        app:showAsAction="never"/>
 
     <item android:id="@+id/action_about"
         android:title="about"

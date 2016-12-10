@@ -108,14 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentLog);
                 return true;
 
-            case R.id.action_settings:
 
-                Intent intentSettings = new Intent(this, TestDoneActivity.class);
-
-                startActivity(intentSettings);
-
-
-                return true;
             case R.id.action_call:
 
                 Intent intentCall = new Intent(this, CallActivity2.class);
@@ -126,17 +119,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_testdone:
 
-                Intent intentSettings2 = new Intent(this, TestDoneActivity.class);
+                Intent intentTestDone = new Intent(this, TestDoneActivity.class);
 
-                startActivity(intentSettings2);
+                startActivity(intentTestDone);
 
 
                 return true;
             case R.id.action_doyoutest:
 
-                Intent intentSettings3 = new Intent(this, DoYouTestActivity.class);
+                Intent intentDoYouTest = new Intent(this, DoYouTestActivity.class);
 
-                startActivity(intentSettings3);
+                startActivity(intentDoYouTest);
 
 
                 return true;
