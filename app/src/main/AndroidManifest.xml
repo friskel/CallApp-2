@@ -61,6 +61,7 @@
         <activity
             android:name=".Log.LogActivity"
             android:label="Call Log"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -68,6 +69,7 @@
         </activity>
         <activity
             android:name=".DoYouTestActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -89,6 +91,7 @@
 
         <activity
             android:name=".TestDoneActivity"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -99,7 +102,12 @@
             android:name=".Services.HideNotificationService"
             android:exported="false" />
 
-        <activity android:name=".Call.CallActivity2" />
+        <activity android:name=".Call.CallActivity2">
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.probationbuddy.probationbuddy.MainActivity" />
+        </activity>
 
         <service
             android:name=".Call.CallingService"

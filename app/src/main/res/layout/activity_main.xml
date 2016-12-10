@@ -17,7 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorToolbar"
-        android:elevation="4dp"
+        android:elevation="8dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"

@@ -95,12 +95,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_save:
-
-                saveAndStartAlarms();
-
-
-                return true;
 
             case R.id.action_log:
                 Intent intentLog = new Intent(this, LogActivity.class);
