@@ -35,6 +35,7 @@ public class CallActivity2 extends AppCompatActivity {
         Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
 
 
+
         if (callNowBool){
             callNow();
         }
@@ -79,6 +80,9 @@ public class CallActivity2 extends AppCompatActivity {
     private void callNow() {
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CALL_PHONE);
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        myNumber = prefs.getString("prefsCallNumber", "123");
 
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Intent callingServiceIntent = new Intent(getApplicationContext(), CallingService.class);
