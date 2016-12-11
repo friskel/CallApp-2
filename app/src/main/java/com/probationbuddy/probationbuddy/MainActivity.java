@@ -5,7 +5,9 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
@@ -59,7 +62,24 @@ public class MainActivity extends AppCompatActivity {
         //show dialog on first run
         checkFirstRun();
 
+        openSnackbar();
+
     } //end of onCreate
+
+    private void openSnackbar() {
+        Snackbar.make(findViewById(android.R.id.content), "You haven't called in today!", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Call Now", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                        intentCall.putExtra("callNow", true);
+                        startActivity(intentCall);
+                    }
+                })
+                .setActionTextColor(Color.RED)
+                .show();
+    }
 
     //activity state callbacks
     @Override
