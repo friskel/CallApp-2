@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (calledToday) {
-            Snackbar.make(findViewById(android.R.id.content), "You have called in today", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(findViewById(android.R.id.content), "You have called in today.", Snackbar.LENGTH_INDEFINITE)
                     .setAction("Call Again", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
