@@ -35,7 +35,7 @@
         android:icon="@drawable/ic_access_time_black_48dp"
         android:key="prefStartTime"
         android:summary=""
-        android:title="Start time" />
+        android:title="Notification start time" />
 
 
     <android.support.v7.preference.EditTextPreference

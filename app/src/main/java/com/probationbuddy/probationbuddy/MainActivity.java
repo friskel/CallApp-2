@@ -67,19 +67,41 @@ public class MainActivity extends AppCompatActivity {
     } //end of onCreate
 
     private void openSnackbar() {
-        Snackbar.make(findViewById(android.R.id.content), "You haven't called in today!", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Call Now", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                        Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                        intentCall.putExtra("callNow", true);
-                        startActivity(intentCall);
-                    }
-                })
-                .setActionTextColor(Color.RED)
-                .show();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
+
+
+        if (calledToday) {
+            Snackbar.make(findViewById(android.R.id.content), "You have called in today", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Call Again", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                            intentCall.putExtra("callNow", true);
+                            startActivity(intentCall);
+                        }
+                    })
+                    .setActionTextColor(Color.GREEN)
+                    .show();
+        } else {
+            Snackbar.make(findViewById(android.R.id.content), "You have not called in today!", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Call Now", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                            intentCall.putExtra("callNow", true);
+                            startActivity(intentCall);
+                        }
+                    })
+                    .setActionTextColor(Color.RED)
+                    .show();
+        }
+
     }
+
 
     //activity state callbacks
     @Override

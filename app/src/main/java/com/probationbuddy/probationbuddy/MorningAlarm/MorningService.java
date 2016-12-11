@@ -35,6 +35,7 @@ public class MorningService extends IntentService {
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean("dayAlarmRunning", true);
+        editor.putBoolean("calledToday", false);
         editor.apply();
 
 

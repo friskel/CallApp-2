@@ -89,6 +89,12 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putBoolean("calledToday", true);
+                editor.apply();
+
+
                 NotificationManager mNotificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 mNotificationManager.cancelAll();
@@ -97,6 +103,8 @@ public class DoYouTestActivity extends AppCompatActivity {
                 endDayAlarm();
                 Toast.makeText(getApplicationContext(), "Reminders stopping until tomorrow! :)",
                         Toast.LENGTH_LONG).show();
+
+
             }
         });
 
