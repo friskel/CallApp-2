@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
@@ -128,6 +129,19 @@ public class DoYouTestActivity extends AppCompatActivity {
                         .setMessage("Alarms will stay on")
                         .setPositiveButton("OK", null)
                         .show();
+
+            }
+        });
+
+        //call now later button
+        Button callNowButton = (Button) findViewById(R.id.buttonCallNow);
+        callLaterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                intentCall.putExtra("callNow", true);
+                startActivity(intentCall);
 
             }
         });

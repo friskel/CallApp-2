@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#00c0d9</color>
-    <color name="colorAccent">#13afb9</color>
+    <color name="colorAccent">#75f1f9</color>
     <color name="colorBackground">#ffffff</color>
     <color name="cardview_light_background">#ffffff</color>
     <color name="colorToolbar">#ffffff</color>

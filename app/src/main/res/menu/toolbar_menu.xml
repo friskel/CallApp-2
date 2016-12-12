@@ -9,10 +9,16 @@
         android:title="help"
         app:showAsAction="ifRoom" />
 
+
     <item
         android:id="@+id/action_call"
         android:title="call"
         app:showAsAction="never" />
+
+
+    <item android:id="@+id/action_about"
+        android:title="about"
+        app:showAsAction="never"/>
     <item
         android:id="@+id/action_doyoutest"
 
@@ -28,8 +34,6 @@
         android:title="log/activate"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/action_about"
-        android:title="about"
-        app:showAsAction="never"/>
+
 
 </menu>

@@ -4,9 +4,11 @@ import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
@@ -41,18 +43,30 @@ public class TestDoneActivity extends AppCompatActivity {
                 cancelGoTestAlarm();
                 goTestAlarmToFalse();
 
-                //put in method?
-                NotificationManager mNotificationManager =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.cancelAll();
+                new AlertDialog.Builder(getApplicationContext())
+                        .setTitle("Confirm")
+                        .setMessage("Press OK to confirm that you have finished your probation test.  Reminders for today will stop!")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //put in method?
+                                NotificationManager mNotificationManager =
+                                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                mNotificationManager.cancelAll();
 
-                Toast.makeText(getApplicationContext(), "Test complete, stopping alarms until tomorrow morning!",
-                        Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Test complete, stopping alarms until tomorrow morning!",
+                                        Toast.LENGTH_LONG).show();
 
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                SharedPreferences.Editor editor = sharedPrefs.edit();
-                editor.putBoolean("haveTestToday", false);
-                editor.apply();
+                                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPrefs.edit();
+                                editor.putBoolean("haveTestToday", false);
+                                editor.apply();
+                            }
+                        })
+                        .show();
+
+
+
             }
         });
 
