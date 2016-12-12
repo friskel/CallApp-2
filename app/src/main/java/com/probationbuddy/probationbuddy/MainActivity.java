@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
-        boolean haveTestToday = sharedPrefs.getBoolean("HaveTestToday", false);
+        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
 
         final Context context = this;
 

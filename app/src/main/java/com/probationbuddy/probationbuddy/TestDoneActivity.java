@@ -51,7 +51,7 @@ public class TestDoneActivity extends AppCompatActivity {
 
                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPrefs.edit();
-                editor.putBoolean("HaveTestToday", false);
+                editor.putBoolean("haveTestToday", false);
                 editor.apply();
             }
         });
