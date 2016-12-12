@@ -48,6 +48,11 @@ public class TestDoneActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Test complete, stopping alarms until tomorrow morning!",
                         Toast.LENGTH_LONG).show();
+
+                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = sharedPrefs.edit();
+                editor.putBoolean("HaveTestToday", false);
+                editor.apply();
             }
         });
 

@@ -71,41 +71,63 @@ public class MainActivity extends AppCompatActivity {
 
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
+        boolean haveTestToday = sharedPrefs.getBoolean("HaveTestToday", false);
 
         final Context context = this;
 
 
         if (calledToday) {
-            Snackbar.make(findViewById(android.R.id.content), "You have called in today.", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Call Again", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                            if (callNumber.equals("not set!") || callNumber.equals("")) {
-                                new AlertDialog.Builder(context)
-                                        .setTitle("Hold on..")
-                                        .setMessage("You need to set your call-in phone number before making a call!")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
+            if (haveTestToday){
 
-                                                startActivity(intentRestartMain);
-                                            }
-                                        })
-                                        .show();
+                Snackbar.make(findViewById(android.R.id.content), "! You have to test today !", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Done", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                    Intent intentDone = new Intent(getApplicationContext(), TestDoneActivity.class);
+
+                                    startActivity(intentDone);
+                                }
+
+                        })
+                        .setActionTextColor(Color.RED)
+                        .show();
 
 
-                            } else {
+            } else {
 
-                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                                intentCall.putExtra("callNow", true);
-                                startActivity(intentCall);
+                Snackbar.make(findViewById(android.R.id.content), "You have called in today.", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("Call Again", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                                if (callNumber.equals("not set!") || callNumber.equals("")) {
+                                    new AlertDialog.Builder(context)
+                                            .setTitle("Hold on..")
+                                            .setMessage("You need to set your call-in phone number before making a call!")
+                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
+
+                                                    startActivity(intentRestartMain);
+                                                }
+                                            })
+                                            .show();
+
+
+                                } else {
+
+                                    Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                                    intentCall.putExtra("callNow", true);
+                                    startActivity(intentCall);
+                                }
                             }
-                        }
-                    })
-                    .setActionTextColor(Color.GREEN)
-                    .show();
+                        })
+                        .setActionTextColor(Color.GREEN)
+                        .show();
+            }
+
         }
 
         if (!calledToday){

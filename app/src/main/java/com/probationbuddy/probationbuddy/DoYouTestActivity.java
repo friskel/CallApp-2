@@ -70,6 +70,13 @@ public class DoYouTestActivity extends AppCompatActivity {
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                //to method?
+                                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                SharedPreferences.Editor editor = sharedPrefs.edit();
+                                editor.putBoolean("calledToday", true);
+                                editor.putBoolean("haveTestToday", true);
+                                editor.apply();
+
                                 endDayAlarm();
                                 dayAlarmToFalse();
                                 Toast.makeText(getApplicationContext(), "Go test reminders are starting!",
