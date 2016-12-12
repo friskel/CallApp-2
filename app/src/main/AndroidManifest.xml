@@ -17,13 +17,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <service
@@ -61,16 +59,16 @@
         <activity
             android:name=".Log.LogActivity"
             android:label="Call Log"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
         <activity
             android:name=".DoYouTestActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
@@ -91,8 +89,8 @@
 
         <activity
             android:name=".TestDoneActivity"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
@@ -103,10 +101,9 @@
             android:exported="false" />
 
         <activity android:name=".Call.CallActivity2">
-
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.probationbuddy.probationbuddy.MainActivity" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
 
         <service
@@ -130,6 +127,10 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
+        <service
+            android:name=".ResetCalledToday.ResetCalledTodayStarter"
+            android:exported="false"></service>
     </application>
 
 </manifest>

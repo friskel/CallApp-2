@@ -79,6 +79,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                                 endDayAlarm();
                                 dayAlarmToFalse();
+                                resetCalledTodayAlarm();
                                 Toast.makeText(getApplicationContext(), "Go test reminders are starting!",
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(getApplicationContext(), GoTestAlarmStarter.class));
@@ -108,6 +109,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                 dayAlarmToFalse();
                 endDayAlarm();
+                resetCalledTodayAlarm();
                 Toast.makeText(getApplicationContext(), "Reminders stopping until tomorrow! :)",
                         Toast.LENGTH_LONG).show();
 
@@ -133,6 +135,13 @@ public class DoYouTestActivity extends AppCompatActivity {
 
     }
 
+    private void resetCalledTodayAlarm() {
+
+
+
+
+    }
+
     private void cancelAllNotifications() {
         Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
         startService(startServiceIntent);
@@ -151,7 +160,10 @@ public class DoYouTestActivity extends AppCompatActivity {
         final PendingIntent pIntentDay = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        dayAlarm.cancel(pIntentDay);
+
+        if (dayAlarm!= null) {
+            dayAlarm.cancel(pIntentDay);
+        }
 
     }//cancels dayAlarm
 }

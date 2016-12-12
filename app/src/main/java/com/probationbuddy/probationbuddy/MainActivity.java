@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
         boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
+        boolean alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
 
         final Context context = this;
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         if (calledToday) {
             if (haveTestToday){
 
-                Snackbar.make(findViewById(android.R.id.content), "! You have to test today !", Snackbar.LENGTH_INDEFINITE)
+                Snackbar.make(findViewById(android.R.id.content), "You have to test today!", Snackbar.LENGTH_INDEFINITE)
                         .setAction("Done", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -158,6 +159,41 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intentCall);
                             }
                         }
+                    })
+                    .setActionTextColor(Color.RED)
+                    .show();
+        }
+
+        if(!alarmsActive){
+
+            Snackbar.make(findViewById(android.R.id.content), "Reminders are disabled.", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Call Now", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                            if (callNumber.equals("not set!") || callNumber.equals("")){
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Hold on..")
+                                        .setMessage("You need to set your call-in number first before making a call!  ")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
+
+                                                startActivity(intentRestartMain);
+                                            }
+                                        })
+                                        .show();
+
+
+                            }else {
+
+                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                                intentCall.putExtra("callNow", true);
+                                startActivity(intentCall);
+                            }
+                        }
+
                     })
                     .setActionTextColor(Color.RED)
                     .show();
@@ -300,21 +336,43 @@ public class MainActivity extends AppCompatActivity {
     }//cancels dayAlarm
 
     public void checkFirstRun() {
+
+
         SharedPreferences sharedPrefsFirstRun = PreferenceManager.getDefaultSharedPreferences(this);
 
         boolean isFirstRun = sharedPrefsFirstRun.getBoolean("isFirstRun", true);
         if (isFirstRun) {
+
             // Place your dialog code here to display the dialog
             new AlertDialog.Builder(this)
                     .setTitle("Hello!")
                     .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go!")
-                    .setPositiveButton("OK", null)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Guide", new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+
+                                            Intent intentDone = new Intent(getApplicationContext(), TestDoneActivity.class);
+
+                                            startActivity(intentDone);
+                                        }
+
+                                    })
+                                    .setActionTextColor(Color.RED)
+                                    .show();
+                        }
+                    })
                     .show();
 
             sharedPrefsFirstRun
                     .edit()
                     .putBoolean("isFirstRun", false)
                     .apply();
+
+
         }
     }
 
