@@ -371,8 +371,6 @@ public class MainActivity extends AppCompatActivity {
                     .edit()
                     .putBoolean("isFirstRun", false)
                     .apply();
-
-
         }
     }
 
