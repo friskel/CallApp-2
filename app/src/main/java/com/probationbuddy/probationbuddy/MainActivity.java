@@ -68,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void openSnackbar() {
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
+        
+        final Context context = this;
 
 
         if (calledToday) {
@@ -85,20 +87,36 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .setActionTextColor(Color.GREEN)
                     .show();
-        } else {
+        }
+
+        if (!calledToday){
             Snackbar.make(findViewById(android.R.id.content), "You have not called in today!", Snackbar.LENGTH_INDEFINITE)
                     .setAction("Call Now", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                            if (callNumber.equals("not set!")){
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Hold on..")
+                                        .setMessage("You need to set your call-in number first before making a call!  ")
+                                        .setPositiveButton("OK", null)
+                                        .show();
 
-                            Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                            intentCall.putExtra("callNow", true);
-                            startActivity(intentCall);
+
+                            }else {
+
+                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                                intentCall.putExtra("callNow", true);
+                                startActivity(intentCall);
+                            }
                         }
                     })
                     .setActionTextColor(Color.RED)
                     .show();
         }
+
+
+
 
     }
 
