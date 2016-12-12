@@ -3,6 +3,7 @@ package com.probationbuddy.probationbuddy;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
-        
+
         final Context context = this;
 
 
@@ -79,10 +80,28 @@ public class MainActivity extends AppCompatActivity {
                     .setAction("Call Again", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                            if (callNumber.equals("not set!") || callNumber.equals("")) {
+                                new AlertDialog.Builder(context)
+                                        .setTitle("Hold on..")
+                                        .setMessage("You need to set your call-in phone number before making a call!")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
 
-                            Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                            intentCall.putExtra("callNow", true);
-                            startActivity(intentCall);
+                                                startActivity(intentRestartMain);
+                                            }
+                                        })
+                                        .show();
+
+
+                            } else {
+
+                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                                intentCall.putExtra("callNow", true);
+                                startActivity(intentCall);
+                            }
                         }
                     })
                     .setActionTextColor(Color.GREEN)
@@ -95,11 +114,18 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                            if (callNumber.equals("not set!")){
+                            if (callNumber.equals("not set!") || callNumber.equals("")){
                                 new AlertDialog.Builder(context)
                                         .setTitle("Hold on..")
                                         .setMessage("You need to set your call-in number first before making a call!  ")
-                                        .setPositiveButton("OK", null)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
+
+                                                startActivity(intentRestartMain);
+                                            }
+                                        })
                                         .show();
 
 
@@ -258,8 +284,8 @@ public class MainActivity extends AppCompatActivity {
         if (isFirstRun) {
             // Place your dialog code here to display the dialog
             new AlertDialog.Builder(this)
-                    .setTitle("Welcome!")
-                    .setMessage("To setup Probation Buddy, just configure your settings and hit the save button in the top toolbar.  For more help, click the 3 dots in the top right and select 'Help'.")
+                    .setTitle("Hello!")
+                    .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go!")
                     .setPositiveButton("OK", null)
                     .show();
 

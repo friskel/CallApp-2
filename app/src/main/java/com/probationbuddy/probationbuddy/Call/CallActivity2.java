@@ -92,6 +92,10 @@ public class CallActivity2 extends AppCompatActivity {
             Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse(uri));
             Log.i("call -", "on click calling");
             startActivity(dialIntent);
+
+            Toast.makeText(getApplicationContext(), "Calling...",
+                    Toast.LENGTH_LONG).show();
+
             finish();
         }else{
             //get permission
