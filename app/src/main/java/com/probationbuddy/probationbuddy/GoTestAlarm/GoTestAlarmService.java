@@ -57,8 +57,8 @@ public class GoTestAlarmService extends IntentService {
                         .setTicker("Probation test today, don't forget!")
                         .setAutoCancel(true)
                         .setPriority(2) //-2 to 2
-                        .addAction(R.drawable.ic_restaurants, "Completed", pIntentGoTestDone)
-                        .addAction(R.drawable.ic_nearby, "Hide", pIntentHide);
+                        .addAction(R.drawable.ic_restaurants, "Test Completed", pIntentGoTestDone);
+//                        .addAction(R.drawable.ic_nearby, "Hide", pIntentHide);
 
         if (prefsVibrate) {
             mBuilder.setVibrate(vibratePattern);

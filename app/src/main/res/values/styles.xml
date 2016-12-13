@@ -14,6 +14,18 @@
 
     </style>
 
+
+
+    <style name="ThemeOverlay.YourApp" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingTop">55dp</item>
+    </style>
+
+
+
+
+
+
     <style name="AppAlertDialog"
         parent="Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="colorAccent">@color/colorAccent</item>
