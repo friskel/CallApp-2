@@ -18,5 +18,6 @@ public class HideNotificationService extends IntentService {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancelAll();
+        mNotificationManager.cancel(1234567);
     }
 }

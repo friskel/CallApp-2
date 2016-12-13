@@ -159,6 +159,8 @@ public class DoYouTestActivity extends AppCompatActivity {
     private void cancelAllNotifications() {
         Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
         startService(startServiceIntent);
+
+
     }  //runs hide notification service
 
     private void dayAlarmToFalse() {
