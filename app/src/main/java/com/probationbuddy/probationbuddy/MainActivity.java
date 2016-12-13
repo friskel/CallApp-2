@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("Guide", new View.OnClickListener() {
+                                    .setAction("Help guide", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
 

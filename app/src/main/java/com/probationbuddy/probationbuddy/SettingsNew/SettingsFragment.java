@@ -58,6 +58,9 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        SharedPreferences prefs = getDefaultSharedPreferences(getContext());
+        alarmsActive = prefs.getBoolean("prefsActivate", false);
+
         Preference preference = findPreference(key);
         if (preference instanceof ListPreference) {
             ListPreference listPreference = (ListPreference) preference;
@@ -70,8 +73,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (preference instanceof TimePreference) {
             TimePreference timePreference = (TimePreference) preference;
 
-            //get shared prefs
-            SharedPreferences prefs = getDefaultSharedPreferences(getContext());
 
             //set hour and minute of morning start time
             minute = prefs.getInt("prefStartTime", 123) % 60;
@@ -118,13 +119,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
             if (preference.getKey().equals("prefsActivate")) {
                 //get shared prefs
-                SharedPreferences prefs = getDefaultSharedPreferences(getContext());
-                alarmsActive = prefs.getBoolean("prefsActivate", false);
+
 
                 if (alarmsActive) {
                     //get shared prefs
-
-
                     //set hour and minute of morning start time
                     minute = prefs.getInt("prefStartTime", 123) % 60;
                     hour = prefs.getInt("prefStartTime", 123);
@@ -179,7 +177,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         if (preference instanceof EditTextPreference) {
 
             //get shared prefs
-            SharedPreferences prefs = getDefaultSharedPreferences(getContext());
             editText1 = prefs.getString(key, "defaultz");
             preference.setSummary(editText1);
 

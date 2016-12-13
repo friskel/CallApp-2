@@ -135,7 +135,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
         //call now later button
         Button callNowButton = (Button) findViewById(R.id.buttonCallNow);
-        callLaterButton.setOnClickListener(new View.OnClickListener() {
+        callNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
