@@ -31,6 +31,11 @@ import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
+    final Context mContext = getApplicationContext();
+    final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    String callNumber;
+    final AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
     int minute;
     int hour;
     boolean am12;
@@ -42,170 +47,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //set activity layout UPDATE TEST
+        setContentView(R.layout.activity_main);
+        setToolbar();
 
-        //set toolbar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
-        setSupportActionBar(myToolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
-        }
+        setMainSettingsFragment();
 
-        //set fragment with all of the settings
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
-
-//        //get sharedprefs object if needed
-//        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        //show dialog on first run
-        checkFirstRun();
+        checkFirstRun(); //show welcome dialog on first run
 
         openSnackbar();
 
-    } //end of onCreate
-
-    private void openSnackbar() {
-
-        final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
-        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
-        boolean alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
-
-        final Context context = this;
-
-
-        if (calledToday) {
-            if (haveTestToday){
-
-                Snackbar.make(findViewById(android.R.id.content), "You have to test today!", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Done", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                    Intent intentDone = new Intent(getApplicationContext(), TestDoneActivity.class);
-
-                                    startActivity(intentDone);
-                                }
-
-                        })
-                        .setActionTextColor(Color.RED)
-                        .show();
-
-
-            } else {
-
-                Snackbar.make(findViewById(android.R.id.content), "You have called in today.", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Call Again", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                                if (callNumber.equals("not set!") || callNumber.equals("")) {
-                                    new AlertDialog.Builder(context)
-                                            .setTitle("Hold on..")
-                                            .setMessage("You need to set your call-in phone number before making a call!")
-                                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
-
-                                                    startActivity(intentRestartMain);
-                                                }
-                                            })
-                                            .show();
-
-
-                                } else {
-
-                                    Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                                    intentCall.putExtra("callNow", true);
-                                    startActivity(intentCall);
-                                }
-                            }
-                        })
-                        .setActionTextColor(Color.GREEN)
-                        .show();
-            }
-
-        }
-
-        if (!calledToday){
-            Snackbar.make(findViewById(android.R.id.content), "You have not called in today!", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Call Now", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                            if (callNumber.equals("not set!") || callNumber.equals("")){
-                                new AlertDialog.Builder(context)
-                                        .setTitle("Hold on..")
-                                        .setMessage("You need to set your call-in number first before making a call!  ")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
-
-                                                startActivity(intentRestartMain);
-                                            }
-                                        })
-                                        .show();
-
-
-                            }else {
-
-                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                                intentCall.putExtra("callNow", true);
-                                startActivity(intentCall);
-                            }
-                        }
-                    })
-                    .setActionTextColor(Color.RED)
-                    .show();
-        }
-
-        if(!alarmsActive){
-
-            Snackbar.make(findViewById(android.R.id.content), "Reminders are disabled.", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Call Now", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                            if (callNumber.equals("not set!") || callNumber.equals("")){
-                                new AlertDialog.Builder(context)
-                                        .setTitle("Hold on..")
-                                        .setMessage("You need to set your call-in number first before making a call!  ")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
-
-                                                startActivity(intentRestartMain);
-                                            }
-                                        })
-                                        .show();
-
-
-                            }else {
-
-                                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
-                                intentCall.putExtra("callNow", true);
-                                startActivity(intentCall);
-                            }
-                        }
-
-                    })
-                    .setActionTextColor(Color.RED)
-                    .show();
-        }
-
-
-
-
     }
 
-
-    //activity state callbacks
+    // start alarm stuff
     @Override
     public void onPause() {
         super.onPause();  // Always call the superclass
@@ -217,16 +70,32 @@ public class MainActivity extends AppCompatActivity {
 
 
     } //runs saveAndStartAlarms(); when you close activity
+    public void saveAndStartAlarms() {
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();  // Always call the superclass
-
-        Log.i("onDestroy", "now");
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 
-    }
+        alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
 
+        Log.i("saveAndStart", "now");
+
+        if (!alarmIsActive) {
+
+            cancelMorningAlarm();
+            stopDayAlarm();
+            stopGoTestAlarm();
+
+        } else {
+
+            stopDayAlarm();
+            stopGoTestAlarm();
+            startService(new Intent(MainActivity.this, MorningServiceStarter.class));
+
+
+        }
+
+
+    } //when you click save button in toolbar
 
     //for toolbar buttons
     @Override
@@ -235,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     } //add menu items to toolbar
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -281,69 +149,170 @@ public class MainActivity extends AppCompatActivity {
     } //sets the clicks for the toolbar menu items
 
 
-    //when you click save button in toolbar
-    public void saveAndStartAlarms() {
+    // snackbar stuff
+    private void openSnackbar() {
 
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
+        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
+        boolean alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
 
+        if (calledToday) {
+            //called in today
 
-        alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
-
-        Log.i("saveAndStart", "now");
-
-        if (!alarmIsActive) {
-
-            cancelMorningAlarm();
-            stopDayAlarm();
-            stopGoTestAlarm();
-
-        } else {
-
-            stopDayAlarm();
-            stopGoTestAlarm();
-            startService(new Intent(MainActivity.this, MorningServiceStarter.class));
-
+            if (haveTestToday) {
+                //yes test
+                snackbarYesTest();
+            } else {
+                //no test
+                snackbarNoTest();
+            }
 
         }
 
+        if (!calledToday) {
+            //have not called in yet today
+            snackbarNotCalledToday();
+        }
 
+        if (!alarmsActive) {
+            //reminders turned off
+            snackbarAlarmsOff();
+        }
+
+
+    }
+
+    private void snackbarYesTest() {
+        Snackbar.make(findViewById(android.R.id.content), "You have to test today!", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Done", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intentDone = new Intent(mContext, TestDoneActivity.class);
+                        startActivity(intentDone);
+                    }
+
+                }) //done opens DoYouTest
+                .setActionTextColor(Color.RED)
+                .show();
+    }
+
+    private void snackbarNoTest() {
+        Snackbar.make(findViewById(android.R.id.content), "You have called in today, no tests.", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Call Again", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                        if (callNumber.equals("not set!") || callNumber.equals("")) {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle("Hold on..")
+                                    .setMessage("You need to set your call-in phone number before making a call!")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
+
+                                            startActivity(intentRestartMain);
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            Intent intentCall = new Intent(mContext, CallActivity2.class);
+                            intentCall.putExtra("callNow", true);
+                            startActivity(intentCall);
+                        }
+                    }
+                })
+                .setActionTextColor(Color.GREEN)
+                .show();
+    }
+
+    private void snackbarNotCalledToday() {
+        Snackbar.make(findViewById(android.R.id.content), "You have not called in today!", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Call Now", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                        if (callNumber.equals("not set!") || callNumber.equals("")) {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle("Hold on..")
+                                    .setMessage("You need to set your call-in number first before making a call!  ")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intentRestartMain = new Intent(mContext, MainActivity.class);
+                                            startActivity(intentRestartMain);
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            Intent intentCall = new Intent(mContext, CallActivity2.class);
+                            intentCall.putExtra("callNow", true);
+                            startActivity(intentCall);
+                        }
+                    }
+                })
+                .setActionTextColor(Color.RED)
+                .show();
+    }
+
+    private void snackbarAlarmsOff() {
+        Snackbar.make(findViewById(android.R.id.content), "Reminders are disabled.", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Call Now", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                        if (callNumber.equals("not set!") || callNumber.equals("")) {
+                            new AlertDialog.Builder(mContext)
+                                    .setTitle("Hold on..")
+                                    .setMessage("You need to set your call-in number first before making a call!  ")
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Intent intentRestartMain = new Intent(mContext, MainActivity.class);
+                                            startActivity(intentRestartMain);
+                                        }
+                                    })
+                                    .show();
+                        } else {
+                            Intent intentCall = new Intent(mContext, CallActivity2.class);
+                            intentCall.putExtra("callNow", true);
+                            startActivity(intentCall);
+                        }
+                    }
+
+                })
+                .setActionTextColor(Color.RED)
+                .show();
     }
 
 
     //alarm cancels
     public void cancelMorningAlarm() {
         Intent intent = new Intent(getApplicationContext(), MorningReceiver.class);
-        final PendingIntent pIntent = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
+        final PendingIntent pIntentCancelMorning = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager morningAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        morningAlarm.cancel(pIntent);
+        alarm.cancel(pIntentCancelMorning);
     }//cancels morningAlarm
 
     public void stopDayAlarm() {
         Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        dayAlarm.cancel(pIntent);
+        alarm.cancel(pIntent);
     }//cancels dayAlarm
 
     public void stopGoTestAlarm() {
         Intent intentGo = new Intent(getApplicationContext(), GoTestAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
                 intentGo, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager goAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        goAlarm.cancel(pIntent);
+        alarm.cancel(pIntent);
     }//cancels dayAlarm
+
 
     public void checkFirstRun() {
 
-
-        SharedPreferences sharedPrefsFirstRun = PreferenceManager.getDefaultSharedPreferences(this);
-
-        boolean isFirstRun = sharedPrefsFirstRun.getBoolean("isFirstRun", true);
+        boolean isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
         if (isFirstRun) {
-
-            // Place your dialog code here to display the dialog
             new AlertDialog.Builder(this)
                     .setTitle("Hello!")
                     .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go!")
@@ -354,12 +323,9 @@ public class MainActivity extends AppCompatActivity {
                                     .setAction("Help guide", new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-
-                                            Intent intentDone = new Intent(getApplicationContext(), TestDoneActivity.class);
-
+                                            Intent intentDone = new Intent(mContext, HelpGuideActivity.class);
                                             startActivity(intentDone);
                                         }
-
                                     })
                                     .setActionTextColor(Color.RED)
                                     .show();
@@ -367,10 +333,9 @@ public class MainActivity extends AppCompatActivity {
                     })
                     .show();
 
-            sharedPrefsFirstRun
-                    .edit()
-                    .putBoolean("isFirstRun", false)
-                    .apply();
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putBoolean("isFirstRun", false);
+            editor.apply();
         }
     }
 
@@ -411,6 +376,25 @@ public class MainActivity extends AppCompatActivity {
         }
         return time;
     }
+
+
+    private void setMainSettingsFragment() {
+        //set fragment with all of the settings
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.settingsFragmentHome, new SettingsFragment()).commit();
+    }
+
+    private void setToolbar() {
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        setSupportActionBar(myToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
+    }
+
+
 
 
 }

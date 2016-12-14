@@ -23,38 +23,26 @@ import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class DoYouTestActivity extends AppCompatActivity {
-    TextView colorTv;
-    String yourColor;
-    Context context;
+    final Context context = getApplicationContext();
+    final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_do_you_test);
         setTheme(R.style.AppTheme);
-
-        //set context for later stuff
-        context = getApplicationContext();
-
-        //set toolbar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
-        setSupportActionBar(myToolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
-        }
-
-
-        //cancel current notifications
+        setToolbar();
         cancelAllNotifications();
+        setColorTextView();
 
-        colorTv = (TextView) findViewById(R.id.colorTv);
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        yourColor = sharedPrefs.getString("prefsColorNumber", "def");
-        colorTv.setText(yourColor);
+        makeYesTestButton();
+        makeNoTestButton();
+        makeCallLaterButton();
+        makeCallNowButton();
 
+    }
 
+    private void makeYesTestButton() {
         //yes you have to test; start GoTestAlarmService - button
         Button goTestButton = (Button) findViewById(R.id.testTodaybutton);
         goTestButton.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +79,9 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void makeNoTestButton() {
         //no test; end dayAlarm
         Button noTestButton = (Button) findViewById(R.id.noTestButton);
         noTestButton.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +107,9 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void makeCallLaterButton() {
         //call again later button
         Button callLaterButton = (Button) findViewById(R.id.callLaterButton);
         callLaterButton.setOnClickListener(new View.OnClickListener() {
@@ -132,8 +124,10 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
+    }
 
-        //call now later button
+    private void makeCallNowButton() {
+        //call now button
         Button callNowButton = (Button) findViewById(R.id.buttonCallNow);
         callNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,23 +139,13 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     private void resetCalledTodayAlarm() {
 
 
-
-
     }
 
-    private void cancelAllNotifications() {
-        Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
-        startService(startServiceIntent);
-
-
-    }  //runs hide notification service
 
     private void dayAlarmToFalse() {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -182,4 +166,27 @@ public class DoYouTestActivity extends AppCompatActivity {
         }
 
     }//cancels dayAlarm
+
+
+
+    private void setToolbar() {
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        setSupportActionBar(myToolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setLogo(R.mipmap.ic_launcher);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+        }
+    } //makes Toolbar
+
+    private void setColorTextView() {
+        TextView colorTv = (TextView) findViewById(R.id.colorTv);
+        String yourColor = sharedPrefs.getString("prefsColorNumber", "def");
+        colorTv.setText(yourColor);
+    } //init TextView, get sharedpref, set TV
+
+    private void cancelAllNotifications() {
+        Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
+        startService(startServiceIntent);
+    }  //runs hide notification service
 }

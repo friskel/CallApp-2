@@ -130,7 +130,9 @@
 
         <service
             android:name=".ResetCalledToday.ResetCalledTodayStarter"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity android:name=".HelpGuideActivity"></activity>
     </application>
 
 </manifest>
