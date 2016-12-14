@@ -23,13 +23,14 @@ import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
 import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class DoYouTestActivity extends AppCompatActivity {
-    final Context context = getApplicationContext();
-    final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+    Context mContext = this;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_do_you_test);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         setTheme(R.style.AppTheme);
         setToolbar();
         cancelAllNotifications();
@@ -60,7 +61,6 @@ public class DoYouTestActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //to method?
-                                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPrefs.edit();
                                 editor.putBoolean("calledToday", true);
                                 editor.putBoolean("haveTestToday", true);
@@ -69,9 +69,9 @@ public class DoYouTestActivity extends AppCompatActivity {
                                 endDayAlarm();
                                 dayAlarmToFalse();
                                 resetCalledTodayAlarm();
-                                Toast.makeText(getApplicationContext(), "Go test reminders are starting!",
+                                Toast.makeText(mContext, "Go test reminders are starting!",
                                         Toast.LENGTH_LONG).show();
-                                startService(new Intent(getApplicationContext(), GoTestAlarmStarter.class));
+                                startService(new Intent(mContext, GoTestAlarmStarter.class));
                             }
                         })
                         .show();
@@ -88,7 +88,6 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = sharedPrefs.edit();
                 editor.putBoolean("calledToday", true);
                 editor.apply();
@@ -101,7 +100,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                 dayAlarmToFalse();
                 endDayAlarm();
                 resetCalledTodayAlarm();
-                Toast.makeText(getApplicationContext(), "Reminders stopping until tomorrow! :)",
+                Toast.makeText(mContext, "Reminders stopping until tomorrow! :)",
                         Toast.LENGTH_LONG).show();
 
 
@@ -133,7 +132,7 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intentCall = new Intent(getApplicationContext(), CallActivity2.class);
+                Intent intentCall = new Intent(mContext, CallActivity2.class);
                 intentCall.putExtra("callNow", true);
                 startActivity(intentCall);
 
@@ -142,12 +141,11 @@ public class DoYouTestActivity extends AppCompatActivity {
     }
 
     private void resetCalledTodayAlarm() {
-        
+
     }
 
 
     private void dayAlarmToFalse() {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean("dayAlarmRunning", false);
         editor.apply();
@@ -155,7 +153,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
     public void endDayAlarm() {
 
-        Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
+        Intent intentDay = new Intent(mContext, DayAlarmReceiver.class);
         final PendingIntent pIntentDay = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
@@ -185,7 +183,7 @@ public class DoYouTestActivity extends AppCompatActivity {
     } //init TextView, get sharedpref, set TV
 
     private void cancelAllNotifications() {
-        Intent startServiceIntent = new Intent(getApplicationContext(), HideNotificationService.class);
+        Intent startServiceIntent = new Intent(mContext, HideNotificationService.class);
         startService(startServiceIntent);
     }  //runs hide notification service
 }
