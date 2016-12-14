@@ -142,8 +142,7 @@ public class DoYouTestActivity extends AppCompatActivity {
     }
 
     private void resetCalledTodayAlarm() {
-
-
+        
     }
 
 
