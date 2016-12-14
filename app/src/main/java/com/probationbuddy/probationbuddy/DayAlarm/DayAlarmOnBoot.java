@@ -24,6 +24,5 @@ public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
 
         }
 
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

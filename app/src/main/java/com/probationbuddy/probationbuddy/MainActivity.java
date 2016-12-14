@@ -31,10 +31,10 @@ import com.probationbuddy.probationbuddy.SettingsNew.SettingsFragment;
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
-    final Context mContext = getApplicationContext();
-    final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(mContext);
+    Context mContext = this;
+    SharedPreferences sharedPrefs;
     String callNumber;
-    final AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+    AlarmManager alarm;
 
     int minute;
     int hour;
@@ -49,8 +49,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setToolbar();
-
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         setMainSettingsFragment();
+
+
 
         checkFirstRun(); //show welcome dialog on first run
 
@@ -70,10 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     } //runs saveAndStartAlarms(); when you close activity
+
     public void saveAndStartAlarms() {
-
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 
         alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
 
@@ -87,15 +88,16 @@ public class MainActivity extends AppCompatActivity {
 
         } else {
 
-            stopDayAlarm();
-            stopGoTestAlarm();
+            //not sure why i had it stop these...
+//            stopDayAlarm();
+//            stopGoTestAlarm();
             startService(new Intent(MainActivity.this, MorningServiceStarter.class));
 
 
         }
 
 
-    } //when you click save button in toolbar
+    }
 
     //for toolbar buttons
     @Override
@@ -287,29 +289,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     //alarm cancels
-    public void cancelMorningAlarm() {
+    private void cancelMorningAlarm() {
         Intent intent = new Intent(getApplicationContext(), MorningReceiver.class);
         final PendingIntent pIntentCancelMorning = PendingIntent.getBroadcast(this, MorningReceiver.REQUEST_CODE,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarm.cancel(pIntentCancelMorning);
     }//cancels morningAlarm
 
-    public void stopDayAlarm() {
+    private void stopDayAlarm() {
         Intent intentDay = new Intent(getApplicationContext(), DayAlarmReceiver.class);
-        final PendingIntent pIntent = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
+        final PendingIntent pIntentStopDay = PendingIntent.getBroadcast(this, DayAlarmReceiver.REQUEST_CODE,
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarm.cancel(pIntent);
+        alarm.cancel(pIntentStopDay);
     }//cancels dayAlarm
 
-    public void stopGoTestAlarm() {
+    private void stopGoTestAlarm() {
         Intent intentGo = new Intent(getApplicationContext(), GoTestAlarmReceiver.class);
-        final PendingIntent pIntent = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
+        final PendingIntent pIntentStopGoTest = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
                 intentGo, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarm.cancel(pIntent);
+        alarm.cancel(pIntentStopGoTest);
     }//cancels dayAlarm
 
 
-    public void checkFirstRun() {
+    private void checkFirstRun() {
 
         boolean isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
         if (isFirstRun) {
