@@ -54,7 +54,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-            android:fontFamily="sans-serif-condensed"
             android:textSize="36sp"
             android:textAlignment="center"
             android:layout_gravity="center"
@@ -65,7 +64,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp" />
+            android:layout_marginLeft="16dp"
+            android:fontFamily="Roboto" />
 
         <TextView
             android:text="Your colors/numbers:"
@@ -122,7 +122,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            android:fontFamily="Roboto" />
 
         <Button
             android:text="Yes, activate reminders to go test"
@@ -142,7 +143,8 @@
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="8dp" />
+            android:layout_marginLeft="8dp"
+            android:fontFamily="Roboto" />
 
 
 
@@ -164,7 +166,8 @@
             android:layout_marginLeft="8dp"
             app:layout_constraintHorizontal_bias="0.45"
             android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp" />
+            android:layout_marginRight="8dp"
+            android:fontFamily="Roboto" />
 
         <Button
             android:text="Call Now"
@@ -185,7 +188,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="16dp"
             android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
+            android:paddingRight="16dp"
+            android:fontFamily="Roboto" />
 
 
 
