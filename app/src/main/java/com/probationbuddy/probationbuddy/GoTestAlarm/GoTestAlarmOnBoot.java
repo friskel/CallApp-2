@@ -25,6 +25,5 @@ public class GoTestAlarmOnBoot extends WakefulBroadcastReceiver {
         }
 
 
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
