@@ -16,7 +16,8 @@ import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 
 
 public class MorningService extends IntentService {
-
+    SharedPreferences sharedPrefs;
+    AlarmManager alarm;
     String intervalPrefString;
     int intervalPref;
     long interval;
@@ -30,8 +31,8 @@ public class MorningService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        //get shared prefs
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         SharedPreferences.Editor editor = sharedPrefs.edit();
         editor.putBoolean("dayAlarmRunning", true);
@@ -72,7 +73,7 @@ public class MorningService extends IntentService {
         firstMillis = System.currentTimeMillis();
 
         //make the alarm
-        AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis, interval, pIntent);
 
     }

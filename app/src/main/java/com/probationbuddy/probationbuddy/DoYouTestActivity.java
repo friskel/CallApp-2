@@ -68,7 +68,6 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                                 endDayAlarm();
                                 dayAlarmToFalse();
-                                resetCalledTodayAlarm();
                                 Toast.makeText(mContext, "Go test reminders are starting!",
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(mContext, GoTestAlarmStarter.class));
@@ -99,7 +98,6 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                 dayAlarmToFalse();
                 endDayAlarm();
-                resetCalledTodayAlarm();
                 Toast.makeText(mContext, "Reminders stopping until tomorrow! :)",
                         Toast.LENGTH_LONG).show();
 
@@ -138,10 +136,6 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void resetCalledTodayAlarm() {
-
     }
 
 
