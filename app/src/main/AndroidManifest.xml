@@ -128,9 +128,7 @@
             </intent-filter>
         </receiver>
 
-        <service
-            android:name=".ResetCalledToday.ResetCalledTodayStarter"
-            android:exported="false" />
+
 
         <activity android:name=".HelpGuideActivity"></activity>
     </application>
