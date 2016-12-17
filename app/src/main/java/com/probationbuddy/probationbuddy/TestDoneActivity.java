@@ -20,13 +20,14 @@ import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
 
 public class TestDoneActivity extends AppCompatActivity {
     Button testDoneButton;
+    Button testNotDoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_done);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top); //set toolbar UPDATE TEST
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -35,13 +36,30 @@ public class TestDoneActivity extends AppCompatActivity {
         }
         //set toolbar
 
+        makeTestDoneButton();
+        makeTestNotDoneButton();
+    }
+
+    private void makeTestNotDoneButton() {
+        //test not finished
+        testNotDoneButton = (Button) findViewById(R.id.testNotFinished);
+        testNotDoneButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void makeTestDoneButton() {
         //cancel GoTestAlarm ---
         testDoneButton = (Button) findViewById(R.id.testFinished);
         testDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancelGoTestAlarm();
-                goTestAlarmToFalse();
+
 
                 new AlertDialog.Builder(TestDoneActivity.this)
                         .setTitle("Confirm")
@@ -57,6 +75,9 @@ public class TestDoneActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Test complete, stopping alarms until tomorrow morning!",
                                         Toast.LENGTH_LONG).show();
 
+                                cancelGoTestAlarm();
+                                goTestAlarmToFalse();
+
                                 SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                                 SharedPreferences.Editor editor = sharedPrefs.edit();
                                 editor.putBoolean("haveTestToday", false);
@@ -67,17 +88,6 @@ public class TestDoneActivity extends AppCompatActivity {
 
 
 
-            }
-        });
-
-        //test not finished
-        testDoneButton = (Button) findViewById(R.id.testNotFinished);
-        testDoneButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
-                        Toast.LENGTH_LONG).show();
             }
         });
     }
