@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.DayAlarm;
+package com.probationbuddy.probationbuddy.dayalarm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
-import com.probationbuddy.probationbuddy.MorningAlarm.MorningService;
+import com.probationbuddy.probationbuddy.morningalarm.MorningService;
 
 public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
     SharedPreferences sharedPrefs;

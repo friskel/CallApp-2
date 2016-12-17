@@ -14,31 +14,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+
+
+
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <service
-            android:name=".MorningAlarm.MorningService"
+            android:name=".morningalarm.MorningService"
             android:exported="false" />
-
         <receiver
-            android:name=".MorningAlarm.MorningReceiver"
+            android:name=".morningalarm.MorningReceiver"
             android:enabled="true"
             android:process=":remote" />
-
         <service
-            android:name=".MorningAlarm.MorningServiceStarter"
+            android:name=".morningalarm.MorningServiceStarter"
             android:exported="false" />
-
         <receiver
-            android:name=".MorningAlarm.MorningReceiverOnBoot"
+            android:name=".morningalarm.MorningReceiverOnBoot"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -47,17 +49,51 @@
         </receiver>
 
         <service
-            android:name=".DayAlarm.DayAlarmService"
+            android:name=".dayalarm.DayAlarmService"
+            android:exported="false" />
+        <receiver
+            android:name=".dayalarm.DayAlarmReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+        <receiver
+            android:name=".dayalarm.DayAlarmOnBoot"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".gotestalarm.GoTestAlarmStarter"
+            android:exported="false" />
+        <receiver
+            android:name=".gotestalarm.GoTestAlarmReceiver"
+            android:enabled="true"
+            android:process=":remote" />
+        <service
+            android:name=".gotestalarm.GoTestAlarmService"
+            android:exported="false" />
+        <receiver
+            android:name=".gotestalarm.GoTestAlarmOnBoot"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".call.CallingService"
+            android:enabled="true"
             android:exported="false" />
 
-        <receiver
-            android:name=".DayAlarm.DayAlarmReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:process=":remote" />
+        <service
+            android:name=".services.HideNotificationService"
+            android:exported="false" />
 
         <activity
-            android:name=".Log.LogActivity"
+            android:name=".log.LogActivity"
             android:label="Call Log"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
@@ -65,6 +101,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
+
         <activity
             android:name=".DoYouTestActivity"
             android:parentActivityName=".MainActivity"
@@ -73,19 +110,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-
-        <service
-            android:name=".GoTestAlarm.GoTestAlarmStarter"
-            android:exported="false" />
-
-        <receiver
-            android:name=".GoTestAlarm.GoTestAlarmReceiver"
-            android:enabled="true"
-            android:process=":remote" />
-
-        <service
-            android:name=".GoTestAlarm.GoTestAlarmService"
-            android:exported="false" />
 
         <activity
             android:name=".TestDoneActivity"
@@ -96,41 +120,15 @@
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
 
-        <service
-            android:name=".Services.HideNotificationService"
-            android:exported="false" />
-
-        <activity android:name=".Call.CallActivity2">
+        <activity android:name=".call.CallActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
 
-        <service
-            android:name=".Call.CallingService"
-            android:enabled="true"
-            android:exported="false" />
+        <activity android:name=".HelpGuideActivity">
 
-        <receiver
-            android:name=".DayAlarm.DayAlarmOnBoot"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name=".GoTestAlarm.GoTestAlarmOnBoot"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
-
-
-        <activity android:name=".HelpGuideActivity"></activity>
+        </activity>
     </application>
 
 </manifest>

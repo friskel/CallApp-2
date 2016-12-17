@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.DayAlarm;
+package com.probationbuddy.probationbuddy.dayalarm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

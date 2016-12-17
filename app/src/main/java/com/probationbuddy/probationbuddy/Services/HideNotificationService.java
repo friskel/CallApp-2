@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.Services;
+package com.probationbuddy.probationbuddy.services;
 
 import android.app.IntentService;
 import android.app.NotificationManager;

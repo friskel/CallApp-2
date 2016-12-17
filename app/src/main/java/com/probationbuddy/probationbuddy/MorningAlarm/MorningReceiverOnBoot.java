@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.MorningAlarm;
+package com.probationbuddy.probationbuddy.morningalarm;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,4 +29,4 @@ public class MorningReceiverOnBoot extends WakefulBroadcastReceiver {
 }
 
 
-// on boot start MorningServiceStarter service to reset MorningAlarm
+// on boot start MorningServiceStarter service to reset morningalarm

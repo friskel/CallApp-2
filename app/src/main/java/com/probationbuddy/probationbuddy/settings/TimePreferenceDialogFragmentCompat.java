@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.SettingsNew;
+package com.probationbuddy.probationbuddy.settings;
 
 import android.os.Build;
 import android.os.Bundle;

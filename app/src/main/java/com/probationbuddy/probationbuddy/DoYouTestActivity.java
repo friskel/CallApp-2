@@ -17,10 +17,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.Call.CallActivity2;
-import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
-import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmStarter;
-import com.probationbuddy.probationbuddy.Services.HideNotificationService;
+import com.probationbuddy.probationbuddy.call.CallActivity2;
+import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmStarter;
+import com.probationbuddy.probationbuddy.services.HideNotificationService;
 
 public class DoYouTestActivity extends AppCompatActivity {
     Context mContext = this;

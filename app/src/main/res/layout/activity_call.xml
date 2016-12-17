@@ -5,7 +5,7 @@
     android:id="@+id/activity_call"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.probationbuddy.probationbuddy.Call.CallActivity2">
+    tools:context="com.probationbuddy.probationbuddy.call.CallActivity2">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

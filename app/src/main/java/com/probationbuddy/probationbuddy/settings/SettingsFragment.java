@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.SettingsNew;
+package com.probationbuddy.probationbuddy.settings;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.support.v7.preference.SwitchPreferenceCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.Call.CallActivity2;
+import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 

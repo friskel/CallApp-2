@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.Log;
+package com.probationbuddy.probationbuddy.log;
 
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.R;
 
 public class LogActivity extends AppCompatActivity {

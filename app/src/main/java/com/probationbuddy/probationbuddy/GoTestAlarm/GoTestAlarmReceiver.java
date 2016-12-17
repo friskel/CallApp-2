@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.GoTestAlarm;
+package com.probationbuddy.probationbuddy.gotestalarm;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

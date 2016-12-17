@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.Call;
+package com.probationbuddy.probationbuddy.call;
 
 import android.content.Context;
 import android.content.Intent;

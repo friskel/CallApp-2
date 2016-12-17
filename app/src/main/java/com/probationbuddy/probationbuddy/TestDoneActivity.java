@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
+import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 
 public class TestDoneActivity extends AppCompatActivity {
     Button testDoneButton;
@@ -54,7 +54,7 @@ public class TestDoneActivity extends AppCompatActivity {
     }
 
     private void makeTestDoneButton() {
-        //cancel GoTestAlarm ---
+        //cancel gotestalarm ---
         testDoneButton = (Button) findViewById(R.id.testFinished);
         testDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
