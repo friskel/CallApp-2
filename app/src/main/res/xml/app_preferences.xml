@@ -28,7 +28,7 @@
         android:title="Your call-in number" />
 
 
-    <com.probationbuddy.probationbuddy.SettingsNew.TimePreference
+    <com.probationbuddy.probationbuddy.settings.TimePreference
         style="@style/AppPreference.DialogPreference"
         android:defaultValue="660"
         android:dialogIcon="@drawable/ic_access_time_black_48dp"

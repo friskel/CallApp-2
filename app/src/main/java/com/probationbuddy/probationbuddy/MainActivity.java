@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
     String time;
     String minuteString;
 
+    boolean calledToday;
+    boolean haveTestToday;
+    boolean alarmsActive;
+
+    boolean isFirstRun;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
     // snackbar stuff
     private void openSnackbar() {
 
-        boolean calledToday = sharedPrefs.getBoolean("calledToday", false);
-        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
-        boolean alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
+        calledToday = sharedPrefs.getBoolean("calledToday", false);
+        haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
+        alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
 
         if (calledToday) {
             //called in today
@@ -312,33 +318,41 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void checkFirstRun() {
+        isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
 
-        boolean isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
+
         if (isFirstRun) {
+
             new AlertDialog.Builder(this)
                     .setTitle("Hello!")
                     .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go!")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
-                                    .setAction("Help guide", new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intentDone = new Intent(mContext, HelpGuideActivity.class);
-                                            startActivity(intentDone);
-                                        }
-                                    })
-                                    .setActionTextColor(Color.RED)
-                                    .show();
+                            snackbarHelpGuide();
                         }
                     })
+                    .setCancelable(false)
                     .show();
 
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putBoolean("isFirstRun", false);
             editor.apply();
+
         }
+    }
+
+    private void snackbarHelpGuide() {
+        Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
+                .setAction("Help Guide", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intentHelp = new Intent(mContext, HelpGuideActivity.class);
+                        startActivity(intentHelp);
+                        }
+                })
+                .setActionTextColor(Color.RED)
+                .show();
     }
 
     public String getStartTime() {
