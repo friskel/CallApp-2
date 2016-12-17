@@ -1,5 +1,6 @@
 package com.probationbuddy.probationbuddy.settings;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,9 +18,10 @@ import android.support.v7.preference.SwitchPreferenceCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
+import com.probationbuddy.probationbuddy.TestDoneActivity;
+import com.probationbuddy.probationbuddy.call.CallActivity2;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 
@@ -159,14 +161,22 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
                     Toast.makeText(getContext(), "Reminders will start at " + time + "!",
                             Toast.LENGTH_LONG).show();
-                    showEnabledSnackbar();
+
+                    Activity main = getActivity();
+                    if(main instanceof MainActivity) {
+                        ((MainActivity) main).openSnackbar();
+                    }
+
                 }
 
                 if (!alarmsActive) {
                     Toast.makeText(getContext(), "Probation Buddy has been disabled!",
                             Toast.LENGTH_SHORT).show();
 
-                    showDisabledSnackbar();
+                    Activity main = getActivity();
+                    if(main instanceof MainActivity) {
+                        ((MainActivity) main).openSnackbar();
+                    }
 
                 }
 
@@ -184,52 +194,70 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         } else {
 //            preference.setSummary(sharedPreferences.getString(key, ""));
             //prevented 'class cast string to int' crash by commenting out
-return;
+
         }
     }
 
     private void showDisabledSnackbar() {
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
+        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
 
-        Snackbar.make(getActivity().findViewById(android.R.id.content), "Reminders are disabled.", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Call Now", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
-                        if (callNumber.equals("not set!") || callNumber.equals("")){
-                            new AlertDialog.Builder(getActivity())
-                                    .setTitle("Hold on..")
-                                    .setMessage("You need to set your call-in number first before making a call!  ")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            Intent intentRestartMain = new Intent(getActivity(), MainActivity.class);
-
-                                            startActivity(intentRestartMain);
-                                        }
-                                    })
-                                    .show();
-
-
-                        }else {
-
-                            Intent intentCall = new Intent(getContext(), CallActivity2.class);
-                            intentCall.putExtra("callNow", true);
-                            startActivity(intentCall);
+        if (haveTestToday){
+            Snackbar.make(getActivity().findViewById(android.R.id.content), "You have to test today!", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Done", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intentDone = new Intent(getActivity(), TestDoneActivity.class);
+                            startActivity(intentDone);
                         }
-                    }
 
-                })
-                .setActionTextColor(Color.GREEN)
-                .show();
+                    }) //done opens DoYouTest
+                    .setActionTextColor(Color.RED)
+                    .show();
+
+        }else {
+
+            Snackbar.make(getActivity().findViewById(android.R.id.content), "Reminders are disabled.", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Call Now", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
+                            if (callNumber.equals("not set!") || callNumber.equals("")) {
+                                new AlertDialog.Builder(getActivity())
+                                        .setTitle("Hold on..")
+                                        .setMessage("You need to set your call-in number first before making a call!  ")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                Intent intentRestartMain = new Intent(getActivity(), MainActivity.class);
+
+                                                startActivity(intentRestartMain);
+                                            }
+                                        })
+                                        .show();
+
+
+                            } else {
+
+                                Intent intentCall = new Intent(getContext(), CallActivity2.class);
+                                intentCall.putExtra("callNow", true);
+                                startActivity(intentCall);
+                            }
+                        }
+
+                    })
+                    .setActionTextColor(Color.GREEN)
+                    .show();
+        }
     }
 
     private void showEnabledSnackbar(){
         final SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        boolean haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
 
 
-        Snackbar.make(getActivity().findViewById(android.R.id.content), "You have not called today!", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(getActivity().findViewById(android.R.id.content), "You have not called today!", Snackbar.LENGTH_INDEFINITE)
                 .setAction("Call Now", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

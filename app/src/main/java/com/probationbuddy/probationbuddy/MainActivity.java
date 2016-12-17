@@ -59,11 +59,13 @@ public class MainActivity extends AppCompatActivity {
         alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         setMainSettingsFragment();
 
+        isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
 
+        if (isFirstRun) {
+            checkFirstRun(); //show welcome dialog on first run
+        }
 
-        checkFirstRun(); //show welcome dialog on first run
-
-        openSnackbar();
+//        openSnackbar();
 
     }
 
@@ -79,6 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     } //runs saveAndStartAlarms(); when you close activity
+
+
+    @Override
+    public void onResume() {
+        super.onResume();  // Always call the superclass
+
+        openSnackbar();
+
+    } //runs saveAndStartAlarms(); when you close activity
+
 
     public void saveAndStartAlarms() {
 
@@ -158,35 +170,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     // snackbar stuff
-    private void openSnackbar() {
-
+    public void openSnackbar() {
+//        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
         calledToday = sharedPrefs.getBoolean("calledToday", false);
         haveTestToday = sharedPrefs.getBoolean("haveTestToday", false);
         alarmsActive = sharedPrefs.getBoolean("prefsActivate", false);
 
-        if (calledToday) {
-            //called in today
-
-            if (haveTestToday) {
-                //yes test
-                snackbarYesTest();
-            } else {
-                //no test
-                snackbarNoTest();
-            }
-
+        if (calledToday && haveTestToday){
+            snackbarYesTest();
+            return;
         }
-
-        if (!calledToday) {
-            //have not called in yet today
-            snackbarNotCalledToday();
+        if (calledToday && alarmsActive){
+            snackbarNoTest();
+            return;
         }
-
-        if (!alarmsActive) {
-            //reminders turned off
+        if (!alarmsActive){
             snackbarAlarmsOff();
+            return;
         }
-
+        snackbarNotCalledToday();
 
     }
 
@@ -318,8 +321,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void checkFirstRun() {
-        isFirstRun = sharedPrefs.getBoolean("isFirstRun", true);
-
 
         if (isFirstRun) {
 
@@ -338,7 +339,6 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putBoolean("isFirstRun", false);
             editor.apply();
-
         }
     }
 
