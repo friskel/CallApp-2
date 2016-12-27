@@ -47,8 +47,21 @@ public class TestDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
-                        Toast.LENGTH_LONG).show();
+                new AlertDialog.Builder(TestDoneActivity.this)
+                        .setTitle("Test not yet complete")
+                        .setMessage("Reminders to go test will stay active")
+                        .setNeutralButton("Cancel", null)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+
+
             }
         });
     }
