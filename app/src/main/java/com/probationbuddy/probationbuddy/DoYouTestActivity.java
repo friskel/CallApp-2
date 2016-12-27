@@ -34,6 +34,7 @@ public class DoYouTestActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         setToolbar();
         cancelAllNotifications();
+        cancelForegroundNotification();
         setColorTextView();
 
         makeYesTestButton();
@@ -41,6 +42,13 @@ public class DoYouTestActivity extends AppCompatActivity {
         makeCallLaterButton();
         makeCallNowButton();
 
+    }
+
+    private void cancelForegroundNotification() {
+        NotificationManager mNotifyMgr =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        mNotifyMgr.cancel(1234567); //changed # from 9?
     }
 
     private void makeYesTestButton() {
