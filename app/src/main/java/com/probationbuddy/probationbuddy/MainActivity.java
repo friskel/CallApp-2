@@ -160,6 +160,24 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
+            case R.id.action_help:
+
+                Intent intentHelp = new Intent(this, HelpGuideActivity.class);
+
+                startActivity(intentHelp);
+
+
+                return true;
+
+            case R.id.action_about:
+
+                Intent intentAbout = new Intent(this, AboutActivity.class);
+
+                startActivity(intentAbout);
+
+
+                return true;
+
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

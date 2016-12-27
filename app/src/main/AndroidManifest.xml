@@ -14,17 +14,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-
-
-
-
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -32,13 +27,16 @@
         <service
             android:name=".morningalarm.MorningService"
             android:exported="false" />
+
         <receiver
             android:name=".morningalarm.MorningReceiver"
             android:enabled="true"
             android:process=":remote" />
+
         <service
             android:name=".morningalarm.MorningServiceStarter"
             android:exported="false" />
+
         <receiver
             android:name=".morningalarm.MorningReceiverOnBoot"
             android:enabled="true"
@@ -51,6 +49,7 @@
         <service
             android:name=".dayalarm.DayAlarmService"
             android:exported="false" />
+
         <receiver
             android:name=".dayalarm.DayAlarmReceiver"
             android:enabled="true"
@@ -67,13 +66,16 @@
         <service
             android:name=".gotestalarm.GoTestAlarmStarter"
             android:exported="false" />
+
         <receiver
             android:name=".gotestalarm.GoTestAlarmReceiver"
             android:enabled="true"
             android:process=":remote" />
+
         <service
             android:name=".gotestalarm.GoTestAlarmService"
             android:exported="false" />
+
         <receiver
             android:name=".gotestalarm.GoTestAlarmOnBoot"
             android:enabled="true"
@@ -87,7 +89,6 @@
             android:name=".call.CallingService"
             android:enabled="true"
             android:exported="false" />
-
         <service
             android:name=".services.HideNotificationService"
             android:exported="false" />
@@ -101,7 +102,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-
         <activity
             android:name=".DoYouTestActivity"
             android:parentActivityName=".MainActivity"
@@ -110,7 +110,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-
         <activity
             android:name=".TestDoneActivity"
             android:parentActivityName=".MainActivity"
@@ -119,16 +118,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-
         <activity android:name=".call.CallActivity2">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-
-        <activity android:name=".HelpGuideActivity">
-
-        </activity>
+        <activity android:name=".HelpGuideActivity"></activity>
+        <activity android:name=".AboutActivity"></activity>
     </application>
 
 </manifest>
