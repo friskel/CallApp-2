@@ -34,6 +34,9 @@
     </style>
 
 
+    <style name="SwitchPreferenceNew" parent="Preference.SwitchPreferenceCompat.Material">
+        <item name="android:paddingTop">20dp</item>
+    </style>
 
     <!-- Style for a DialogPreference Entry -->
     <style name="AppPreference.DialogPreference">
