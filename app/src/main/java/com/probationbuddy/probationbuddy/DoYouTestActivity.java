@@ -95,19 +95,35 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SharedPreferences.Editor editor = sharedPrefs.edit();
-                editor.putBoolean("calledToday", true);
-                editor.apply();
+                new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
+                        .setTitle("No tests today")
+                        .setMessage("Press OK to confirm that you have no tests today.  All reminders will be cancelled until tomorrow!")
 
 
-                NotificationManager mNotificationManager =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.cancelAll();
+                        .setNeutralButton("Cancel", null)
 
-                dayAlarmToFalse();
-                endDayAlarm();
-                Toast.makeText(mContext, "Reminders stopping until tomorrow! :)",
-                        Toast.LENGTH_LONG).show();
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //to method?
+                                SharedPreferences.Editor editor = sharedPrefs.edit();
+                                editor.putBoolean("calledToday", true);
+                                editor.apply();
+
+
+                                NotificationManager mNotificationManager =
+                                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                mNotificationManager.cancelAll();
+
+                                dayAlarmToFalse();
+                                endDayAlarm();
+                                Toast.makeText(mContext, "Reminders stopping until tomorrow! :)",
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        })
+                        .show();
+
+
 
 
             }

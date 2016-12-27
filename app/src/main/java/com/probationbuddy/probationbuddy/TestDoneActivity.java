@@ -64,6 +64,7 @@ public class TestDoneActivity extends AppCompatActivity {
                 new AlertDialog.Builder(TestDoneActivity.this)
                         .setTitle("Confirm")
                         .setMessage("Press OK to confirm that you have finished your probation test.  Reminders for today will stop!")
+                        .setNeutralButton("Cancel", null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
