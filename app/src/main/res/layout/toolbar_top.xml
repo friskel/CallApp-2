@@ -6,9 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorToolbar"
-    android:elevation="4dp"
-    app:contentInsetLeft="0dp"
-    app:contentInsetStart="0dp"
+    app:contentInsetLeft="40dp"
+    app:contentInsetStart="40dp"
+    android:elevation="8dp"
+
+
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     tools:layout_editor_absoluteX="0dp"
