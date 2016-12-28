@@ -40,6 +40,8 @@ public class GoTestAlarmService extends IntentService {
         Intent intentHide = new Intent(this, HideNotificationService.class);
         PendingIntent pIntentHide = PendingIntent.getService(this, (int) System.currentTimeMillis(), intentHide, 0);
 
+
+
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         boolean prefsVibrate = sharedPrefs.getBoolean("prefsVibrate", true);
 
