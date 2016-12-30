@@ -6,13 +6,11 @@
     <!--android:title="Main Settings">-->
 
     <android.support.v7.preference.SwitchPreferenceCompat
-
-        style="@style/SwitchPreferenceNew"
         android:defaultValue="false"
         android:icon="@drawable/ic_power_settings_new_black_48dp"
         android:key="prefsActivate"
         android:summary=""
-        android:title="Activate reminders" />
+        android:title="Activate reminders2" />
 
     <android.support.v7.preference.PreferenceCategory
         android:icon="@drawable/ic_notifications_none_black_18dp"

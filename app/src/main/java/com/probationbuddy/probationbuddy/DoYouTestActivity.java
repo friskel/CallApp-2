@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.call.CallActivity2;
+import com.probationbuddy.probationbuddy.call.CallingService;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmStarter;
 import com.probationbuddy.probationbuddy.services.HideNotificationService;
@@ -48,7 +49,11 @@ public class DoYouTestActivity extends AppCompatActivity {
         NotificationManager mNotifyMgr =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        mNotifyMgr.cancel(1234567); //changed # from 9?
+        mNotifyMgr.cancel(1234567);
+
+        stopService(new Intent(this, CallingService.class));
+
+        //changed # from 9?
     }
 
     private void makeYesTestButton() {

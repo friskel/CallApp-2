@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.feedback.FeedbackActivity;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 import com.probationbuddy.probationbuddy.log.LogActivity;
 import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
@@ -143,6 +144,16 @@ public class MainActivity extends AppCompatActivity {
 
 
                 return true;
+
+            case R.id.feedback:
+
+                Intent intentFeedback = new Intent(this, FeedbackActivity.class);
+
+                startActivity(intentFeedback);
+
+
+                return true;
+
             case R.id.action_testdone:
 
                 Intent intentTestDone = new Intent(this, TestDoneActivity.class);

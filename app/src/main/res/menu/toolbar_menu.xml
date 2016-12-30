@@ -12,27 +12,16 @@
 
     <item
         android:id="@+id/action_call"
-        android:title="call"
+        android:title="call now"
         app:showAsAction="never" />
 
 
-    <item android:id="@+id/action_about"
-        android:title="about"
-        app:showAsAction="never"/>
+
     <item
-        android:id="@+id/action_doyoutest"
+        android:id="@+id/feedback"
 
-        android:title="do you test"
+        android:title="send feedback"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_testdone"
-
-        android:title="testdone"
-        app:showAsAction="never" />
-
-    <item android:id="@+id/action_log"
-        android:title="log/activate"
-        app:showAsAction="never"/>
 
 
 

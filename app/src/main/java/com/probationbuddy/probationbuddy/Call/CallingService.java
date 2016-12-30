@@ -54,7 +54,6 @@ public class CallingService extends Service{
 
         mNotifyMgr.cancel(1234567); //changed # from 9?
 
-
     }
 
 }

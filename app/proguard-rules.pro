@@ -16,4 +16,3 @@
 #   public *;
 #}
 
--printmapping mapping.txt
