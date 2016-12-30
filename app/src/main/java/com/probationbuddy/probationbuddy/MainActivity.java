@@ -22,7 +22,6 @@ import android.view.View;
 
 import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
-import com.probationbuddy.probationbuddy.feedback.FeedbackActivity;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
@@ -140,13 +139,14 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
+
             case R.id.feedback:
-
-                Intent intentFeedback = new Intent(this, FeedbackActivity.class);
-
-                startActivity(intentFeedback);
-
-
+                Intent Email = new Intent(Intent.ACTION_SEND);
+                Email.setType("text/email");
+                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+                Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Probation Buddy");
+                Email.putExtra(Intent.EXTRA_TEXT, "I reply to all emails, thanks! " + "Enter Feedback:");
+                startActivity(Intent.createChooser(Email, "Send Feedback"));
                 return true;
 
 
