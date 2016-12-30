@@ -24,7 +24,6 @@ import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.feedback.FeedbackActivity;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
-import com.probationbuddy.probationbuddy.log.LogActivity;
 import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
 import com.probationbuddy.probationbuddy.settings.SettingsFragment;
@@ -129,11 +128,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
-            case R.id.action_log:
-                Intent intentLog = new Intent(this, LogActivity.class);
 
-                startActivity(intentLog);
-                return true;
 
 
             case R.id.action_call:
@@ -153,23 +148,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                 return true;
+            
 
-            case R.id.action_testdone:
-
-                Intent intentTestDone = new Intent(this, TestDoneActivity.class);
-
-                startActivity(intentTestDone);
-
-
-                return true;
-            case R.id.action_doyoutest:
-
-                Intent intentDoYouTest = new Intent(this, DoYouTestActivity.class);
-
-                startActivity(intentDoYouTest);
-
-
-                return true;
 
             case R.id.action_help:
 
@@ -180,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-            case R.id.action_about:
+            case R.id.activity_about:
 
                 Intent intentAbout = new Intent(this, AboutActivity.class);
 

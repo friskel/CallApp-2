@@ -23,6 +23,12 @@
         android:title="send feedback"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/activity_about"
+
+        android:title="app info"
+        app:showAsAction="never" />
+
 
 
 </menu>
