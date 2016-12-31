@@ -81,11 +81,12 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.37"
         android:layout_height="0dp">
 
         <TextView
-            android:text="I made this app to help people succeed in their corrections programs.  After going through one myself, I learned that it can be hard to keep track of your daily call-ins each and every day, even with standard alarms set on your phone.  I know from experience that being on probation and other court-ordered supervision can be a stressful time in your life, and hopefully this app can help alleviate some of that stress while you focus on the more important things. \n \n"
+            android:text="I made this app to help people succeed in their corrections programs.  After going through one myself, I learned that it can be hard to keep track of your daily call-ins each and every day, even with standard alarms set on your phone.  I know from experience that being on probation and other court-ordered supervision can be a stressful time in your life, and hopefully this app can help alleviate some of that stress while you focus on the more important things. \n"
             android:layout_width="match_parent"
             android:id="@+id/textView6"
             android:layout_marginTop="8dp"

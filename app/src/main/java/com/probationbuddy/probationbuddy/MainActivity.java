@@ -203,14 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            case R.id.action_help:
-
-                Intent intentHelp = new Intent(this, HelpGuideActivity.class);
-
-                startActivity(intentHelp);
-
-
-                return true;
 
             case R.id.activity_about:
 
