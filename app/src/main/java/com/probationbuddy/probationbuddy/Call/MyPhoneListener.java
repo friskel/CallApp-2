@@ -59,7 +59,7 @@ public class MyPhoneListener extends PhoneStateListener {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         mContext.startActivity(intent);
 
-        Toast.makeText(mContext, "callFinished method running",
+        Toast.makeText(mContext, "Call completed",
                 Toast.LENGTH_SHORT).show();
 
     }
