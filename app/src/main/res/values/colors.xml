@@ -7,6 +7,7 @@
     <color name="cardview_light_background">#ffffff</color>
     <color name="colorToolbar">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="red">#ff4040</color>
 
 
 </resources>

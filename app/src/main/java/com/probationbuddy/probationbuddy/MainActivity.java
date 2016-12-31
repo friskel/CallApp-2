@@ -376,31 +376,36 @@ public class MainActivity extends AppCompatActivity {
 
         if (isFirstRun) {
 
-            new AlertDialog.Builder(this)
-                    .setTitle("Hello!")
-                    .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are all set!")
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            snackbarHelpGuide();
-                        }
-                    })
-                    .setCancelable(false)
-                    .show();
-
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putBoolean("isFirstRun", false);
-            editor.apply();
+            firstRunDialog();
         }
+    }
+
+    private void firstRunDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Hello!")
+                .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go! " +
+                        "\n \n You can change your settings at any time and they will automatically be updated. " +
+                        "\n \n If you have any issues, you can contact the creator of this app by using the menu in the top right. ")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        snackbarHelpGuide();
+                    }
+                })
+                .setCancelable(false)
+                .show();
+
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.putBoolean("isFirstRun", false);
+        editor.apply();
     }
 
     private void snackbarHelpGuide() {
         Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
-                .setAction("Help Guide", new View.OnClickListener() {
+                .setAction("Guide", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intentHelp = new Intent(mContext, HelpGuideActivity.class);
-                        startActivity(intentHelp);
+                        firstRunDialog();
                         }
                 })
                 .setActionTextColor(Color.RED)

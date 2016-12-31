@@ -15,8 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,13 +31,21 @@ public class CallActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
+//        Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
 
-
-
-        if (callNowBool){
+        try {
             callNow();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Your call has failed...",
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            FirebaseCrash.report(new Exception("call failed, catch"));
         }
+
+
+//        if (callNowBool){
+//            callNow();
+//        }
 
         //////// set toolbar ///////
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
@@ -53,28 +59,23 @@ public class CallActivity2 extends AppCompatActivity {
         cancelCurrentNotifications();
         setNumberTextView();
 
-        //add button stuff
-        Button callNow = (Button) findViewById(R.id.buttonGoLog);
-        callNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-
-                    callNow();
-
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Your call has failed...",
-                            Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                    FirebaseCrash.report(new Exception("call failed, catch"));
-                }
-            }
-        });
-
-
-
-
-
+//        //add button stuff
+//        Button callNow = (Button) findViewById(R.id.buttonGoLog);
+//        callNow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//
+//                    callNow();
+//
+//                } catch (Exception e) {
+//                    Toast.makeText(getApplicationContext(), "Your call has failed...",
+//                            Toast.LENGTH_LONG).show();
+//                    e.printStackTrace();
+//                    FirebaseCrash.report(new Exception("call failed, catch"));
+//                }
+//            }
+//        });
 
 
     } //onCreate end
@@ -99,7 +100,7 @@ public class CallActivity2 extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
             finish();
-        }else{
+        } else {
             //get permission
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.CALL_PHONE},
@@ -133,13 +134,13 @@ public class CallActivity2 extends AppCompatActivity {
     }
 
 
-    private void cancelCurrentNotifications(){
+    private void cancelCurrentNotifications() {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.cancelAll();
     } //cancel current notifications up top
 
-    private void setNumberTextView(){
+    private void setNumberTextView() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         myNumber = prefs.getString("prefsCallNumber", "123");
 

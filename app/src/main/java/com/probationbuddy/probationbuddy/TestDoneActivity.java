@@ -48,8 +48,8 @@ public class TestDoneActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 new AlertDialog.Builder(TestDoneActivity.this)
-                        .setTitle("Test not yet complete")
-                        .setMessage("Reminders to go test will stay active")
+                        .setTitle("Test not yet completed")
+                        .setMessage("Reminders to go test will stay active.")
                         .setNeutralButton("Cancel", null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override

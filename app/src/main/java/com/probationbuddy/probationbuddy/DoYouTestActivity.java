@@ -102,7 +102,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                 new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
                         .setTitle("No tests today")
-                        .setMessage("Press OK to confirm that you have no tests today.  All reminders will be cancelled until tomorrow!")
+                        .setMessage("Press OK to confirm that you have no tests today.  All reminders will be finished until tomorrow!")
 
 
                         .setNeutralButton("Cancel", null)
@@ -144,7 +144,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                 new AlertDialog.Builder(DoYouTestActivity.this)
                         .setTitle("Call back required")
-                        .setMessage("Alarms will stay on")
+                        .setMessage("Alarms will stay on.")
                         .setPositiveButton("OK", null)
                         .show();
 
