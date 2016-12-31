@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +29,7 @@ import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
 import com.probationbuddy.probationbuddy.settings.SettingsFragment;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
+import static com.probationbuddy.probationbuddy.R.id.bug;
 
 public class MainActivity extends AppCompatActivity {
     Context mContext = this;
@@ -139,14 +141,64 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
+            case bug:
+                Intent intentBug = new Intent(Intent.ACTION_SENDTO);
+                intentBug.setType("text/email");
+                intentBug.setData(Uri.parse("mailto: studiofrisky@gmail.com")); // only email apps should handle this
+                intentBug.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+                intentBug.putExtra(Intent.EXTRA_SUBJECT, "Report a Bug - Probation Buddy");
+                intentBug.putExtra(Intent.EXTRA_TEXT, "I appreciate all bug reports and work on fixing them ASAP!  Thank you!" + "\n \nEnter bug here: \n \n");
+                if (intentBug.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(intentBug, "Choose your email app:"));
+                }
+                return true;
+
+            case R.id.suggest:
+                Intent intentSuggest = new Intent(Intent.ACTION_SENDTO);
+                intentSuggest.setType("text/email");
+                intentSuggest.setData(Uri.parse("mailto: studiofrisky@gmail.com")); // only email apps should handle this
+                intentSuggest.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+                intentSuggest.putExtra(Intent.EXTRA_SUBJECT, "Suggest a Feature - Probation Buddy");
+                intentSuggest.putExtra(Intent.EXTRA_TEXT, "Thank you for your suggestion!  I take these requests seriously and implement any idea which will help people.  Let me know if you want a reply and I will get back to you within 24 hours!" + "\n \nEnter suggestion here: \n \n");
+                if (intentSuggest.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(intentSuggest, "Choose your email app:"));
+                }
+                return true;
+
+
+//            case R.id.feedback:
+//                Intent intentFeedback = new Intent(Intent.ACTION_SENDTO, Uri.parse(
+//                        "mailto:studiofrisky@gmail.com"));
+//                intentFeedback.setType("text/email");
+//                intentFeedback.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+//                intentFeedback.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Probation Buddy");
+//                intentFeedback.putExtra(Intent.EXTRA_TEXT, "Thanks for you feedback!  Let me know if you want a reply and I will get back to you within 24 hours." + "\n \nEnter feedback here:");
+//                if (intentFeedback.resolveActivity(getPackageManager()) != null) {
+//                    startActivity(Intent.createChooser(intentFeedback, "Choose your email app:"));
+//                }
 
             case R.id.feedback:
-                Intent Email = new Intent(Intent.ACTION_SEND);
-                Email.setType("text/email");
-                Email.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
-                Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Probation Buddy");
-                Email.putExtra(Intent.EXTRA_TEXT, "I reply to all emails, thanks! " + "Enter Feedback:");
-                startActivity(Intent.createChooser(Email, "Send Feedback"));
+                Intent intentFeedback = new Intent(Intent.ACTION_SENDTO);
+                intentFeedback.setType("text/email");
+                intentFeedback.setData(Uri.parse("mailto: studiofrisky@gmail.com")); // only email apps should handle this
+                intentFeedback.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+                intentFeedback.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Probation Buddy");
+                intentFeedback.putExtra(Intent.EXTRA_TEXT, "Thank you for your feedback! (I read all of these emails)" + "\n \nEnter feedback here: \n \n");
+                if (intentFeedback.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(intentFeedback, "Choose your email app:"));
+                }
+                return true;
+
+            case R.id.question:
+                Intent intentQuestion = new Intent(Intent.ACTION_SENDTO);
+                intentQuestion.setType("text/email");
+                intentQuestion.setData(Uri.parse("mailto: studiofrisky@gmail.com")); // only email apps should handle this
+                intentQuestion.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
+                intentQuestion.putExtra(Intent.EXTRA_SUBJECT, "Question - Probation Buddy");
+                intentQuestion.putExtra(Intent.EXTRA_TEXT, "I reply to all questions within 24 hours.  Thanks!" + "\n \n Enter question here: \n \n");
+                if (intentQuestion.resolveActivity(getPackageManager()) != null) {
+                    startActivity(Intent.createChooser(intentQuestion, "Choose your email app:"));
+                }
                 return true;
 
 

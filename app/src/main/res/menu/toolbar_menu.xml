@@ -3,24 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
+
+    <item
+        android:id="@+id/action_call"
+        android:title="call"
+        android:icon="@drawable/ic_call_black_24dp"
+        app:showAsAction="ifRoom|withText" />
+
     <item
         android:id="@+id/action_help"
         android:icon="@drawable/ic_help_outline_black_24dp"
         android:title="help"
-        app:showAsAction="ifRoom" />
-
-
-    <item
-        android:id="@+id/action_call"
-        android:title="call now"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/bug"
 
+        android:title="report a bug"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/feedback"
 
         android:title="send feedback"
+        app:showAsAction="never" />
+
+
+
+    <item
+        android:id="@+id/suggest"
+
+        android:title="suggest a feature"
+        app:showAsAction="never" />
+
+
+
+
+
+    <item
+        android:id="@+id/question"
+
+        android:title="ask a question"
         app:showAsAction="never" />
 
     <item
