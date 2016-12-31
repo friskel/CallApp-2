@@ -28,7 +28,6 @@ import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
 import com.probationbuddy.probationbuddy.settings.SettingsFragment;
 
-import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 import static com.probationbuddy.probationbuddy.R.id.bug;
 
 public class MainActivity extends AppCompatActivity {
@@ -379,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
 
             new AlertDialog.Builder(this)
                     .setTitle("Hello!")
-                    .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go!")
+                    .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are all set!")
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -408,43 +407,43 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    public String getStartTime() {
-        SharedPreferences prefs = getDefaultSharedPreferences(this);
-
-        //set hour and minute of morning start time
-        minute = prefs.getInt("prefStartTime", 123) % 60;
-        hour = prefs.getInt("prefStartTime", 123);
-        hour = hour - minute;
-        hour = hour / 60;
-
-        am12 = false;
-
-        minuteString = String.valueOf(minute);
-        if (minute < 10) {
-            minuteString = "0" + minute;
-        }
-
-
-        if (hour == 0) {
-            hour = 12;
-            am12 = true;
-
-        }
-
-        time = (hour + ":" + minuteString + " am");
-
-        if (hour > 12) {
-            hour = hour - 12;
-            time = (hour + ":" + minuteString + " pm");
-        }
-        if (hour == 12) {
-            time = (hour + ":" + minuteString + " pm");
-            if (am12) {
-                time = (hour + ":" + minuteString + " am");
-            }
-        }
-        return time;
-    }
+//    public String getStartTime() {
+//        SharedPreferences prefs = getDefaultSharedPreferences(this);
+//
+//        //set hour and minute of morning start time
+//        minute = prefs.getInt("prefStartTime", 123) % 60;
+//        hour = prefs.getInt("prefStartTime", 123);
+//        hour = hour - minute;
+//        hour = hour / 60;
+//
+//        am12 = false;
+//
+//        minuteString = String.valueOf(minute);
+//        if (minute < 10) {
+//            minuteString = "0" + minute;
+//        }
+//
+//
+//        if (hour == 0) {
+//            hour = 12;
+//            am12 = true;
+//
+//        }
+//
+//        time = (hour + ":" + minuteString + " am");
+//
+//        if (hour > 12) {
+//            hour = hour - 12;
+//            time = (hour + ":" + minuteString + " pm");
+//        }
+//        if (hour == 12) {
+//            time = (hour + ":" + minuteString + " pm");
+//            if (am12) {
+//                time = (hour + ":" + minuteString + " am");
+//            }
+//        }
+//        return time;
+//    }
 
 
     private void setMainSettingsFragment() {
