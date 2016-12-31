@@ -61,7 +61,7 @@ public class DayAlarmService extends IntentService {
         //////////////////////////////////////////////////////////////////////  build notification
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_contact_phone_black_48dp)
+                        .setSmallIcon(R.drawable.ic_pb_notifications)
                         .setContentTitle("Probation Buddy")
                         .setContentText("You have not called today!  Click to call now.")
                         .setTicker("Probation Buddy:  Call now!")
@@ -71,9 +71,9 @@ public class DayAlarmService extends IntentService {
 
 
                         .setColor(getResources().getColor(R.color.colorPrimaryDark))
-                        .addAction(R.drawable.ic_perm_phone_msg_black_24dp, "Call Now", pIntentCall)
+                        .addAction(R.drawable.ic_call_black_24dp, "Call Now", pIntentCall)
 //                        .addAction(0, "Hide", pIntentHide)
-                        .addAction(R.drawable.ic_power_settings_new_black_24dp, "Options", pIntentDone);
+                        .addAction(R.drawable.ic_format_list_bulleted_black_24dp, "Options", pIntentDone);
 
         if (prefsVibrate) {
             mBuilder.setVibrate(vibratePattern);

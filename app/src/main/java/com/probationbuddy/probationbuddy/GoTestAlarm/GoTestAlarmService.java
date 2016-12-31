@@ -53,13 +53,14 @@ public class GoTestAlarmService extends IntentService {
         //////////////////////////////////////////////////////////////////////  build notification
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_favorites)
+                        .setSmallIcon(R.drawable.ic_pb_notifications)
                         .setContentTitle("YOU HAVE TO TEST TODAY")
                         .setContentText("Probation Buddy: You are required to test today!")
                         .setTicker("Probation test today, don't forget!")
                         .setAutoCancel(true)
                         .setPriority(2) //-2 to 2
-                        .addAction(R.drawable.ic_restaurants, "Test Completed", pIntentGoTestDone);
+                        .setColor(getResources().getColor(R.color.red))
+                        .addAction(R.drawable.ic_done_black_24dp, "Test Completed", pIntentGoTestDone);
 //                        .addAction(R.drawable.ic_nearby, "Hide", pIntentHide);
 
         if (prefsVibrate) {

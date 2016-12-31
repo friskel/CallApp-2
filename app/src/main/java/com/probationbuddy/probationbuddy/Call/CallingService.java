@@ -36,7 +36,7 @@ public class CallingService extends Service{
                 notificationIntent, 0);
 
         Notification notification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_pbtiny_24_24)
+                .setSmallIcon(R.drawable.ic_pb_notifications)
                 .setContentTitle("Probation Buddy")
                 .setContentText("Calling now!")
                 .setContentIntent(pendingIntent).build();
