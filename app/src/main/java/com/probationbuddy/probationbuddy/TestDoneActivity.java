@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 
 public class TestDoneActivity extends AppCompatActivity {
@@ -96,6 +97,7 @@ public class TestDoneActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = sharedPrefs.edit();
                                 editor.putBoolean("haveTestToday", false);
                                 editor.apply();
+                                makeLogDialog();
                             }
                         })
                         .show();
@@ -104,6 +106,25 @@ public class TestDoneActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void makeLogDialog() {
+        new android.support.v7.app.AlertDialog.Builder(TestDoneActivity.this)
+                .setTitle("Would you like to log your test?")
+                .setMessage("Press OK to make an entry in your calendar.")
+
+
+                .setNeutralButton("No", null)
+
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent noTestLog = new Intent(getApplicationContext(), CalendarLogActivity.class);
+                        noTestLog.putExtra("logType", 3);
+                        startService(noTestLog);
+                    }
+                })
+                .show();
     }
 
     private void cancelGoTestAlarm(){

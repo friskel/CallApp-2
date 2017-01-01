@@ -106,7 +106,9 @@ public class CallActivity2 extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Calling...",
                     Toast.LENGTH_LONG).show();
 
-            finish();
+//            finish();  //not sure if i need to finish, it just brings it back to mainactivity anyways.
+//                         tried commenting out to fix the problem where - call with no permission made doyoutest not come up and foregroind notif stays up
+
         } else {
             //get permission
             ActivityCompat.requestPermissions(this,

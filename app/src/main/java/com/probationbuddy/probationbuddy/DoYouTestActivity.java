@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.call.CallingService;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
@@ -84,6 +85,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                                 Toast.makeText(mContext, "Go test reminders are starting!",
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(mContext, GoTestAlarmStarter.class));
+                                makeLogDialog(2);
                             }
                         })
                         .show();
@@ -122,8 +124,11 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                                 dayAlarmToFalse();
                                 endDayAlarm();
-                                Toast.makeText(mContext, "Reminders stopping until tomorrow! :)",
+                                Toast.makeText(mContext, "Reminders stopping until tomorrow!",
                                         Toast.LENGTH_LONG).show();
+
+
+                                makeLogDialog(1);
                             }
                         })
                         .show();
@@ -133,6 +138,30 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void makeLogDialog(int logTypeInt) {
+
+        final int logType = logTypeInt;
+
+        new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
+                .setTitle("Would you like to log your call?")
+                .setMessage("Press OK to make an entry in your calendar about this call.")
+
+
+                .setNeutralButton("No", null)
+
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent noTestLog = new Intent(mContext, CalendarLogActivity.class);
+                        noTestLog.putExtra("logType", logType);
+                        startService(new Intent(mContext, CalendarLogActivity.class));
+                    }
+                })
+                .show();
+
+
     }
 
     private void makeCallLaterButton() {
