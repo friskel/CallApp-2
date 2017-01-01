@@ -33,6 +33,13 @@ public class CallActivity2 extends AppCompatActivity {
 
 //        Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
 
+
+
+
+
+
+
+
         try {
             callNow();
         } catch (Exception e) {
@@ -118,7 +125,12 @@ public class CallActivity2 extends AppCompatActivity {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    callNow();
+
+                    this.recreate();
+
+//                    callNow();
+
+
 
                 } else {
 
