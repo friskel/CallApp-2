@@ -89,8 +89,6 @@ public class DoYouTestActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-
-
             }
         });
     }
@@ -132,8 +130,6 @@ public class DoYouTestActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-
-
 
 
             }
@@ -210,12 +206,11 @@ public class DoYouTestActivity extends AppCompatActivity {
                 intentDay, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager dayAlarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
 
-        if (dayAlarm!= null) {
+        if (dayAlarm != null) {
             dayAlarm.cancel(pIntentDay);
         }
 
     }//cancels dayAlarm
-
 
 
     private void setToolbar() {

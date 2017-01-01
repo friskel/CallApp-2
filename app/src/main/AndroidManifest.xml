@@ -94,15 +94,6 @@
             android:exported="false" />
 
         <activity
-            android:name=".log.LogActivity"
-            android:label="Call Log"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.probationbuddy.probationbuddy.MainActivity" />
-        </activity>
-        <activity
             android:name=".DoYouTestActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
@@ -123,7 +114,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-        <activity android:name=".HelpGuideActivity" />
         <activity
             android:name=".AboutActivity"
             android:parentActivityName=".MainActivity">

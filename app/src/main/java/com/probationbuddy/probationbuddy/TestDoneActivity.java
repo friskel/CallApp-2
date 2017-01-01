@@ -27,7 +27,12 @@ public class TestDoneActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_done);
+        setToolbar();
+        makeTestDoneButton();
+        makeTestNotDoneButton();
+    }
 
+    private void setToolbar() {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
         if (getSupportActionBar() != null) {
@@ -36,9 +41,6 @@ public class TestDoneActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayUseLogoEnabled(true);
         }
         //set toolbar
-
-        makeTestDoneButton();
-        makeTestNotDoneButton();
     }
 
     private void makeTestNotDoneButton() {
@@ -61,20 +63,16 @@ public class TestDoneActivity extends AppCompatActivity {
                             }
                         })
                         .show();
-
-
             }
         });
     }
 
     private void makeTestDoneButton() {
-        //cancel gotestalarm ---
+
         testDoneButton = (Button) findViewById(R.id.testFinished);
         testDoneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 new AlertDialog.Builder(TestDoneActivity.this)
                         .setTitle("Confirm")
                         .setMessage("Press OK to confirm that you have finished your probation test.  Reminders for today will stop!")
@@ -103,7 +101,6 @@ public class TestDoneActivity extends AppCompatActivity {
                         .show();
 
 
-
             }
         });
     }
@@ -112,7 +109,6 @@ public class TestDoneActivity extends AppCompatActivity {
         new android.support.v7.app.AlertDialog.Builder(TestDoneActivity.this)
                 .setTitle("Would you like to log your test?")
                 .setMessage("Press OK to make an entry in your calendar.")
-
 
                 .setNeutralButton("No", null)
 
@@ -127,7 +123,7 @@ public class TestDoneActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void cancelGoTestAlarm(){
+    private void cancelGoTestAlarm() {
 
         Intent intent = new Intent(getApplicationContext(), GoTestAlarmReceiver.class);
         final PendingIntent pIntent = PendingIntent.getBroadcast(this, GoTestAlarmReceiver.REQUEST_CODE,
