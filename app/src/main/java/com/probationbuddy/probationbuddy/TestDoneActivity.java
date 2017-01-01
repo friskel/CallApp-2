@@ -121,7 +121,7 @@ public class TestDoneActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent noTestLog = new Intent(getApplicationContext(), CalendarLogActivity.class);
                         noTestLog.putExtra("logType", 3);
-                        startService(noTestLog);
+                        startActivity(noTestLog);
                     }
                 })
                 .show();

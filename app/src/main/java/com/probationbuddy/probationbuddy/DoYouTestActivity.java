@@ -154,9 +154,9 @@ public class DoYouTestActivity extends AppCompatActivity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent noTestLog = new Intent(mContext, CalendarLogActivity.class);
-                        noTestLog.putExtra("logType", logType);
-                        startService(new Intent(mContext, CalendarLogActivity.class));
+                        Intent logIntent = new Intent(mContext, CalendarLogActivity.class);
+                        logIntent.putExtra("logType", logType);
+                        startActivity(logIntent);
                     }
                 })
                 .show();

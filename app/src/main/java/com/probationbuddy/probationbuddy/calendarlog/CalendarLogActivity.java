@@ -6,6 +6,7 @@ import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 
 import java.util.Calendar;
@@ -34,7 +35,7 @@ public class CalendarLogActivity extends AppCompatActivity {
         else {
             calendarIntentNoTest();
         }
-        
+
 
 
 
@@ -84,6 +85,9 @@ public class CalendarLogActivity extends AppCompatActivity {
         finish();
         Toast.makeText(getApplication(), "Your call has been logged!",
                 Toast.LENGTH_LONG).show();
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+
+        startActivity(mainIntent);
     }
 
     private void calendarIntentNoTest() {
