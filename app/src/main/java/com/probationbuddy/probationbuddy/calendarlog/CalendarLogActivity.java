@@ -25,12 +25,16 @@ public class CalendarLogActivity extends AppCompatActivity {
         if (logType == 1){
             calendarIntentNoTest();
         }
-        if (logType == 2){
+        else if (logType == 2){
             calendarIntentYesTest();
         }
-        if (logType == 3){
+        else if (logType == 3){
             calendarIntentTestDone();
         }
+        else {
+            calendarIntentNoTest();
+        }
+        
 
 
 
