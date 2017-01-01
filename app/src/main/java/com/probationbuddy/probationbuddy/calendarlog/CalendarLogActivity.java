@@ -9,17 +9,29 @@ import android.widget.Toast;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class CalendarLogActivity extends AppCompatActivity {
     long currentTime;
     int logType;
+    String formattedDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar_log);
         currentTime = System.currentTimeMillis();
+
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss, dd-MM-yyyy ", Locale.getDefault());
+        formattedDate = df.format(c.getTime());
+
+
+
 
         logType = getIntent().getExtras().getInt("logType", 0);
 
@@ -53,8 +65,8 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, "Test complete 12/23/17.  Type:")
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy test log.  Test was completed as of 5:13pm on 12/23/17")
+                .putExtra(CalendarContract.Events.TITLE, "Test complete " + formattedDate + ".  Type:")
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy test log.  Test was completed as of " + formattedDate)
                 .putExtra(CalendarContract.Events.EVENT_LOCATION, "Enter test location")
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_FREE);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
@@ -70,8 +82,8 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, "Called 12/23/17, Test required today!")
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy call log.  Call made at 1:47pm on 12/23/17, test required.  ")
+                .putExtra(CalendarContract.Events.TITLE, "Called " + formattedDate +", Test required today!")
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy call log.  Call made at " + formattedDate + ", test is required.")
 //                .putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
@@ -99,8 +111,8 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, "Called 12/23/17, no tests")
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy call log.  Call made at 1:47pm on 12/23/17, no tests are required.  ")
+                .putExtra(CalendarContract.Events.TITLE, "Called " + formattedDate + ", no tests")
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy call log.  Call made at " + formattedDate + ", no tests are required.")
 //                .putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
