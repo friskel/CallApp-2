@@ -48,12 +48,7 @@ public class CalendarLogActivity extends AppCompatActivity {
             calendarIntentNoTest();
         }
 
-
-
-
-
-
-
+        
     }
 
     private void calendarIntentTestDone() {
