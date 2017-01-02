@@ -15,8 +15,8 @@ import android.util.Log;
 
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
-import com.probationbuddy.probationbuddy.services.HideNotificationService;
 import com.probationbuddy.probationbuddy.TestDoneActivity;
+import com.probationbuddy.probationbuddy.services.HideNotificationService;
 
 public class GoTestAlarmService extends IntentService {
     int mId;
@@ -69,7 +69,7 @@ public class GoTestAlarmService extends IntentService {
 
 
 // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(this, MainActivity.class);
+        Intent resultIntent = new Intent(this, TestDoneActivity.class);
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.
@@ -77,7 +77,7 @@ public class GoTestAlarmService extends IntentService {
 // your application to the Home screen.
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
 // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(TestDoneActivity.class);
+        stackBuilder.addParentStack(MainActivity.class);
 // Adds the Intent that starts the Activity to the top of the stack
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
