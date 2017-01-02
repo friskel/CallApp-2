@@ -15,7 +15,6 @@ import java.util.Locale;
 
 public class CalendarLogActivity extends AppCompatActivity {
     long currentTime;
-    int logType;
     String formattedDate;
 
     @Override
@@ -31,9 +30,7 @@ public class CalendarLogActivity extends AppCompatActivity {
         formattedDate = df.format(c.getTime());
 
 
-
-
-        logType = getIntent().getExtras().getInt("logType", 0);
+        int logType = getIntent().getExtras().getInt("logType", 0);
 
         if (logType == 1){
             calendarIntentNoTest();
@@ -48,7 +45,13 @@ public class CalendarLogActivity extends AppCompatActivity {
             calendarIntentNoTest();
         }
 
-        
+
+    }
+
+    @Override
+    protected void onStop()
+    {
+        super.onStop();
     }
 
     private void calendarIntentTestDone() {
@@ -66,6 +69,7 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_FREE);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
         startActivityForResult(intent, 0);
+        finish();
     }
 
     private void calendarIntentYesTest() {
@@ -83,10 +87,11 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
         startActivityForResult(intent, 0);
+        finish();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         finish();
@@ -112,7 +117,7 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
 //                .putExtra(Intent.EXTRA_EMAIL, "rowan@example.com,trevor@example.com");
         startActivityForResult(intent, 0);
-
+        finish();
     }
 
 

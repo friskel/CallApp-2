@@ -153,6 +153,7 @@ public class DoYouTestActivity extends AppCompatActivity {
                         Intent logIntent = new Intent(mContext, CalendarLogActivity.class);
                         logIntent.putExtra("logType", logType);
                         startActivity(logIntent);
+                        finish();
                     }
                 })
                 .show();

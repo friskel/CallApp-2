@@ -21,7 +21,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
@@ -213,14 +212,14 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-            case R.id.log:
-
-                Intent intentLog = new Intent(this, CalendarLogActivity.class);
-
-                startActivity(intentLog);
-
-
-                return true;
+//            case R.id.log:
+//
+//                Intent intentLog = new Intent(this, CalendarLogActivity.class);
+//
+//                startActivity(intentLog);
+//
+//
+//                return true;
 
             default:
                 // If we got here, the user's action was not recognized.
