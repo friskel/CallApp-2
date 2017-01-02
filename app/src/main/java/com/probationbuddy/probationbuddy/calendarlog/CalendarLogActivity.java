@@ -30,7 +30,8 @@ public class CalendarLogActivity extends AppCompatActivity {
         formattedDate = df.format(c.getTime());
 
 
-        int logType = getIntent().getExtras().getInt("logType", 0);
+        int logType = getIntent().getIntExtra("logType", 0);
+
 
         if (logType == 1){
             calendarIntentNoTest();

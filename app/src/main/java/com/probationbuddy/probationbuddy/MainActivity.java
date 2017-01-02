@@ -164,17 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
 
-
-//            case R.id.feedback:
-//                Intent intentFeedback = new Intent(Intent.ACTION_SENDTO, Uri.parse(
-//                        "mailto:studiofrisky@gmail.com"));
-//                intentFeedback.setType("text/email");
-//                intentFeedback.putExtra(Intent.EXTRA_EMAIL, new String[] { "studiofrisky@gmail.com" });
-//                intentFeedback.putExtra(Intent.EXTRA_SUBJECT, "Feedback - Probation Buddy");
-//                intentFeedback.putExtra(Intent.EXTRA_TEXT, "Thanks for you feedback!  Let me know if you want a reply and I will get back to you within 24 hours." + "\n \nEnter feedback here:");
-//                if (intentFeedback.resolveActivity(getPackageManager()) != null) {
-//                    startActivity(Intent.createChooser(intentFeedback, "Choose your email app:"));
-//                }
+            
 
             case R.id.feedback:
                 Intent intentFeedback = new Intent(Intent.ACTION_SENDTO);
@@ -212,14 +202,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-//            case R.id.log:
-//
-//                Intent intentLog = new Intent(this, CalendarLogActivity.class);
-//
-//                startActivity(intentLog);
-//
-//
-//                return true;
+
 
             default:
                 // If we got here, the user's action was not recognized.
