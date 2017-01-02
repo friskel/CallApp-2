@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
 
-            
+
 
             case R.id.feedback:
                 Intent intentFeedback = new Intent(Intent.ACTION_SENDTO);

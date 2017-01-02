@@ -46,12 +46,7 @@
 
         android:title="app info"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/log"
-
-        android:title="log"
-        app:showAsAction="never" />
+    
 
 
 
