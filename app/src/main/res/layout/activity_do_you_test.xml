@@ -13,7 +13,7 @@
         android:id="@+id/toolbar_top"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:elevation="8dp"
+        android:elevation="2dp"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -48,25 +48,25 @@
         <!--android:layout_marginTop="8dp">-->
 
 
-        <TextView
-            android:text="Test required today?"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView5"
-            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
-            android:textSize="30sp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_top"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp"
-            android:fontFamily="Roboto"
-            android:textStyle="normal|bold" />
+        <!--<TextView-->
+            <!--android:text="Test required today?"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/textView5"-->
+            <!--android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"-->
+            <!--android:textSize="30sp"-->
+            <!--android:textAlignment="center"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/toolbar_top"-->
+            <!--android:layout_marginEnd="16dp"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--android:layout_marginRight="16dp"-->
+            <!--android:layout_marginStart="16dp"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--android:layout_marginLeft="16dp"-->
+            <!--android:fontFamily="Roboto"-->
+            <!--android:textStyle="normal|bold" />-->
 
         <TextView
             android:text="Your colors/numbers:"
@@ -76,14 +76,11 @@
             android:textSize="15sp"
             android:fontFamily="sans-serif-condensed"
             android:layout_gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
 
         <TextView
             android:text="TextView"
@@ -94,14 +91,13 @@
             android:fontFamily="sans-serif-condensed"
             android:layout_gravity="center"
             android:paddingBottom="16dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
+            android:layout_marginStart="8dp"
+            app:layout_constraintLeft_toRightOf="@+id/textView7"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_top"
             android:layout_marginEnd="16dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="16dp" />
+            app:layout_constraintHorizontal_bias="0.01" />
 
 
 

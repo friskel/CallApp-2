@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -96,7 +97,8 @@
         <activity
             android:name=".DoYouTestActivity"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:label="Do you test today?">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />

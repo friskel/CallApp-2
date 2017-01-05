@@ -6,19 +6,22 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.PowerManager;
+import android.os.Vibrator;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
-import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.DoYouTestActivity;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
+import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.services.HideNotificationService;
 
 public class DayAlarmService extends IntentService {
@@ -70,16 +73,31 @@ public class DayAlarmService extends IntentService {
                         .setPriority(2) //-2 to 2
 
 
-                        .setColor(getResources().getColor(R.color.colorPrimaryDark))
-                        .addAction(R.drawable.ic_call_black_24dp, "Call Now", pIntentCall)
-//                        .addAction(0, "Hide", pIntentHide)
-                        .addAction(R.drawable.ic_format_list_bulleted_black_24dp, "Options", pIntentDone);
+                        .setColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        if (prefsVibrate) {
-            mBuilder.setVibrate(vibratePattern);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            mBuilder.addAction(R.drawable.ic_call_black_24dp, "Call Now", pIntentCall)
+                    .addAction(R.drawable.ic_format_list_bulleted_black_24dp, "Options", pIntentDone);
+        }else{
+            mBuilder.addAction(0, "Call Now", pIntentCall)
+                    .addAction(0, "Options", pIntentDone);
         }
-        if (prefsSound) {
+
+        if (prefsVibrate && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mBuilder.setVibrate(vibratePattern);
+        }else if(prefsVibrate){
+            Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            v.vibrate(500);
+        }
+
+        if (prefsSound && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mBuilder.setSound(soundUri);
+        }else if(prefsSound){
+            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+            r.play();
         }
 
 
