@@ -69,7 +69,7 @@
             <!--android:textStyle="normal|bold" />-->
 
         <TextView
-            android:text="Your colors/numbers:"
+            android:text="@string/your_colors_numbers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView7"
@@ -83,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar_top" />
 
         <TextView
-            android:text="TextView"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/colorTv"
@@ -102,7 +102,7 @@
 
 
         <Button
-            android:text="No, cancel reminders until tomorrow"
+            android:text="@string/no_cancel_reminders_until_tomorrow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/noTestButton"
@@ -124,7 +124,7 @@
             android:elevation="5dp" />
 
         <Button
-            android:text="Yes, activate reminders to go test"
+            android:text="@string/yes_activate_reminders_to_go_test"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/testTodaybutton"
@@ -148,7 +148,7 @@
 
 
         <Button
-            android:text="I need to call again later"
+            android:text="@string/i_need_to_call_again_later"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/callLaterButton"
@@ -170,7 +170,7 @@
             android:elevation="2dp" />
 
         <Button
-            android:text="Call Now"
+            android:text="@string/call_now"
             android:layout_height="wrap_content"
             android:id="@+id/buttonCallNow"
             android:textAlignment="center"

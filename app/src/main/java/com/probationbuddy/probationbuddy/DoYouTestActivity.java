@@ -64,14 +64,14 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
-                        .setTitle("Test required today")
-                        .setMessage("Press OK to confirm that you have to go test today.  This will activate reminders to make sure you don't forget to go!")
+                new AlertDialog.Builder(DoYouTestActivity.this)
+                        .setTitle(R.string.test_required_today)
+                        .setMessage(R.string.ok_to_confirm_you_have_test_today)
 
 
-                        .setNeutralButton("Cancel", null)
+                        .setNeutralButton(R.string.cancel, null)
 
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //to method?
@@ -82,7 +82,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                                 endDayAlarm();
                                 dayAlarmToFalse();
-                                Toast.makeText(mContext, "Go test reminders are starting!",
+                                Toast.makeText(mContext, R.string.go_test_reminders_starting,
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(mContext, GoTestAlarmStarter.class));
                                 makeLogDialog(2);
@@ -100,14 +100,14 @@ public class DoYouTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
-                        .setTitle("No tests today")
-                        .setMessage("Press OK to confirm that you have no tests today.  All reminders will be finished until tomorrow!")
+                new AlertDialog.Builder(DoYouTestActivity.this)
+                        .setTitle(R.string.no_tests_today)
+                        .setMessage(R.string.ok_confirm_no_tests_today)
 
 
-                        .setNeutralButton("Cancel", null)
+                        .setNeutralButton(R.string.cancel, null)
 
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //to method?
@@ -122,7 +122,7 @@ public class DoYouTestActivity extends AppCompatActivity {
 
                                 dayAlarmToFalse();
                                 endDayAlarm();
-                                Toast.makeText(mContext, "Reminders stopping until tomorrow!",
+                                Toast.makeText(mContext, R.string.reminders_stopping_until_tomorrow,
                                         Toast.LENGTH_LONG).show();
 
 
@@ -140,14 +140,14 @@ public class DoYouTestActivity extends AppCompatActivity {
 
         final int logType = logTypeInt;
 
-        new android.support.v7.app.AlertDialog.Builder(DoYouTestActivity.this)
-                .setTitle("Would you like to log your call?")
-                .setMessage("Press OK to make an entry in your calendar about this call.")
+        new AlertDialog.Builder(DoYouTestActivity.this)
+                .setTitle(R.string.log_call_question)
+                .setMessage(R.string.ok_to_make_calendar_entry)
 
 
-                .setNeutralButton("No", null)
+                .setNeutralButton(R.string.no, null)
 
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent logIntent = new Intent(mContext, CalendarLogActivity.class);
@@ -169,9 +169,9 @@ public class DoYouTestActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 new AlertDialog.Builder(DoYouTestActivity.this)
-                        .setTitle("Call back required")
-                        .setMessage("Alarms will stay on.")
-                        .setPositiveButton("OK", null)
+                        .setTitle(R.string.call_back_required)
+                        .setMessage(R.string.alarms_will_stay_on)
+                        .setPositiveButton(R.string.ok, null)
                         .show();
 
             }

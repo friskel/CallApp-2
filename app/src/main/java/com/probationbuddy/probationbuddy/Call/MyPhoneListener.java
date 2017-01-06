@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.probationbuddy.probationbuddy.DoYouTestActivity;
+import com.probationbuddy.probationbuddy.R;
 
 import static android.content.Context.TELEPHONY_SERVICE;
 
@@ -59,7 +60,7 @@ public class MyPhoneListener extends PhoneStateListener {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         mContext.startActivity(intent);
 
-        Toast.makeText(mContext, "Call completed",
+        Toast.makeText(mContext, R.string.call_completed,
                 Toast.LENGTH_SHORT).show();
 
     }

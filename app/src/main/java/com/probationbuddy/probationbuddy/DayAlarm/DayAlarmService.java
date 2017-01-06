@@ -65,9 +65,9 @@ public class DayAlarmService extends IntentService {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_pb_notifications)
-                        .setContentTitle("Probation Buddy")
-                        .setContentText("You have not called today!  Click to call now.")
-                        .setTicker("Probation Buddy:  Call now!")
+                        .setContentTitle(getString(R.string.app_name))
+                        .setContentText(getString(R.string.you_havent_called_notif))
+                        .setTicker(getString(R.string.call_now_ticker))
                         .setAutoCancel(true)
 
                         .setPriority(2) //-2 to 2
@@ -77,11 +77,11 @@ public class DayAlarmService extends IntentService {
 
 
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            mBuilder.addAction(R.drawable.ic_call_black_24dp, "Call Now", pIntentCall)
-                    .addAction(R.drawable.ic_format_list_bulleted_black_24dp, "Options", pIntentDone);
+            mBuilder.addAction(R.drawable.ic_call_black_24dp, getString(R.string.call_now), pIntentCall)
+                    .addAction(R.drawable.ic_format_list_bulleted_black_24dp, getString(R.string.options), pIntentDone);
         }else{
-            mBuilder.addAction(0, "Call Now", pIntentCall)
-                    .addAction(0, "Options", pIntentDone);
+            mBuilder.addAction(0, getString(R.string.call_now), pIntentCall)
+                    .addAction(0, getString(R.string.options), pIntentDone);
         }
 
         if (prefsVibrate && android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

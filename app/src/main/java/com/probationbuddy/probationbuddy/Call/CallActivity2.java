@@ -25,20 +25,10 @@ public class CallActivity2 extends AppCompatActivity {
     String myNumber;
     final static int MY_PERMISSIONS_CALL_PHONE = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-
-//        Boolean callNowBool = getIntent().getBooleanExtra("callNow", false);
-
-
-
-
-
-
-
 
         try {
             callNow();
@@ -50,9 +40,7 @@ public class CallActivity2 extends AppCompatActivity {
         }
 
 
-//        if (callNowBool){
-//            callNow();
-//        }
+
 
         //////// set toolbar ///////
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
@@ -103,7 +91,7 @@ public class CallActivity2 extends AppCompatActivity {
             Log.i("call -", "on click calling");
             startActivity(dialIntent);
 
-            Toast.makeText(getApplicationContext(), "Calling...",
+            Toast.makeText(getApplicationContext(), "Calling..",
                     Toast.LENGTH_LONG).show();
 
             finish();  //not sure if i need to finish, it just brings it back to mainactivity anyways.

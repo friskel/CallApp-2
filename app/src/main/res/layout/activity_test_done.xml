@@ -28,7 +28,7 @@
 
 
         <TextView
-            android:text="Test completed?"
+            android:text="@string/test_completed_activity_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
@@ -50,7 +50,7 @@
 
 
         <Button
-            android:text="Yes, cancel all reminders until tomorrow"
+            android:text="@string/yes_cancel_all_reminders_until_tomorrow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/testFinished"
@@ -71,7 +71,7 @@
             android:fontFamily="Roboto" />
 
         <Button
-            android:text="Not yet, keep reminders active"
+            android:text="@string/not_yet_keep_reminders_active"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/testNotFinished"

@@ -23,7 +23,7 @@ public class CallingService extends Service{
 
     @Override
     public void onCreate() {
-        Log.i("asdfasf", " service start");
+        Log.i("log", " service start");
         super.onCreate();
         MyPhoneListener phoneStateListener = new MyPhoneListener(getApplicationContext());
         TelephonyManager telephonymanager = (TelephonyManager)getSystemService(TELEPHONY_SERVICE);
@@ -37,8 +37,8 @@ public class CallingService extends Service{
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_pb_notifications)
-                .setContentTitle("Probation Buddy")
-                .setContentText("Calling now!")
+                .setContentTitle(getString(R.string.probation_buddy))
+                .setContentText(getString(R.string.calling_now))
                 .setContentIntent(pendingIntent).build();
 
         startForeground(1234567, notification);

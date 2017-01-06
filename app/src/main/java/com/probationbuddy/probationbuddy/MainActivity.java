@@ -36,18 +36,10 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPrefs;
     String callNumber;
     AlarmManager alarm;
-
-    int minute;
-    int hour;
-    boolean am12;
     boolean alarmIsActive;
-    String time;
-    String minuteString;
-
     boolean calledToday;
     boolean haveTestToday;
     boolean alarmsActive;
-
     boolean isFirstRun;
 
 
@@ -249,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void snackbarYesTest() {
-        Snackbar.make(findViewById(android.R.id.content), "You have to test today!", Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(findViewById(android.R.id.content), R.string.you_test_today_toast, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Done", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -263,16 +255,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void snackbarNoTest() {
-        Snackbar.make(findViewById(android.R.id.content), "You have called in today, no tests.", Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(findViewById(android.R.id.content), R.string.called_no_tests_toast, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Call Again", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
                         if (callNumber.equals("not set!") || callNumber.equals("")) {
                             new AlertDialog.Builder(mContext)
-                                    .setTitle("Hold on..")
-                                    .setMessage("You need to set your call-in phone number before making a call!")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setTitle(R.string.hold_on)
+                                    .setMessage(R.string.need_to_set_number)
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             Intent intentRestartMain = new Intent(getApplicationContext(), MainActivity.class);
@@ -293,16 +285,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void snackbarNotCalledToday() {
-        Snackbar.make(findViewById(android.R.id.content), "You have not called in today!", Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(findViewById(android.R.id.content), R.string.not_called_today_toast, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Call Now", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
                         if (callNumber.equals("not set!") || callNumber.equals("")) {
                             new AlertDialog.Builder(mContext)
-                                    .setTitle("Hold on..")
-                                    .setMessage("You need to set your call-in number first before making a call!  ")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setTitle(R.string.hold_on)
+                                    .setMessage(R.string.need_to_set_number)
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             Intent intentRestartMain = new Intent(mContext, MainActivity.class);
@@ -329,9 +321,9 @@ public class MainActivity extends AppCompatActivity {
                         callNumber = sharedPrefs.getString("prefsCallNumber", "not set!");
                         if (callNumber.equals("not set!") || callNumber.equals("")) {
                             new AlertDialog.Builder(mContext)
-                                    .setTitle("Hold on..")
-                                    .setMessage("You need to set your call-in number first before making a call!  ")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    .setTitle(R.string.hold_on)
+                                    .setMessage(R.string.need_to_set_number)
+                                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
                                             Intent intentRestartMain = new Intent(mContext, MainActivity.class);
@@ -386,10 +378,10 @@ public class MainActivity extends AppCompatActivity {
     private void firstRunDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Hello!")
-                .setMessage("To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go! " +
-                        "\n \n You can change your settings at any time and they will automatically be updated. " +
-                        "\n \n If you have any issues, you can contact the creator of this app by using the menu in the top right. ")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setMessage(getString(R.string.first_run1) +
+                        getString(R.string.first_run2) +
+                        getString(R.string.first_run3))
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         snackbarHelpGuide();
@@ -404,7 +396,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void snackbarHelpGuide() {
-        Snackbar.make(findViewById(android.R.id.content), "Need help getting started?", Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(findViewById(android.R.id.content), R.string.need_help_getting_started, Snackbar.LENGTH_INDEFINITE)
                 .setAction("Guide", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

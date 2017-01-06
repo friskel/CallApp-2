@@ -24,13 +24,63 @@
 
     <string name="prefsCallNumberKey">prefsCallNumber</string>
     <string name="prefStartTimeKey">prefStartTime</string>
-    <string name="prefsColorNumberKey">prefsColorNumber</string>
-
-
+    <string name="prefsColorNumberKey" translatable="false">prefsColorNumber</string>
     <string name="prefStartTime">prefStartTime</string>
-
     <string name="prefIntervalKey">prefInterval</string>
-    <string name="prefsSound">prefsSound</string>
+    <string name="prefsSound" translatable="false">prefsSound</string>
+
+
+
+    <string name="probation_buddy">Probation Buddy</string>
+    <string name="calling_now">Calling now!</string>
+    <string name="call_completed">Call completed</string>
+    <string name="you_havent_called_notif">You have not called today!  Click to call now.</string>
+    <string name="call_now_ticker">Probation Buddy:  Call now!</string>
+    <string name="call_now">Call Now</string>
+    <string name="options">Options</string>
+    <string name="you_test_today">YOU HAVE TO TEST TODAY</string>
+    <string name="you_are_required_to_test_today">Probation Buddy: You are required to test today!</string>
+    <string name="probation_test_today">Probation test today, don\'t forget!</string>
+    <string name="test_completed">Test Completed</string>
+    <string name="test_required_today">Test required today</string>
+    <string name="ok_to_confirm_you_have_test_today">Press OK to confirm that you have to go test today.  This will activate reminders to make sure you don\'t forget to go!</string>
+    <string name="cancel">Cancel</string>
+    <string name="go_test_reminders_starting">Go test reminders are starting!</string>
+    <string name="no_tests_today">No tests today</string>
+    <string name="ok_confirm_no_tests_today">Press OK to confirm that you have no tests today.  All reminders will be finished until tomorrow!</string>
+    <string name="reminders_stopping_until_tomorrow">Reminders stopping until tomorrow!</string>
+    <string name="log_call_question">Would you like to log your call?</string>
+    <string name="ok_to_make_calendar_entry">Press OK to make an entry in your calendar about this call.</string>
+    <string name="no">No</string>
+    <string name="call_back_required">Call back required</string>
+    <string name="alarms_will_stay_on">Alarms will stay on.</string>
+    <string name="you_test_today_toast">You have to test today!</string>
+    <string name="called_no_tests_toast">You have called in today, no tests.</string>
+    <string name="need_to_set_number">You need to set your call-in phone number before making a call!</string>
+    <string name="hold_on">Hold on..</string>
+    <string name="not_called_today_toast">You have not called in today!</string>
+    <string name="first_run1">"To activate the daily repeating reminders, turn on the toggle switch at the top of the settings list.  Then set your call-in phone number and start time, and you are good to go! "</string>
+    <string name="first_run2">"\n \n You can change your settings at any time and they will automatically be updated. "</string>
+    <string name="first_run3">"\n \n If you have any issues, you can contact the creator of this app by using the menu in the top right. "</string>
+    <string name="need_help_getting_started">Need help getting started?</string>
+    <string name="test_not_completed">Test not yet completed</string>
+    <string name="reminders_will_stay_active">Reminders to go test will stay active.</string>
+    <string name="confirm">Confirm</string>
+    <string name="ok_to_confirm_test_finished">Press OK to confirm that you have finished your probation test.  Reminders for today will stop!</string>
+    <string name="reminders_still_active_go_test">Reminders are still active.  Go test!</string>
+    <string name="test_complete_stopping_alarm">Test complete, stopping alarms until tomorrow morning!</string>
+    <string name="log_test">Would you like to log your test?</string>
+    <string name="copyright">Copyright 2016-2017 - Probation Buddy</string>
+    <string name="thanks_for_using">Thank you for using Probation Buddy!</string>
+    <string name="about_page_paragraph">I made this app to help people succeed in their corrections programs. After going through one myself, I learned that it can be hard to keep track of your daily call-ins each and every day, even with standard alarms set on your phone. I know from experience that being on probation and other court-ordered supervision can be a stressful time in your life, and hopefully this app can help alleviate some of that stress while you focus on the more important things. \n</string>
+    <string name="call_in_progress">Call in Progress</string>
+    <string name="your_colors_numbers">Your colors/numbers:</string>
+    <string name="no_cancel_reminders_until_tomorrow">No, cancel reminders until tomorrow</string>
+    <string name="yes_activate_reminders_to_go_test">Yes, activate reminders to go test</string>
+    <string name="i_need_to_call_again_later">I need to call again later</string>
+    <string name="test_completed_activity_title">Test completed?</string>
+    <string name="yes_cancel_all_reminders_until_tomorrow">Yes, cancel all reminders until tomorrow</string>
+    <string name="not_yet_keep_reminders_active">Not yet, keep reminders active</string>
 
 
 </resources>

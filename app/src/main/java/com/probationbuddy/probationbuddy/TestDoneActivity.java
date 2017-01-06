@@ -51,14 +51,14 @@ public class TestDoneActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 new AlertDialog.Builder(TestDoneActivity.this)
-                        .setTitle("Test not yet completed")
-                        .setMessage("Reminders to go test will stay active.")
-                        .setNeutralButton("Cancel", null)
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setTitle(R.string.test_not_completed)
+                        .setMessage(R.string.reminders_will_stay_active)
+                        .setNeutralButton(R.string.cancel, null)
+                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
 
-                                Toast.makeText(getApplicationContext(), "Reminders are still active.  Go test!",
+                                Toast.makeText(getApplicationContext(), R.string.reminders_still_active_go_test,
                                         Toast.LENGTH_LONG).show();
                             }
                         })
@@ -74,8 +74,8 @@ public class TestDoneActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(TestDoneActivity.this)
-                        .setTitle("Confirm")
-                        .setMessage("Press OK to confirm that you have finished your probation test.  Reminders for today will stop!")
+                        .setTitle(R.string.confirm)
+                        .setMessage(R.string.ok_to_confirm_test_finished)
                         .setNeutralButton("Cancel", null)
                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
@@ -85,7 +85,7 @@ public class TestDoneActivity extends AppCompatActivity {
                                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                                 mNotificationManager.cancelAll();
 
-                                Toast.makeText(getApplicationContext(), "Test complete, stopping alarms until tomorrow morning!",
+                                Toast.makeText(getApplicationContext(), R.string.test_complete_stopping_alarm,
                                         Toast.LENGTH_LONG).show();
 
                                 cancelGoTestAlarm();
@@ -106,13 +106,13 @@ public class TestDoneActivity extends AppCompatActivity {
     }
 
     private void makeLogDialog() {
-        new android.support.v7.app.AlertDialog.Builder(TestDoneActivity.this)
-                .setTitle("Would you like to log your test?")
-                .setMessage("Press OK to make an entry in your calendar.")
+        new AlertDialog.Builder(TestDoneActivity.this)
+                .setTitle(R.string.log_test)
+                .setMessage(R.string.ok_to_make_calendar_entry)
 
-                .setNeutralButton("No", null)
+                .setNeutralButton(R.string.no, null)
 
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent noTestLog = new Intent(getApplicationContext(), CalendarLogActivity.class);
