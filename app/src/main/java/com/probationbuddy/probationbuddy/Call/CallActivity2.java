@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.probationbuddy.probationbuddy.R;
 
 public class CallActivity2 extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class CallActivity2 extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Your call has failed...",
                     Toast.LENGTH_LONG).show();
             e.printStackTrace();
-//            FirebaseCrash.report(new Exception("call failed, catch"));
+            FirebaseCrash.report(new Exception("call failed, catch"));
         }
 
 
