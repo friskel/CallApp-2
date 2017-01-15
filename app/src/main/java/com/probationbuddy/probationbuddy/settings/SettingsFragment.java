@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.settings;
+package com.probationbuddy.probationbuddy.Settings;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 import com.probationbuddy.probationbuddy.TestDoneActivity;
-import com.probationbuddy.probationbuddy.call.CallActivity2;
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
 
 import static android.support.v7.preference.PreferenceManager.getDefaultSharedPreferences;
 

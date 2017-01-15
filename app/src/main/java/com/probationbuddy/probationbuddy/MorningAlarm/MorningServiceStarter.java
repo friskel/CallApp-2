@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.morningalarm;
+package com.probationbuddy.probationbuddy.MorningAlarm;
 
 import android.app.AlarmManager;
 import android.app.IntentService;

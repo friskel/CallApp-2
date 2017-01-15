@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.dayalarm;
+package com.probationbuddy.probationbuddy.DayAlarm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -15,11 +15,11 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 
-import com.probationbuddy.probationbuddy.call.CallActivity2;
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.DoYouTestActivity;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
-import com.probationbuddy.probationbuddy.services.HideNotificationService;
+import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class DayAlarmService extends IntentService {
     int mId = 100;

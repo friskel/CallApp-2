@@ -21,12 +21,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.probationbuddy.probationbuddy.call.CallActivity2;
-import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
-import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
-import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
-import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
-import com.probationbuddy.probationbuddy.settings.SettingsFragment;
+import com.probationbuddy.probationbuddy.Call.CallActivity2;
+import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
+import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
+import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
+import com.probationbuddy.probationbuddy.Settings.SettingsFragment;
 
 import static com.probationbuddy.probationbuddy.R.id.bug;
 

@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.morningalarm;
+package com.probationbuddy.probationbuddy.MorningAlarm;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.preference.PreferenceManager;
 
-import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
+import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 
 
 // MorningService makes the alarm to give repeating notification reminders

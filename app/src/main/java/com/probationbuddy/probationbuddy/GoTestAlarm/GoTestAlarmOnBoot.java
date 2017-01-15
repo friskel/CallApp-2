@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.gotestalarm;
+package com.probationbuddy.probationbuddy.GoTestAlarm;
 
 import android.content.Context;
 import android.content.Intent;

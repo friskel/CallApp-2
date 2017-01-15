@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.gotestalarm;
+package com.probationbuddy.probationbuddy.GoTestAlarm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -16,7 +16,7 @@ import android.util.Log;
 import com.probationbuddy.probationbuddy.MainActivity;
 import com.probationbuddy.probationbuddy.R;
 import com.probationbuddy.probationbuddy.TestDoneActivity;
-import com.probationbuddy.probationbuddy.services.HideNotificationService;
+import com.probationbuddy.probationbuddy.Services.HideNotificationService;
 
 public class GoTestAlarmService extends IntentService {
     int mId;
