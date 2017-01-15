@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.settings;
+package com.probationbuddy.probationbuddy.Settings;
 
 import android.app.Activity;
 import android.content.DialogInterface;

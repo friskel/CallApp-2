@@ -121,7 +121,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.probationbuddy.probationbuddy.MainActivity" />
         </activity>
-        <activity android:name=".calendarlog.CalendarLogActivity"></activity>
+        <activity android:name=".CalendarLog.CalendarLogActivity"></activity>
     </application>
 
 </manifest>

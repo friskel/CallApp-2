@@ -17,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
+import com.probationbuddy.probationbuddy.CalendarLog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.Call.CallActivity2;
 import com.probationbuddy.probationbuddy.Call.CallingService;
 import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;

@@ -26,7 +26,7 @@ import com.probationbuddy.probationbuddy.DayAlarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.MorningAlarm.MorningServiceStarter;
-import com.probationbuddy.probationbuddy.settings.SettingsFragment;
+import com.probationbuddy.probationbuddy.Settings.SettingsFragment;
 
 import static com.probationbuddy.probationbuddy.R.id.bug;
 

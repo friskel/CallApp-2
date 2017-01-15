@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.calendarlog;
+package com.probationbuddy.probationbuddy.CalendarLog;
 
 import android.content.Intent;
 import android.os.Bundle;

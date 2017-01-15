@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
+import com.probationbuddy.probationbuddy.CalendarLog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.GoTestAlarm.GoTestAlarmReceiver;
 
 public class TestDoneActivity extends AppCompatActivity {
