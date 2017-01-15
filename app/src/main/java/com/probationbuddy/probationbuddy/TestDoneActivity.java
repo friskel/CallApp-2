@@ -110,7 +110,12 @@ public class TestDoneActivity extends AppCompatActivity {
                 .setTitle("Would you like to log your test?")
                 .setMessage("Press OK to make an entry in your calendar.")
 
-                .setNeutralButton("No", null)
+                .setNeutralButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
 
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
@@ -118,6 +123,7 @@ public class TestDoneActivity extends AppCompatActivity {
                         Intent noTestLog = new Intent(getApplicationContext(), CalendarLogActivity.class);
                         noTestLog.putExtra("logType", 3);
                         startActivity(noTestLog);
+                        finish();
                     }
                 })
                 .show();

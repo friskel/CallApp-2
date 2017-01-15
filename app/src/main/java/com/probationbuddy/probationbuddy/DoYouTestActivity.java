@@ -145,7 +145,12 @@ public class DoYouTestActivity extends AppCompatActivity {
                 .setMessage("Press OK to make an entry in your calendar about this call.")
 
 
-                .setNeutralButton("No", null)
+                .setNeutralButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                })
 
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
