@@ -1,4 +1,4 @@
-package com.probationbuddy.probationbuddy.call;
+package com.probationbuddy.probationbuddy.Call;
 
 import android.app.Notification;
 import android.app.NotificationManager;
