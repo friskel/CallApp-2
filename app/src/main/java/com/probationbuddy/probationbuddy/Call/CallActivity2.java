@@ -18,29 +18,20 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
 import com.probationbuddy.probationbuddy.R;
 
 public class CallActivity2 extends AppCompatActivity {
     String myNumber;
     final static int MY_PERMISSIONS_CALL_PHONE = 0;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
-
-        try {
-            callNow();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Your call has failed...",
-                    Toast.LENGTH_LONG).show();
-            e.printStackTrace();
-            FirebaseCrash.report(new Exception("call failed, catch"));
-        }
-
-
-
 
         //////// set toolbar ///////
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
@@ -53,6 +44,27 @@ public class CallActivity2 extends AppCompatActivity {
 
         cancelCurrentNotifications();
         setNumberTextView();
+
+
+// Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle params = new Bundle();
+        params.putString("call_activity", "call");
+        mFirebaseAnalytics.logEvent("called", params);
+
+        try {
+            callNow();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Your call has failed!",
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            FirebaseCrash.report(new Exception("call failed, catch"));
+        }
+
+
+
+
+
 
 //        //add button stuff
 //        Button callNow = (Button) findViewById(R.id.buttonGoLog);
