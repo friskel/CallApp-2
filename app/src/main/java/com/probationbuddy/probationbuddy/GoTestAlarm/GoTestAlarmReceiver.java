@@ -14,5 +14,8 @@ public class GoTestAlarmReceiver extends BroadcastReceiver {
         Intent i = new Intent(context, GoTestAlarmService.class);
         i.putExtra("foo", "bar");
         context.startService(i);
+
+
+        context.stopService(i);
     }
 }

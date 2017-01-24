@@ -52,12 +52,6 @@
 
 
 
-    <item
-        android:id="@+id/test"
-
-        android:title="test"
-        app:showAsAction="never" />
-
 
 
 

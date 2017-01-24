@@ -118,6 +118,7 @@ public class TestDoneActivity extends AppCompatActivity {
                         Intent noTestLog = new Intent(getApplicationContext(), CalendarLogActivity.class);
                         noTestLog.putExtra("logType", 3);
                         startActivity(noTestLog);
+                        finish();
                     }
                 })
                 .show();
