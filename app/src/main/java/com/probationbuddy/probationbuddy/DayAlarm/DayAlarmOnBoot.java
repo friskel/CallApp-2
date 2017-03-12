@@ -12,6 +12,7 @@ import com.probationbuddy.probationbuddy.morningalarm.MorningService;
 public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
     SharedPreferences sharedPrefs;
     boolean dayAlarmActive;
+    boolean alarmActive;
     Intent startServiceIntent;
 
     @Override
@@ -19,9 +20,10 @@ public class DayAlarmOnBoot extends WakefulBroadcastReceiver {
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
         dayAlarmActive = sharedPrefs.getBoolean("dayAlarmRunning", true);
+        alarmActive = sharedPrefs.getBoolean("prefsActivate", true);
         startServiceIntent = new Intent(context, MorningService.class);
 
-        if (dayAlarmActive){
+        if (dayAlarmActive && alarmActive){
 
             Log.i("BOOTY", "DayAlarmReceiverOnBoot is active");
             startWakefulService(context, startServiceIntent);
