@@ -18,7 +18,7 @@ public class MorningReceiverOnBoot extends WakefulBroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        alarmIsActive = sharedPrefs.getBoolean("prefsActivate", true);
+        alarmIsActive = sharedPrefs.getBoolean("prefsActivate", false);
         startServiceIntent = new Intent(context, MorningServiceStarter.class);
 
         if (alarmIsActive) {

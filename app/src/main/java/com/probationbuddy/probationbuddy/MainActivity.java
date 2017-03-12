@@ -23,7 +23,6 @@ import android.view.View;
 
 import com.probationbuddy.probationbuddy.call.CallActivity2;
 import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
-import com.probationbuddy.probationbuddy.dayalarm.DayAlarmService;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningReceiver;
 import com.probationbuddy.probationbuddy.morningalarm.MorningServiceStarter;
@@ -195,15 +194,6 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
 
-
-            case R.id.test:
-
-                Intent test = new Intent(this, DayAlarmService.class);
-
-                startService(test);
-
-
-                return true;
 
 
 

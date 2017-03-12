@@ -1,11 +1,81 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Probation Buddy</string>
-    <string name="calling_now">Llamando ahora</string>
+
+    <string-array name="intervals_name">
+        <item>15 minutos</item>
+        <item>30 minutos</item>
+        <item>1 hora</item>
+    </string-array>
+
+    <string-array name="intervals_value">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
     <string name="ok">OK</string>
-    <string name="pref_title_interval">Intervalo entre recordatorios</string>
-    <string name="prefsColorNumberKey">prefsColorNumber</string>
-    <string name="probation_buddy">Probatoria Amigo</string>
-    <string name="title_activity_settings">Ajustes</string>
+
+
+
+
+
+    <string name="app_name">Libertad Vigilada Amigo</string>
+    <string name="title_activity_settings">Configuración</string>
+    <string name="pref_title_interval">Intervalo entre avisos</string>
+    <string name="probation_buddy">Libertad Vigilada Amigo</string>
+    <string name="calling_now">Llamar ahora!</string>
     <string name="call_completed">Llamada completada</string>
+    <string name="you_havent_called_notif">No has llamado hoy! Haga clic aquí para llamar ahora.</string>
+    <string name="call_now_ticker">Libertad Vigilada Amigo: Llame ahora!</string>
+    <string name="call_now">Llamada ahora</string>
+    <string name="options">Opciones</string>
+
+    <string name="you_test_today">TIENES QUE PROBAR hoy</string>
+    <string name="you_are_required_to_test_today">Libertad Vigilada Amigo: es necesario que la prueba de hoy!</string>
+    <string name="probation_test_today">Prueba prueba hoy, don\'t olvida!</string>
+    <string name="test_completed">Prueba completada</string>
+    <string name="test_required_today">Prueba requerida hoy</string>
+    <string name="ok_to_confirm_you_have_test_today">Pulse OK para confirmar que usted tiene que pasar la prueba de hoy. Esto activará los recordatorios para asegurarse de que don\'t olvida go!</string>
+    <string name="cancel">Cancel</string>
+    <string name="go_test_reminders_starting">Ir probar los avisos están empezando!</string>
+    <string name="no_tests_today">sin pruebas de hoy</string>
+    <string name="ok_confirm_no_tests_today">Pulse OK para confirmar que no tiene pruebas de hoy. Todos los avisos será terminada hasta mañana!</string>
+    <string name="reminders_stopping_until_tomorrow">Avisos parar hasta mañana!</string>
+    <string name="log_call_question">Desea registrar su llamada?</string>
+    <string name="ok_to_make_calendar_entry">Pulse Aceptar para realizar una entrada en el calendario sobre esta llamada.</string>
+    <string name="no">No</string>
+    <string name="call_back_required">Call back requerido</string>
+    <string name="alarms_will_stay_on">Alarmas permanecerá encendida.</string>
+    <string name="you_test_today_toast">tienes que probar hoy!</string>
+    <string name="called_no_tests_toast">Le han pedido en el día de hoy, no hay pruebas.</string>
+    <string name="need_to_set_number">necesita establecer su llamada en el número de teléfono antes de realizar una llamada!</string>
+    <string name="hold_on">Hold on..</string>
+    <string name="not_called_today_toast">No has llamado hoy!</string>
+
+    <string name="first_run1">"Para activar la repetición diaria de recordatorios, encienda el conmutador en la parte superior de la lista de ajustes. A continuación, establezca su llamada en el número de teléfono y la hora de inicio, y usted es bueno ir! "</string>
+    <string name="first_run2">"\n \n puede cambiar su configuración en cualquier momento y que se actualizará automáticamente.  "</string>
+    <string name="first_run3">"\n \n Si tiene algún problema, puede ponerse en contacto con el creador de esta aplicación mediante el menú en la parte superior derecha.  "</string>
+    <string name="need_help_getting_started">Necesita ayuda para empezar?</string>
+    <string name="test_not_completed">Prueba aún no concluido</string>
+    <string name="reminders_will_stay_active">recordatorios a pasar test permanecerá activa.</string>
+    <string name="confirm">Confirmar</string>
+
+    <string name="ok_to_confirm_test_finished">Pulse OK para confirmar que has terminado tu prueba de libertad vigilada. Los recordatorios para hoy dejará!</string>
+    <string name="reminders_still_active_go_test">Avisos están todavía activos. Vaya prueba!</string>
+    <string name="test_complete_stopping_alarm">Prueba completada, deteniendo las alarmas hasta mañana por la mañana!</string>
+    <string name="log_test">Desea registrar su prueba?</string>
+
+    <string name="copyright">Copyright 2016-2017 - Probation Buddy</string>
+    <string name="thanks_for_using">Gracias por utilizar la libertad condicional amigo!</string>
+    <string name="about_page_paragraph">He hecho esta app, para ayudar a la gente a tener éxito en sus programas correccionales. Tras pasar por uno mismo, me enteré de que puede ser difícil mantener un registro diario de su call-ins cada día, incluso con alarmas estándar establecido en el teléfono. Sé por experiencia que están en libertad vigilada y otro tribunal ordenó la supervisión puede ser un poco estresante en su vida, y es de esperar que esta app puede ayudar a aliviar algunos de los que el estrés mientras se centra en las cosas más importantes. \n</string>
+    <string name="call_in_progress">Llamada en curso</string>
+    <string name="your_colors_numbers">tus colores/números:</string>
+
+    <string name="no_cancel_reminders_until_tomorrow">No, cancelar los recordatorios hasta mañana</string>
+    <string name="yes_activate_reminders_to_go_test">Sí, activar recordatorios a pasar test</string>
+    <string name="i_need_to_call_again_later">Necesito llamar más tarde</string>
+    <string name="test_completed_activity_title">Prueba completada?</string>
+    <string name="yes_cancel_all_reminders_until_tomorrow">Sí, cancelar todos los avisos hasta mañana.</string>
+    <string name="not_yet_keep_reminders_active">Todavía no, mantener activo recordatorios</string>
+
+
+
 </resources>

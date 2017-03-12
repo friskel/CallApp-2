@@ -173,6 +173,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
                     Toast.makeText(getContext(), "Probation Buddy has been disabled!",
                             Toast.LENGTH_SHORT).show();
 
+                    SharedPreferences.Editor editor = prefs.edit();
+                    editor.putBoolean("prefsActivate", false);
+                    editor.apply();
+
                     Activity main = getActivity();
                     if(main instanceof MainActivity) {
                         ((MainActivity) main).openSnackbar();

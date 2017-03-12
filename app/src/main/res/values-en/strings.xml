@@ -21,13 +21,6 @@
     </string-array>
     <string name="ok">OK</string>
 
-    <string name="prefsCallNumberKey" translatable="false">prefsCallNumber</string>
-    <string name="prefStartTimeKey" translatable="false">prefStartTime</string>
-    <string name="prefsColorNumberKey" translatable="false">prefsColorNumber</string>
-    <string name="prefStartTime" translatable="false">prefStartTime</string>
-    <string name="prefIntervalKey" translatable="false">prefInterval</string>
-    <string name="prefsSound" translatable="false">prefsSound</string>
-    <string name="prefsActivate" translatable="false">prefsActivate</string>
 
 
 

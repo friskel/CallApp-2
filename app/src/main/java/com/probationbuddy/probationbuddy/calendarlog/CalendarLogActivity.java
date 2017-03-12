@@ -29,29 +29,21 @@ public class CalendarLogActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss, dd-MM-yyyy ", Locale.getDefault());
         formattedDate = df.format(c.getTime());
 
-
         int logType = getIntent().getIntExtra("logType", 0);
 
-
-        if (logType == 1){
+        if (logType == 1) {
             calendarIntentNoTest();
-        }
-        else if (logType == 2){
+        } else if (logType == 2) {
             calendarIntentYesTest();
-        }
-        else if (logType == 3){
+        } else if (logType == 3) {
             calendarIntentTestDone();
-        }
-        else {
+        } else {
             calendarIntentNoTest();
         }
-
-
     }
 
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
     }
 
@@ -82,7 +74,7 @@ public class CalendarLogActivity extends AppCompatActivity {
                 .setData(CalendarContract.Events.CONTENT_URI)
                 .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis())
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
-                .putExtra(CalendarContract.Events.TITLE, "Called " + formattedDate +", Test required today!")
+                .putExtra(CalendarContract.Events.TITLE, "Called " + formattedDate + ", Test required today!")
                 .putExtra(CalendarContract.Events.DESCRIPTION, "Probation Buddy call log.  Call made at " + formattedDate + ", test is required.")
 //                .putExtra(CalendarContract.Events.EVENT_LOCATION, "The gym")
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
@@ -120,6 +112,4 @@ public class CalendarLogActivity extends AppCompatActivity {
         startActivityForResult(intent, 0);
         finish();
     }
-
-
 }
