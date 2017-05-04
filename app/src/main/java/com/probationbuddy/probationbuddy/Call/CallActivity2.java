@@ -27,6 +27,8 @@ public class CallActivity2 extends AppCompatActivity {
     final static int MY_PERMISSIONS_CALL_PHONE = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
 
+    private int callCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +89,16 @@ public class CallActivity2 extends AppCompatActivity {
 
     } //onCreate end
 
-    private void callNow() {
-        int permissionCheck = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CALL_PHONE);
+    private void callNow(){
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         myNumber = prefs.getString("prefsCallNumber", "123");
+
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE);
+
+
 
         if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
             Intent callingServiceIntent = new Intent(getApplicationContext(), CallingService.class);

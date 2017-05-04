@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "217709387011",
+    "firebase_url": "https://probation-buddy.firebaseio.com",
+    "project_id": "probation-buddy",
+    "storage_bucket": "probation-buddy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217709387011:android:6ec04ab751eac4c0",
+        "android_client_info": {
+          "package_name": "com.probationbuddy.probationbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217709387011-9jhjc4n97dmk51rr7bvcov8cvtgrotp1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.probationbuddy.probationbuddy",
+            "certificate_hash": "E9360BFF1087AF22F05E1F4F318BBC33B2C19D78"
+          }
+        },
+        {
+          "client_id": "217709387011-jpu0vk6lqqbdemoj8su8gb8rds24p3mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9A-yQZda1IUTnFPKczmbWrhWyN1FfwiE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217709387011-jpu0vk6lqqbdemoj8su8gb8rds24p3mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -55,6 +55,12 @@
         android:summary="Blue"
         android:title="Your test colors/numbers" />
 
+        <android.support.v7.preference.SwitchPreferenceCompat
+            android:defaultValue="true"
+            android:icon="@drawable/ic_calendar_plus_black_48dp"
+            android:key="prefsLogOn"
+            android:summary=""
+            android:title="Enable calendar logging" />
 
 
 
@@ -83,7 +89,7 @@
             android:defaultValue="true"
             android:icon="@drawable/ic_volume_up_black_48dp"
             android:key="prefsSound"
-            android:summary="On/off"
+            android:summary=""
             android:title="Notification Sound" />
 
 
@@ -92,7 +98,7 @@
             android:icon="@drawable/ic_vibration_black_48dp"
 
             android:key="prefsVibrate"
-            android:summary="On/off"
+            android:summary=""
             android:title="Vibrate" />
 
 

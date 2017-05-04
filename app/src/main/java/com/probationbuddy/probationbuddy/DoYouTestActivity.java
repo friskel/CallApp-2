@@ -3,10 +3,13 @@ package com.probationbuddy.probationbuddy;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +27,10 @@ import com.probationbuddy.probationbuddy.dayalarm.DayAlarmReceiver;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmStarter;
 import com.probationbuddy.probationbuddy.services.HideNotificationService;
 
+//wow this class needs to be re-done to remove the repetitiveness
+
 public class DoYouTestActivity extends AppCompatActivity {
-    Context mContext = this;
+    Context mContext = this; //had to get context this way to make the toasts work ¯\_(ツ)_/¯
     SharedPreferences sharedPrefs;
 
     @Override
@@ -43,6 +48,8 @@ public class DoYouTestActivity extends AppCompatActivity {
         makeNoTestButton();
         makeCallLaterButton();
         makeCallNowButton();
+
+
 
     }
 
@@ -85,7 +92,9 @@ public class DoYouTestActivity extends AppCompatActivity {
                                 Toast.makeText(mContext, R.string.go_test_reminders_starting,
                                         Toast.LENGTH_LONG).show();
                                 startService(new Intent(mContext, GoTestAlarmStarter.class));
-                                makeLogDialog(2);
+                                if (sharedPrefs.getBoolean("prefsLogOn", false)) {
+                                    makeLogDialog(2);
+                                }
                             }
                         })
                         .show();
@@ -115,6 +124,12 @@ public class DoYouTestActivity extends AppCompatActivity {
                                 editor.putBoolean("calledToday", true);
                                 editor.apply();
 
+                                int callCount = sharedPrefs.getInt("callCount", 0);
+                                callCount++;
+                                editor.putInt("callCount", callCount);
+                                editor.apply();
+
+
 
                                 NotificationManager mNotificationManager =
                                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -125,8 +140,17 @@ public class DoYouTestActivity extends AppCompatActivity {
                                 Toast.makeText(mContext, R.string.reminders_stopping_until_tomorrow,
                                         Toast.LENGTH_LONG).show();
 
+                                if (sharedPrefs.getBoolean("prefsLogOn", false)) {
+                                    makeLogDialog(1);
+                                }
 
-                                makeLogDialog(1);
+
+
+
+                                if (callCount == 7 || callCount == 12 || callCount == 25 || callCount == 45) {
+                                    askForRate();
+                                }
+
                             }
                         })
                         .show();
@@ -134,6 +158,21 @@ public class DoYouTestActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void askForRate() {
+        new AlertDialog.Builder(DoYouTestActivity.this)
+                .setTitle("Always ad-free!")
+                .setMessage("If this app has helped you out, please give it a good rating on the app store!  If you think it sucks, give it one star!  Either way, I would really appreciate the rating - hit OK to go there now.")
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        rateApp();
+                    }
+                })
+                .setNeutralButton("no", null)
+                .show();
+
     }
 
     private void makeLogDialog(int logTypeInt) {
@@ -234,4 +273,44 @@ public class DoYouTestActivity extends AppCompatActivity {
         Intent startServiceIntent = new Intent(mContext, HideNotificationService.class);
         startService(startServiceIntent);
     }  //runs hide notification service
+
+
+    /*
+* Start with rating the app
+* Determine if the Play Store is installed on the device
+*
+* */
+    public void rateApp()
+    {
+        try
+        {
+            Intent rateIntent = rateIntentForUrl("market://details");
+            startActivity(rateIntent);
+        }
+        catch (ActivityNotFoundException e)
+        {
+            Intent rateIntent = rateIntentForUrl("https://play.google.com/store/apps/details");
+            startActivity(rateIntent);
+        }
+    }
+
+    private Intent rateIntentForUrl(String url)
+    {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(String.format("%s?id=%s", url, getPackageName())));
+        int flags = Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_MULTIPLE_TASK;
+        if (Build.VERSION.SDK_INT >= 21)
+        {
+            flags |= Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+        }
+        else
+        {
+            //noinspection deprecation
+            flags |= Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET;
+        }
+        intent.addFlags(flags);
+        return intent;
+    }
+
+
+
 }

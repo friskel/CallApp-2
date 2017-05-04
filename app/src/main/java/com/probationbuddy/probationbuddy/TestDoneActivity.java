@@ -20,8 +20,10 @@ import com.probationbuddy.probationbuddy.calendarlog.CalendarLogActivity;
 import com.probationbuddy.probationbuddy.gotestalarm.GoTestAlarmReceiver;
 
 public class TestDoneActivity extends AppCompatActivity {
-    Button testDoneButton;
-    Button testNotDoneButton;
+    Toolbar myToolbar;
+
+    private Button testDoneButton;
+    private Button testNotDoneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class TestDoneActivity extends AppCompatActivity {
     }
 
     private void setToolbar() {
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
+        myToolbar = (Toolbar) findViewById(R.id.toolbar_top);
         setSupportActionBar(myToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -95,7 +97,9 @@ public class TestDoneActivity extends AppCompatActivity {
                                 SharedPreferences.Editor editor = sharedPrefs.edit();
                                 editor.putBoolean("haveTestToday", false);
                                 editor.apply();
-                                makeLogDialog();
+                                if (sharedPrefs.getBoolean("prefsLogOn", false)) {
+                                        makeLogDialog();
+                                    }
                             }
                         })
                         .show();

@@ -35,14 +35,14 @@
     <string name="probation_test_today">Probation test today, don\'t forget!</string>
     <string name="test_completed">Test Completed</string>
     <string name="test_required_today">Test required today</string>
-    <string name="ok_to_confirm_you_have_test_today">Press OK to confirm that you have to go test today.  This will activate reminders to make sure you don\'t forget to go!</string>
+    <string name="ok_to_confirm_you_have_test_today">Press OK to confirm that you have to go test today.  This will activate reminders to make sure you don\'t forget to go.</string>
     <string name="cancel">Cancel</string>
     <string name="go_test_reminders_starting">Go test reminders are starting!</string>
     <string name="no_tests_today">No tests today</string>
-    <string name="ok_confirm_no_tests_today">Press OK to confirm that you have no tests today.  All reminders will be finished until tomorrow!</string>
+    <string name="ok_confirm_no_tests_today">Press OK to confirm that you have no tests today.  All reminders will be finished until tomorrow.</string>
     <string name="reminders_stopping_until_tomorrow">Reminders stopping until tomorrow!</string>
     <string name="log_call_question">Would you like to log your call?</string>
-    <string name="ok_to_make_calendar_entry">Press OK to make an entry in your calendar about this call.</string>
+    <string name="ok_to_make_calendar_entry">Press OK to make an entry in your calendar about this call. \n \n (disable this in the home settings screen)</string>
     <string name="no">No</string>
     <string name="call_back_required">Call back required</string>
     <string name="alarms_will_stay_on">Alarms will stay on.</string>
