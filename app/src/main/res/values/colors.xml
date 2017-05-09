@@ -4,9 +4,7 @@
     <color name="colorPrimaryDark">#0097a7</color>
     <color name="colorAccent">#00bcd4</color>
     <color name="colorBackground">#ffffff</color>
-    <color name="cardview_light_background">#ffffff</color>
     <color name="colorToolbar">#ffffff</color>
-    <color name="black">#000000</color>
     <color name="red">#ff4040</color>
 
 
